@@ -289,3 +289,9 @@ begin_type_new("Integer", "Bar_Type")
 end()
 #+end_src
 [[file:fig-03-derived-types.eps]]
+
+
+* Config                                                           :noexport:
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:
