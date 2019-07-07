@@ -26,53 +26,65 @@
 
 * Introduction
 ** What is =AdaML=?
-
 - UML tailored for Ada 2012 programming language
-- A description language to draw UML diagrams, implemented in PlantUML
+- A modeling language to draw UML diagrams, implemented in PlantUML
 - An easy way to learn Ada through the use of UML and OOP concepts
 
-** What is /not/ =AdaML=?
+** Features
+- UML tailored to use and show particular Ada language characteristics
+- Coherent set of functions to design software models for Ada
+- Generates high quality drawings easy to embedded in other docs (eps)
+- Easy to learn by example
 
+** What is /not/ =AdaML=?
 - A model-based tool to generate Ada code
 - A reverse engineering tool to draw UML diagrams from Ada code
 - An interactive UML tool
 
 ** Requirements
-
 - =PlantUML= installed and working in your system, see [[https://plantuml.com][plantuml.com]]
-- The =AdaML.puml= file, see [[
+- The =AdaML= files, see [[https://github.com/rocher/AdaML][AdaML github]] repository
 - Your favorite text editor, preferably with =PlantUML= support (e.g., Emacs)
-- See [[http://plantuml.com/running][plantuml.com/running]] you have the list of supported editors
+- Visit [[http://plantuml.com/running][plantuml.com/running]] to know the list of supported editors
 
 ** Limitations
-
 Make sure that the =PlantUML= environment you're using
 - lets you use external files, not only a single piece of text
 - the line "=!include AdaML.puml=" on top of your new files effectively includes
   the =AdaML.puml= file
 
 ** Hello World example
-This the mandatory /Hello World/ example, defining a type with an attribute, a
-procedure and a function
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.65
 :END:
+_=AdaML=_
 #+begin_example
 !include AdaML.puml
-begin_type("Hello_World")
+begin_package("Hello_World")
   attribute(private, "Foo", "Natural", 42)
   procedure(public, "Bar", "Positive")
   function(public, "Baz", "Boolean", "Natural")
 end()
 #+end_example
+
+_=Ada=_
+#+begin_src ada :exports code
+package Hello_World is
+  procedure Bar (Arg : Natural);
+  function Baz (Arg : Boolean) return Natural;
+private
+  Foo : Natural := 42;
+end Hello_World;
+#+end_src
 *** figure                                                  :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.35
 :END:
+_=UML=_
 #+begin_src plantuml :file fig-01-hello-world-example.eps :exports none :results none
 !include AdaML.puml
-begin_type("Hello_World")
+begin_package("Hello_World")
   attribute(private, "Foo", "Natural", 42)
   procedure(public, "Bar", "Positive")
   function(public, "Baz", "Boolean", "Natural")
