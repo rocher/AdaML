@@ -1,0 +1,425 @@
+' ------------------------------------------------------------------------
+'
+' AdaML Modeling Language
+' Copyright (C) 2019, Francesc Rocher
+'
+' This library is free software;  you can redistribute it and/or modify it
+' under terms of the  GNU General Public License  as published by the Free
+' Software  Foundation;  either version 3,  or (at your  option) any later
+' version. This library is distributed in the hope that it will be useful,
+' but WITHOUT ANY WARRANTY;  without even the implied warranty of MERCHAN-
+' TABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+'
+' You should have received a copy of the GNU General Public License and
+' a copy of the GCC Runtime Library Exception along with this program;
+' see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+' <http://www.gnu.org/licenses/>.
+'
+' ------------------------------------------------------------------------
+
+'Skin parameters
+skinparam {
+  arrowColor black
+  arrowThickness 0.8
+  boxpadding 0
+  classAttributeIconSize 10
+  classBackgroundColor white
+  classBorderColor black
+  classBorderThickness 1.3
+  classFontSize 14
+  classFontName CMU Bright SemiBold
+  classHeaderBackgroundColor #dadada
+  classHeaderBackgroundColor<< object >> #ffd700
+  classHeaderBackgroundColor<< protected object >> #ffd700
+  circledCharacterFontSize 10
+  circledCharacterRadius<< access >> 5
+  circledCharacterRadius 10
+  componentStyle uml2
+  defaultFontName CMU Bright Roman
+  defaultFontSize 12
+  genericDisplay true
+  handwritten false
+  monochrome false
+  objectBorderThickness 0.8
+  packageBackgroundColor #f6f6f6
+  packageStyle frame
+  packageFontName CMU Bright Bold
+  packageFontStyle regular
+  packageFontSize 14
+  padding 2
+  shadowing false
+}
+
+'Generic config
+allow_mixing
+hide empty attributes
+hide empty methods
+hide <<object>> circle
+hide <<object>> stereotype
+set namespaceSeparator none
+
+'Constants
+!private = 0
+!public = 1
+
+'Color configuration
+!color_abstract    = "#ff33f0"
+!color_access      = "#f0f0f0"
+!color_enumeration = "#adff2f"
+!color_interface   = "#aaccff"
+!color_package     = "#ffff33"
+!color_protected   = "#aaccff"
+!color_subtype     = "#ffccaa"
+!color_type        = "#ff6666"
+
+'Configuration
+!access_association = "all"
+!access_stereotype = "access"
+!access_suffix = "_Access"
+
+!array_association = "of"
+
+'Private global variables
+!__with__ = 0
+!__range__ = 0
+!__generic__ = 0
+!__attr_line__ = 0
+!__method_line__ = 0
+
+'Private functions
+!function __reset()
+!__with__ = 0
+!__range__ = 0
+!__generic__ = 0
+!__attr_line__ = 0
+!__method_line__ = 0
+!endfunction
+
+!function __detail(line, name, spec)
+  !if (line == 0)
+    .. name ..
+  !endif
+  ** ** spec
+!endfunction
+
+!function __attr_line()
+  !if (__attr_line__ == 1)
+    --
+    !__attr_line__ = 0
+  !endif
+!endfunction
+
+!function __method_line()
+  !if (__method_line__ == 1)
+    --
+    !__method_line__ = 0
+  !endif
+!endfunction
+
+!function __declare_entity(type_char, color, name, stereotype="", pre="", post="")
+  !if (%strlen(type_char) == 0)
+    pre class name <<stereotype>> post
+  !else
+    pre class name <<(type_char, color) stereotype>> post
+  !endif
+!endfunction
+
+!function __begin_entity(type_char, color, name, stereotype="", pre="", post="")
+  __reset()
+  !if (%strlen(type_char) == 0)
+    pre class name <<stereotype>> post {
+  !else
+    pre class name <<(type_char, color) stereotype>> post {
+  !endif
+!endfunction
+
+!function __check_type(name)
+  !if (%strpos("types:Integer,Natural,Positive", name) > 0)
+    !if (%not(%variable_exists("__type_" + name)))
+      %set_variable_value("__type_" + name, 1)
+      __declare_entity("T", color_type, name)
+    !endif
+  !endif
+!endfunction
+
+!function __type_new(type1, type2, comment="", note="")
+  !if (%strlen(comment) == 0)
+    type1 ^-- type2
+  !else
+    type1 ^-- type2 : comment
+  !endif
+!endfunction
+
+!function __check_array(name, stereotype)
+  !if (%variable_exists("__array_" + name))
+    !if (%strlen(stereotype) == 0)
+      !stereotype = "array"
+    !else
+      !stereotype = "array " + stereotype
+    !endif
+  !endif
+  !return stereotype
+!endfunction
+
+'Public functions
+!function begin_package_spec(name, stereotype="")
+  !$p_name_is = "package " + name + " is"
+  !if (%strlen(stereotype) == 0)
+    package "$p_name_is" {
+  !else
+    package "$p_name_is" <<stereotype>> {
+  !endif
+!endfunction
+
+!function abstract(name, stereotype="")
+  __declare_entity("A", color_abstract, name, stereotype, "abstract")
+!endfunction
+
+!function begin_abstract(name, stereotype="")
+  __begin_entity("A", color_abstract, name, stereotype, "abstract")
+!endfunction
+
+!function enumeration(name, stereotype="")
+  __declare_entity("E", color_enumeration, name, stereotype)
+!endfunction
+
+!function begin_enumeration(name, stereotype="")
+  __begin_entity("E", color_enumeration, name, stereotype)
+!endfunction
+
+!function interface(name, stereotype="")
+  __declare_entity("I", color_interface, name, stereotype)
+!endfunction
+
+!function begin_interface(name, stereotype="")
+  __begin_entity("I", color_interface, name, stereotype)
+!endfunction
+
+!function package(name, stereotype="")
+  __declare_entity("P", color_package, name, stereotype)
+!endfunction
+
+!function begin_package(name, stereotype="")
+  __begin_entity("P", color_package, name, stereotype)
+!endfunction
+
+!function subtype(name, stereotype="")
+  __declare_entity("S", color_subtype, name, __check_array(name, stereotype))
+!endfunction
+
+!function begin_subtype(name, stereotype="")
+  __begin_entity("S", color_subtype, name, __check_array(name, stereotype))
+!endfunction
+
+!function type(name, stereotype="")
+  __declare_entity("T", color_type, name, __check_array(name, stereotype))
+!endfunction
+
+!function begin_type(name, stereotype="")
+  __begin_entity("T", color_type, name, __check_array(name, stereotype))
+!endfunction
+
+!function type_new(type, name, stereotype="", comment="", note="")
+  __check_type(type)
+  __declare_entity("T", color_type, name, __check_array(name, stereotype))
+  __type_new(type, name, comment, note)
+!endfunction
+
+!function begin_type_new(type, name, stereotype="", comment="", note="")
+  __check_type(type)
+  __type_new(type, name, comment, note)
+  __begin_entity("T", color_type, name, __check_array(name, stereotype))
+!endfunction
+
+!function type_access(type, suffix=access_suffix, stereotype=access_stereotype)
+  !type_access = type + suffix
+  __declare_entity("a", color_access, type_access, stereotype)
+  !if (%strlen(access_association) == 0)
+    type <.. type_access
+  !else
+    type <.. type_access : access_association
+  !endif
+!endfunction
+
+!function type_protected(name, stereotype="protected")
+  __declare_entity("P", color_protected, name, stereotype)
+!endfunction
+
+!function object_protected(name, stereotype="")
+  __declare_entity("", "", name, "object")
+!endfunction
+
+!function begin_object_protected(name, stereotype="")
+  hide name circle
+  __begin_entity("", "", name, "protected object")
+!endfunction
+
+!function end()
+  }
+!endfunction
+
+'Details, attributes, constants and objects
+'use access=0 for 'private', access=1 for 'public'
+!function with(spec)
+  __detail(__with__, "with", spec)
+  !__with__ = 1
+  !__attr_line__ = 1
+  !__method_line__ = 1
+!endfunction
+
+!function range(spec)
+  __detail(__range__, "range", spec)
+  !__range__ = 1
+  !__attr_line__ = 1
+  !__method_line__ = 1
+!endfunction
+
+!function generic_with(spec)
+  __detail(__generic__, "generic with", spec)
+  !__generic__ = 1
+  !__attr_line__ = 1
+  !__method_line__ = 1
+!endfunction
+
+!function attribute(access, name, type, defval="")
+  __attr_line()
+  !acc_str = "+"
+  !if (access == 0)
+    !acc_str = "-"
+  !endif
+  !if (%strlen(defval) == 0)
+    acc_str {field} name : type
+  !else
+    acc_str {field} name : type := defval
+  !endif
+!endfunction
+
+!function constant(access, name, type, value, aliased=0)
+  !__attr_line()
+  !acc_str = "+"
+  !als_str = ""
+  !if (access == 0)
+    !acc_str = "-"
+  !endif
+  !if (aliased == 1)
+    !als_str = "aliased"
+  !endif
+  !if (%strpos(type, "String") >= 0)
+    acc_str {field} name : constant als_str type := "value"
+  !else
+    acc_str {field} name : constant als_str type := value
+  !endif
+!endfunction
+
+!function protected_object(access, name)
+  !acc_str = "+"
+  !if (access == 0)
+    !acc_str = "-"
+  !endif
+  acc_str {field} name
+!endfunction
+
+!function procedure(access, name, args="")
+  __method_line()
+  !acc_str = "+"
+  !if (access == 0)
+    !acc_str = "-"
+  !endif
+  !if (%strlen(args) == 0)
+    acc_str {method} name
+  !else
+    acc_str {method} name (args)
+  !endif
+!endfunction
+
+!function function(access, name, args, return)
+  __method_line()
+  !acc_str = "+"
+  !if (access == 0)
+    !acc_str = "-"
+  !endif
+  !if (%strlen(args) == 0)
+    acc_str {method} name : return
+  !else
+    acc_str {method} name (args) : return
+  !endif
+!endfunction
+
+'Associations
+!function has(owner, element)
+  owner --> element
+!endfunction
+
+!function owns(owner, element)
+  owner *--> element
+!endfunction
+
+!function depends(type, from)
+  type ..> from
+!endfunction
+
+!function array(array_type, element_type, association=array_association)
+  %set_variable_value("__array_" + array_type, 1)
+  !if (%strlen(association) == 0)
+    array_type +--> element_type
+  !else
+    array_type +--> element_type : association
+  !endif
+!endfunction
+
+'Geometry hints
+!function left_to_right(obj0, obj1, obj2="", obj3="", obj4="", obj5="", obj6="", obj7="", obj8="", obj9="")
+  obj0 -[hidden]right- obj1
+  !if (%strlen(obj2) > 0)
+    obj1 -[hidden]right- obj2
+  !endif
+  !if (%strlen(obj3) > 0)
+    obj2 -[hidden]right- obj3
+  !endif
+  !if (%strlen(obj4) > 0)
+    obj3 -[hidden]right- obj4
+  !endif
+  !if (%strlen(obj5) > 0)
+    obj4 -[hidden]right- obj5
+  !endif
+  !if (%strlen(obj6) > 0)
+    obj5 -[hidden]right- obj6
+  !endif
+  !if (%strlen(obj7) > 0)
+    obj6 -[hidden]right- obj7
+  !endif
+  !if (%strlen(obj8) > 0)
+    obj7 -[hidden]right- obj8
+  !endif
+  !if (%strlen(obj9) > 0)
+    obj8 -[hidden]right- obj9
+  !endif
+!endfunction
+
+!function up_to_down(obj0, obj1, obj2="", obj3="", obj4="", obj5="", obj6="", obj7="", obj8="", obj9="")
+  obj0 -[hidden]down- obj1
+  !if (%strlen(obj2) > 0)
+    obj1 -[hidden]down- obj2
+  !endif
+  !if (%strlen(obj3) > 0)
+    obj2 -[hidden]down- obj3
+  !endif
+  !if (%strlen(obj4) > 0)
+    obj3 -[hidden]down- obj4
+  !endif
+  !if (%strlen(obj5) > 0)
+    obj4 -[hidden]down- obj5
+  !endif
+  !if (%strlen(obj6) > 0)
+    obj5 -[hidden]down- obj6
+  !endif
+  !if (%strlen(obj7) > 0)
+    obj6 -[hidden]down- obj7
+  !endif
+  !if (%strlen(obj8) > 0)
+    obj7 -[hidden]down- obj8
+  !endif
+  !if (%strlen(obj9) > 0)
+    obj8 -[hidden]down- obj9
+  !endif
+!endfunction
