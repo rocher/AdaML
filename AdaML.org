@@ -1,5 +1,5 @@
 #+TITLE: AdaML
-#+SUBTITLE: /Ada tailored UML Framework/
+#+SUBTITLE: /Ada tailored UML Modeling Language/
 #+AUTHOR: Francesc Rocher
 #+EMAIL: francesc.rocher@gmail.commit
 #+DESCRIPTION:
