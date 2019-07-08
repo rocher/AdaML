@@ -121,7 +121,6 @@ objects or tasks. There are two ways to represent them in =AdaML=
 
 ** Detail view
 The simplest detail view is\newline
-
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.65
@@ -148,7 +147,6 @@ package("FooBar")
 
 ** More Details
 Detail view is intended to show package elements\newline
-
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.65
@@ -183,7 +181,6 @@ end()
 
 ** Even More Details
 e.g., a /generic/ package with two numerical parameters\newline
-
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.6
@@ -222,7 +219,6 @@ end()
 
 ** Specification view
 Specification view lets you see other entities contained in the package\newline
-
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.5
@@ -291,7 +287,6 @@ _=AdaML=_
 type("Foo_Type")
 begin_type("Bar_Type")
   function("Answer", "", "Natural")
-private()
   attribute("Baz", "Natural")
 end()
 #+end_example
@@ -306,18 +301,25 @@ _=UML=_
 type("Foo_Type")
 begin_type("Bar_Type")
   function("Answer", "", "Natural")
-private()
   attribute("Baz", "Natural")
 end()
 #+end_src
 
-#+RESULTS[19b6cf410f68c0d407a73e2d9916982f3b2a3ae7]:
+#+RESULTS[5c1d589e39dac08c16326372d2ada6331a1129b0]:
 [[file:fig-03-basic-types.eps]]
+
+*** Ada
+#+begin_src ada
+-- type Foo_Type just declared, no more information
+type Bar_Type is record
+  Baz : Natural;
+end record;
+function Answer (Arg : in Bar_Type) return natural;
+#+end_src
 
 
 ** Range Types
-Use either /unspecified/ types or /range/ types, preferably in this way\newline
-
+Use either the /range stereotype/ or the /range attribute/\newline
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.55
@@ -325,7 +327,7 @@ Use either /unspecified/ types or /range/ types, preferably in this way\newline
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
-type("Range_Type", "range <>")
+type("Dozen_Type", "range 1..12")
 begin_type("Twenty_Type")
   range("1 .. 20")
 end()
@@ -338,14 +340,20 @@ end()
 _=UML=_
 #+begin_src plantuml :file fig-03-range-types.eps
 !include AdaML.puml
-type("Range_Type", "range <>")
+type("Dozen_Type", "range 1..12")
 begin_type("Twenty_Type")
   range("1 .. 20")
 end()
 #+end_src
 
-#+RESULTS[02b207a13fb8f2ab5513520c3c09aaefe4b3e2cf]:
+#+RESULTS[09ee69d76a84bbf58e9e8b3d82e38b8b95903cc1]:
 [[file:fig-03-range-types.eps]]
+
+*** Ada
+#+begin_src ada :exports code
+type Dozen_Type is range 1 .. 12;
+type Twenty_Type is range 1 .. 20;
+#+end_src
 
 
 ** Modular Types
@@ -377,6 +385,12 @@ end()
 
 #+RESULTS[42d0b89e1728445ebf9a19a879813b200093e6ac]:
 [[file:fig-03-modular-types.eps]]
+
+*** Ada
+#+begin_src ada :exports code
+type Mod_Type is mod 1_024;
+procedure Add_Ten (Arg : in out Mod_Type);
+#+end_src
 
 
 ** Enumeration Types
