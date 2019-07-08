@@ -13,14 +13,15 @@
 #+LINK_UP:
 #+LINK_HOME:
 #+STARTUP: beamer
-#+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [bigger]
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [bigger]
 #+LATEX_HEADER: \RequirePackage{fancyvrb}
 #+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
 #+LATEX_HEADER: \usepackage{minted}
 #+BEAMER_FRAME_LEVEL: 3
 #+BEAMER_THEME: Frankfurt
 #+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+#+PROPERTY: header-args :eval never-export :cache yes
 
 \setminted{fontsize=\scriptsize}
 
@@ -32,9 +33,9 @@
 
 ** Features
 - UML tailored to use and show particular Ada language characteristics
-- Coherent set of functions to design software models for Ada
+- Coherent set of functions to design software components for Ada
 - Generates high quality drawings easy to embedded in other docs (eps)
-- Easy to learn by example
+- Easy to learn by example, both =AdaML= and Ada language
 
 ** What is /not/ =AdaML=?
 - A model-based tool to generate Ada code
@@ -46,12 +47,14 @@
 - The =AdaML= files, see [[https://github.com/rocher/AdaML][AdaML github]] repository
 - Your favorite text editor, preferably with =PlantUML= support (e.g., Emacs)
 - Visit [[http://plantuml.com/running][plantuml.com/running]] to know the list of supported editors
+- For better visualization, /computer modern/ fonts
 
 ** Limitations
 Make sure that the =PlantUML= environment you're using
 - lets you use external files, not only a single piece of text
 - the line "=!include AdaML.puml=" on top of your new files effectively includes
   the =AdaML.puml= file
+- Still under development; feedback appreciated
 
 ** Hello World example
 *** code                                                    :BMCOL:B_block:
@@ -62,39 +65,46 @@ _=AdaML=_
 #+begin_example
 !include AdaML.puml
 begin_package("Hello_World")
-  attribute(private, "Foo", "Natural", 42)
-  procedure(public, "Bar", "Positive")
-  function(public, "Baz", "Boolean", "Natural")
+  procedure("Bar", "Positive")
+  function("Baz", "Boolean", "Natural")
+private()
+  attribute("Foo", "Natural", 42)
 end()
 #+end_example
 
-_=Ada=_
-#+begin_src ada :exports code
-package Hello_World is
-  procedure Bar (Arg : Natural);
-  function Baz (Arg : Boolean) return Natural;
-private
-  Foo : Natural := 42;
-end Hello_World;
-#+end_src
 *** figure                                                  :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.35
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-01-hello-world-example.eps :exports none :results none
+#+begin_src plantuml :file fig-01-hello-world-example.eps
 !include AdaML.puml
 begin_package("Hello_World")
-  attribute(private, "Foo", "Natural", 42)
-  procedure(public, "Bar", "Positive")
-  function(public, "Baz", "Boolean", "Natural")
+  procedure("Bar", "Positive")
+  function("Baz", "Boolean", "Natural")
+private()
+  attribute("Foo", "Natural", 42)
 end()
 #+end_src
+
+#+RESULTS[7a22dc04a15ce1b7518d36e9ca62ab1251d2cf58]:
 [[file:fig-01-hello-world-example.eps]]
+
+*** Ada
+#+begin_src ada :exports code
+package Hello_World is
+  procedure Bar (Arg : Positive);
+  function Baz (Arg : Boolean) return Natural;
+private
+  Foo : Natural := 42;
+end Hello_World;
+#+end_src
+
 
 ** Entities and Elements
 - Entities :: are /classifiers/, in UML terminology, that correspond to Ada
               packages, types, records, arrays, subtypes and tasks
+\newline
 - Elements :: are /features/, in UML terminology, that correspond to Ada record
               members, functions, procedures, type discriminant and other Ada
               specific characteristics (e.g, =range 1..1024=)
@@ -102,97 +112,122 @@ end()
 
 * Packages
 ** Description
-Ada packages are like =C++= namespaces: can contain other packages, types,
-procedures, functions, objects...
-
-There are two ways to represent them in =AdaML=
-
-- Specification view :: show only entities contained (no package elements)
+Ada packages can contain other packages, types, procedures, functions, protected
+objects or tasks. There are two ways to represent them in =AdaML=
 
 - Detail view :: show only package elements (no entities contained)
+\newline
+- Specification view :: show only entities contained (no package elements)
 
 ** Detail view
-This is the simplest form
+The simplest detail view is\newline
+
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.65
 :END:
+_=AdaML=_
 #+begin_example
 !include AdaML.puml
 package("FooBar")
 #+end_example
+
 *** figure                                                  :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.25
 :END:
-#+begin_src plantuml :file fig-02-detail-view.eps :exports none :results none
+_=UML=_
+#+begin_src plantuml :file fig-02-detail-view.eps
 !include AdaML.puml
 package("FooBar")
 #+end_src
+
+#+RESULTS[9e5758013375e35a0f52d80450f7884201531f36]:
 [[file:fig-02-detail-view.eps]]
 
+
 ** More Details
-Detail view is intended to show package elements other than types
+Detail view is intended to show package elements\newline
+
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.65
 :END:
+_=AdaML=_
 #+begin_example
 !include AdaML.puml
 begin_package("FooBar")
-  attribute(private, "Foo", "Natural")
   procedure(public, "Bar", "in out Natural")
+private()
+  attribute("Foo", "Natural")
 end()
 #+end_example
+
 *** figure                                                  :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.35
 :END:
-#+begin_src plantuml :file fig-02-more-details.eps :exports none :results none
+_=UML=_
+#+begin_src plantuml :file fig-02-more-details.eps
 !include AdaML.puml
 begin_package("FooBar")
-  attribute(private, "Foo", "Natural")
-  procedure(public, "Bar", "in out Natural")
+  procedure("Bar", "in out Natural")
+private()
+  attribute("Foo", "Natural")
 end()
 #+end_src
+
+#+RESULTS[1bee01e4589d4a85c718fe8d27f958168f8e5b6c]:
 [[file:fig-02-more-details.eps]]
 
+
 ** Even More Details
-For example, a /generic/ package with two numerical parameters
+e.g., a /generic/ package with two numerical parameters\newline
+
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.65
+:BEAMER_col: 0.6
 :END:
+_=AdaML=_
 #+begin_example
 !include AdaML.puml
 begin_package("FooBar<Min, Max>")
   generic_with("Min : Natural range 1..10")
   generic_with("Max : Natural range 100..1024")
-  attribute(private, "Foo", "Natural")
-  procedure(public, "Bar", "in out Natural")
+  procedure("Bar", "in out Natural")
+private()
+  attribute("Foo", "Natural")
 end()
 #+end_example
+
 *** figure                                                  :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.35
+:BEAMER_col: 0.4
 :END:
-#+begin_src plantuml :file fig-02-even-mode-details.eps :exports none :results none
+_=UML=_
+#+begin_src plantuml :file fig-02-even-mode-details.eps
 !include AdaML.puml
 begin_package("FooBar<Min, Max>")
   generic_with("Min : Natural range 1..10")
   generic_with("Max : Natural range 100..1024")
-  attribute(private, "Foo", "Natural")
-  procedure(public, "Bar", "in out Natural")
+  procedure("Bar", "in out Natural")
+private()
+  attribute("Foo", "Natural")
 end()
 #+end_src
+
+#+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
 [[file:fig-02-even-mode-details.eps]]
 
+
 ** Specification view
-Here you see the entities contained in the package
+Specification view lets you see other entities contained in the package\newline
+
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.5
 :END:
+_=AdaML=_
 #+begin_example
 !include AdaML.puml
 begin_package_spec("Hello_World")
@@ -203,11 +238,13 @@ begin_package_spec("Hello_World")
   depends("Foo_Bar", "Bar_Type")
 end()
 #+end_example
+
 *** figure                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.5
 :END:
-#+begin_src plantuml :file fig-02-specification-view.eps :exports none :results none
+_=UML=_
+#+begin_src plantuml :file fig-02-specification-view.eps
 !include AdaML.puml
 begin_package_spec("Hello_World")
   package("Foo_Bar")
@@ -217,6 +254,8 @@ begin_package_spec("Hello_World")
   depends("Foo_Bar", "Bar_Type")
 end()
 #+end_src
+
+#+RESULTS[34422c456c5d8327b17464a9dafaba1ccf95e528]:
 [[file:fig-02-specification-view.eps]]
 
 
@@ -225,20 +264,21 @@ end()
 Ada 2012 overall type classification
 #+begin_example
 
-ELEMENTARY TYPES                  COMPOSITE TYPES
-  |-- Access                        |-- Array
-  '-- Scalar                        |-- Record
-      |-- Discrete                  |-- Protected
-      |   |-- Enumaration           '-- Task
-      |   '-- Integer
-      |       |-- Signed
-      |       '-- Modular
-      '-- Real
-          |-- Float
-          '-- Fixed
-              |-- Decimal
-              '-- Ordinary
+ELEMENTARY TYPES                 COMPOSITE TYPES
+  |-- Scalar                       |-- Record
+  |   |-- Discrete                 |-- Array
+  |   |   |-- Integer              |-- Protected
+  |   |   |   |-- Signed           '-- Task
+  |   |   |   '-- Modular
+  |   |   '-- Enumeration
+  |   '-- Real
+  |       |-- Float
+  |       '-- Fixed
+  |           |-- Decimal
+  |           '-- Ordinary
+  '-- Access
 #+end_example
+
 
 ** Basic Types
 *** code                                                    :BMCOL:B_block:
@@ -249,31 +289,139 @@ _=AdaML=_
 #+begin_example
 !include AdaML.puml
 type("Foo_Type")
-begin_type("Bar_Type", "tagged")
-  attribute(private, "Baz", "Natural")
-  function(public, "Answer", "", "Natural")
+begin_type("Bar_Type")
+  function("Answer", "", "Natural")
+private()
+  attribute("Baz", "Natural")
 end()
 #+end_example
+
 *** figure                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.45
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-03-basic-types.eps :exports none :results none
+#+begin_src plantuml :file fig-03-basic-types.eps
 !include AdaML.puml
 type("Foo_Type")
-begin_type("Bar_Type", "tagged")
-  attribute(private, "Baz", "Natural")
-  function(public, "Answer", "", "Natural")
+begin_type("Bar_Type")
+  function("Answer", "", "Natural")
+private()
+  attribute("Baz", "Natural")
 end()
 #+end_src
+
+#+RESULTS[19b6cf410f68c0d407a73e2d9916982f3b2a3ae7]:
 [[file:fig-03-basic-types.eps]]
+
+
+** Range Types
+Use either /unspecified/ types or /range/ types, preferably in this way\newline
+
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+type("Range_Type", "range <>")
+begin_type("Twenty_Type")
+  range("1 .. 20")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-03-range-types.eps
+!include AdaML.puml
+type("Range_Type", "range <>")
+begin_type("Twenty_Type")
+  range("1 .. 20")
+end()
+#+end_src
+
+#+RESULTS[02b207a13fb8f2ab5513520c3c09aaefe4b3e2cf]:
+[[file:fig-03-range-types.eps]]
+
+
+** Modular Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_type("Mod_Type")
+  mod("2 ** 1_024")
+  procedure("Add_Ten", "in out Mod_Type")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-03-modular-types.eps
+!include AdaML.puml
+begin_type("Mod_Type")
+  mod("2 ** 1_024")
+  procedure("Add_Ten", "in out Mod_Type")
+end()
+#+end_src
+
+#+RESULTS[42d0b89e1728445ebf9a19a879813b200093e6ac]:
+[[file:fig-03-modular-types.eps]]
+
+
+** Enumeration Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_enumeration("Week_Days")
+  enum("Mon, Tue, Wed, Thu, Fri, Sat, Sun")
+  function("Day_Of_Week", "", "Week_Days")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-03-enumeration-types.eps
+!include AdaML.puml
+begin_enumeration("Week_Days")
+  enum("Mon, Tue, Wed, Thu, Fri, Sat, Sun")
+  function("Day_Of_Week", "", "Week_Days")
+end()
+#+end_src
+
+#+RESULTS[1e6de9e659710a72e5e64d64cf803032149e6516]:
+[[file:fig-03-enumeration-types.eps]]
+
+*** Ada
+#+begin_src ada :export code
+type Week_Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+function Day_Of_Week return Week_Days;
+#+end_src
+
+
 ** Derived Types
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.55
 :END:
-=AdaML=
+_=AdaML=_
 #+begin_example
 !include AdaML.puml
 type_new("Integer", "Foo_Type")
@@ -281,26 +429,30 @@ begin_type_new("Integer", "Bar_Type")
   range("-1 .. 20")
 end()
 #+end_example
-\newline
-Ada code
-#+begin_src ada :exports code
-type Foo_Type is new Integer;
-type Bar_Type is new Integer range -1 .. 20;
--- or simply
-type Bar_Type is range -1 .. 20;
-#+end_src
+
 *** figure                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.45
 :END:
-#+begin_src plantuml :file fig-03-derived-types.eps :exports none :results none
+_=UML=_
+#+begin_src plantuml :file fig-03-derived-types.eps
 !include AdaML.puml
 type_new("Integer", "Foo_Type")
 begin_type_new("Integer", "Bar_Type")
   range("-1 .. 20")
 end()
 #+end_src
+
+#+RESULTS[147bd8dbffd80fd6a841223975d65db61fea4101]:
 [[file:fig-03-derived-types.eps]]
+
+*** Ada
+#+begin_src ada :exports code
+type Foo_Type is new Integer;
+type Bar_Type is new Integer range -1 .. 20;
+-- or simply
+type Bar_Type is range -1 .. 20;
+#+end_src
 
 
 * Config                                                           :noexport:

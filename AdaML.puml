@@ -80,14 +80,33 @@ set namespaceSeparator none
 !array_association = "of"
 
 'Private global variables
+!__mod__ = 0
+!__enum__ = 0
 !__with__ = 0
 !__range__ = 0
 !__generic__ = 0
+!__private__ = 0
 !__attr_line__ = 0
 !__method_line__ = 0
 
 'Private functions
+!function __replace(string, text, replace)
+  !_result = string
+  !_pos = %strpos(string, text)
+  !if (_pos >= 0)
+    !_result = %substr(string, 0, _pos) + replace + %substr(string, _pos + %strlen(text))
+  !endif
+  !return _result
+!endfunction
+
+!function __str_guard(string)
+  !_result = __replace(string, "<>", "//<>//")
+  !return _result
+!endfunction
+
 !function __reset()
+!__mod__ = 0
+!__enum__ = 0
 !__with__ = 0
 !__range__ = 0
 !__generic__ = 0
@@ -188,52 +207,52 @@ set namespaceSeparator none
 !endfunction
 
 !function interface(name, stereotype="")
-  __declare_entity("I", color_interface, name, stereotype)
+  __declare_entity("I", color_interface, name, __str_guard(stereotype))
 !endfunction
 
 !function begin_interface(name, stereotype="")
-  __begin_entity("I", color_interface, name, stereotype)
+  __begin_entity("I", color_interface, name, __str_guard(stereotype))
 !endfunction
 
 !function package(name, stereotype="")
-  __declare_entity("P", color_package, name, stereotype)
+  __declare_entity("P", color_package, name, __str_guard(stereotype))
 !endfunction
 
 !function begin_package(name, stereotype="")
-  __begin_entity("P", color_package, name, stereotype)
+  __begin_entity("P", color_package, name, __str_guard(stereotype))
 !endfunction
 
 !function subtype(name, stereotype="")
-  __declare_entity("S", color_subtype, name, __check_array(name, stereotype))
+  __declare_entity("S", color_subtype, name, __check_array(name, __str_guard(stereotype)))
 !endfunction
 
 !function begin_subtype(name, stereotype="")
-  __begin_entity("S", color_subtype, name, __check_array(name, stereotype))
+  __begin_entity("S", color_subtype, name, __check_array(name, __str_guard(stereotype)))
 !endfunction
 
 !function type(name, stereotype="")
-  __declare_entity("T", color_type, name, __check_array(name, stereotype))
+  __declare_entity("T", color_type, name, __check_array(name,  __str_guard(stereotype)))
 !endfunction
 
 !function begin_type(name, stereotype="")
-  __begin_entity("T", color_type, name, __check_array(name, stereotype))
+  __begin_entity("T", color_type, name, __check_array(name, __str_guard(stereotype)))
 !endfunction
 
 !function type_new(type, name, stereotype="", comment="", note="")
   __check_type(type)
-  __declare_entity("T", color_type, name, __check_array(name, stereotype))
+  __declare_entity("T", color_type, name, __check_array(name, __str_guard(stereotype)))
   __type_new(type, name, comment, note)
 !endfunction
 
 !function begin_type_new(type, name, stereotype="", comment="", note="")
   __check_type(type)
   __type_new(type, name, comment, note)
-  __begin_entity("T", color_type, name, __check_array(name, stereotype))
+  __begin_entity("T", color_type, name, __check_array(name, __str_guard(stereotype)))
 !endfunction
 
 !function type_access(type, suffix=access_suffix, stereotype=access_stereotype)
   !type_access = type + suffix
-  __declare_entity("a", color_access, type_access, stereotype)
+  __declare_entity("a", color_access, type_access, __str_guard(stereotype))
   !if (%strlen(access_association) == 0)
     type <.. type_access
   !else
@@ -242,7 +261,7 @@ set namespaceSeparator none
 !endfunction
 
 !function type_protected(name, stereotype="protected")
-  __declare_entity("P", color_protected, name, stereotype)
+  __declare_entity("P", color_protected, name, __str_guard(stereotype))
 !endfunction
 
 !function object_protected(name, stereotype="")
@@ -260,6 +279,20 @@ set namespaceSeparator none
 
 'Details, attributes, constants and objects
 'use access=0 for 'private', access=1 for 'public'
+!function mod(spec)
+  __detail(__mod__, "mod", spec)
+  !__mod__ = 1
+  !__attr_line__ = 1
+  !__method_line__ = 1
+!endfunction
+
+!function enum(spec)
+  __detail(__enum__, "enum", "(" + spec + ")" )
+  !__enum__ = 1
+  !__attr_line__ = 1
+  !__method_line__ = 1
+!endfunction
+
 !function with(spec)
   __detail(__with__, "with", spec)
   !__with__ = 1
@@ -267,8 +300,8 @@ set namespaceSeparator none
   !__method_line__ = 1
 !endfunction
 
-!function range(spec)
-  __detail(__range__, "range", spec)
+!function range(spec="<>")
+  __detail(__range__, "range", __str_guard(spec))
   !__range__ = 1
   !__attr_line__ = 1
   !__method_line__ = 1
@@ -281,10 +314,15 @@ set namespaceSeparator none
   !__method_line__ = 1
 !endfunction
 
-!function attribute(access, name, type, defval="")
+!function private()
+  !__private__ = 1
+!endfunction
+
+!function attribute(name, type, defval="")
   __attr_line()
-  !acc_str = "+"
-  !if (access == 0)
+  !if (__private__ == 0)
+    !acc_str = "+"
+  !else
     !acc_str = "-"
   !endif
   !if (%strlen(defval) == 0)
@@ -294,15 +332,17 @@ set namespaceSeparator none
   !endif
 !endfunction
 
-!function constant(access, name, type, value, aliased=0)
+!function constant(name, type, value, aliased=0)
   !__attr_line()
-  !acc_str = "+"
-  !als_str = ""
-  !if (access == 0)
+  !if (__private__ == 0)
+    !acc_str = "+"
+  !else
     !acc_str = "-"
   !endif
   !if (aliased == 1)
     !als_str = "aliased"
+  !else
+    !als_str = ""
   !endif
   !if (%strpos(type, "String") >= 0)
     acc_str {field} name : constant als_str type := "value"
@@ -311,18 +351,20 @@ set namespaceSeparator none
   !endif
 !endfunction
 
-!function protected_object(access, name)
-  !acc_str = "+"
-  !if (access == 0)
+!function protected_object(name)
+  !if (__private__ == 0)
+    !acc_str = "+"
+  !else
     !acc_str = "-"
   !endif
   acc_str {field} name
 !endfunction
 
-!function procedure(access, name, args="")
+!function procedure(name, args="")
   __method_line()
-  !acc_str = "+"
-  !if (access == 0)
+  !if (__private__ == 0)
+    !acc_str = "+"
+  !else
     !acc_str = "-"
   !endif
   !if (%strlen(args) == 0)
@@ -332,10 +374,11 @@ set namespaceSeparator none
   !endif
 !endfunction
 
-!function function(access, name, args, return)
+!function function(name, args, return)
   __method_line()
-  !acc_str = "+"
-  !if (access == 0)
+  !if (__private__ == 0)
+    !acc_str = "+"
+  !else
     !acc_str = "-"
   !endif
   !if (%strlen(args) == 0)
