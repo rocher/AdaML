@@ -1,8 +1,8 @@
 * Types
-** Description
-Ada 2012 overall type classification
-#+begin_example
+** Type Classification
+Ada 2012 overall type classification\newline
 
+#+begin_example
 ELEMENTARY TYPES                 COMPOSITE TYPES
   |-- Scalar                       |-- Record
   |   |-- Discrete                 |-- Array
@@ -52,7 +52,7 @@ end()
 
 *** Ada
 #+begin_src ada
--- type Foo_Type just declared, no more information
+type Foo_Type; -- incomplete type, full declaration elsewhere
 type Bar_Type is record
   Baz : Natural;
 end record;
@@ -61,6 +61,7 @@ function Answer (Arg : in Bar_Type) return natural;
 
 ** Range Types
 Use either the /range stereotype/ or the /range attribute/\newline
+
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.55
@@ -69,8 +70,8 @@ _=AdaML=_
 #+begin_example
 !include AdaML.puml
 type("Dozen_Type", "range 1..12")
-begin_type("Twenty_Type")
-  range("1 .. 20")
+begin_type("Power_Type")
+  range("-2_048 .. 65_536")
 end()
 #+end_example
 
@@ -82,8 +83,8 @@ _=UML=_
 #+begin_src plantuml :file fig-03-range-types.eps
 !include AdaML.puml
 type("Dozen_Type", "range 1..12")
-begin_type("Twenty_Type")
-  range("1 .. 20")
+begin_type("Power_Type")
+  range("-2_048 .. 65_536")
 end()
 #+end_src
 
@@ -93,7 +94,7 @@ end()
 *** Ada
 #+begin_src ada :exports code
 type Dozen_Type is range 1 .. 12;
-type Twenty_Type is range 1 .. 20;
+type Power_Type is range -2_048 .. 65_536;
 #+end_src
 
 ** Modular Types

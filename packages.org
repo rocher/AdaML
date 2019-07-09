@@ -1,14 +1,7 @@
 * Packages
-** Description
-Ada packages can contain other packages, types, procedures, functions, protected
-objects or tasks. There are two ways to represent them in =AdaML=
+** Minimal view
+The simplest package representation is\newline
 
-- Detail view :: show only package elements (no entities contained)
-\newline
-- Specification view :: show only entities contained (no package elements)
-
-** Detail view
-The simplest detail view is\newline
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.65
@@ -32,8 +25,9 @@ package("FooBar")
 #+RESULTS[9e5758013375e35a0f52d80450f7884201531f36]:
 [[file:fig-02-detail-view.eps]]
 
-** More Details
-Detail view is intended to show package elements\newline
+** Code View
+Shows package elements\newline
+
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.65
@@ -65,8 +59,18 @@ end()
 #+RESULTS[1bee01e4589d4a85c718fe8d27f958168f8e5b6c]:
 [[file:fig-02-more-details.eps]]
 
-** Even More Details
+*** Ada
+#+begin_src ada :exports code
+package FooBar is
+  procedure Bar (Arg : in out Natural);
+private
+  Foo : Natural;
+end FooBar;
+#+end_src
+
+** More Details
 e.g., a /generic/ package with two numerical parameters\newline
+
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.6
@@ -102,8 +106,9 @@ end()
 #+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
 [[file:fig-02-even-mode-details.eps]]
 
-** Specification view
-Specification view lets you see other entities contained in the package\newline
+** Component view
+Component view lets you see other entities contained in the package\newline
+
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.5

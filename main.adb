@@ -2,7 +2,27 @@ with Ada.Text_IO;
 
 procedure Main is
 
+   package Unset is
+      procedure Dont_Know (Arg: in out Natural);
+   private
+      Var : Natural := 42;
+   end Unset;
+   package body Unset is
+      procedure Dont_Know (Arg: in out Natural) is
+      begin
+         Arg := Unset.Var;
+      end Dont_Know;
+   end Unset;
+
+   generic
+      Number_Of_Elements : Natural;
+   package Gen_Pack is
+      type Gen_Type is new Positive range 1 .. Number_Of_Elements;
+   end Gen_Pack;
+
    package Foo_Bar is
+      type Declared_Type;
+
       type Bar_Type is record
          Baz : Natural;
       end record;
@@ -16,6 +36,8 @@ procedure Main is
 
       type My_Mod is mod 1_024;
       procedure Add_Ten (Arg : in out My_Mod);
+
+      type Declared_Type is new Integer range -200 .. 200;
    end Foo_Bar;
 
    package body Foo_Bar is
