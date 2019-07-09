@@ -1,0 +1,100 @@
+* Introduction
+** What is =AdaML=?
+- UML tailored for Ada 2012 programming language
+- A modeling language to draw UML diagrams, implemented in PlantUML
+- An easy way to learn Ada through the use of UML and OOP concepts
+
+** Features
+- UML tailored to use and show particular Ada language characteristics
+- Coherent set of functions to design software components for Ada
+- Generates high quality drawings easy to embedded in other docs (eps)
+- Easy to learn by example, both =AdaML= and Ada language
+
+** What is /not/ =AdaML=?
+- A model-based tool to generate Ada code
+- A reverse engineering tool to draw UML diagrams from Ada code
+- An interactive UML tool
+
+** Requirements
+- =PlantUML= installed and working in your system, see [[https://plantuml.com][plantuml.com]]
+- The =AdaML= files, see [[https://github.com/rocher/AdaML][AdaML github]] repository
+- Your favorite text editor, preferably with =PlantUML= support (e.g., Emacs)
+- Visit [[http://plantuml.com/running][plantuml.com/running]] to know the list of supported editors
+- For better visualization, /computer modern/ fonts
+
+** Limitations
+Make sure that the =PlantUML= environment you're using\newline
+- lets you use external files, not only a single piece of text
+- the line "=!include AdaML.puml=" on top of your new files effectively includes
+  the =AdaML.puml= file
+- Still under development; feedback appreciated
+
+** Document Conventions
+In this document,\newline
+- Entities :: are /classifiers/, in UML terminology, that correspond to Ada
+              packages, types, records, arrays, subtypes, tasks and protected
+              objects
+\newline
+- Elements :: are /features/, in UML terminology, that correspond to Ada record
+              members, functions, procedures, type discriminant and other Ada
+              specific characteristics (e.g, =range 1..1024=)
+
+** =OOP= Support
+- =AdaML= supports both =OOP= and non-=OOP= concepts
+- both approaches are supported
+- this document tries to use =OOP= concepts as much as possible
+
+** Design Conventions
+In this document uses two view levels; these are, according to the [[https://c4model.com/][C4
+model]]:\newline
+- Code view :: to show in detail how entity /elements/ (attributes, methods) are
+               implemented and the relationship they have with other entities
+\newline
+- Component view :: to show /entities/ building blocks and the overall
+                    relationship with other entities
+In some /code views/, Ada code is included.
+
+** Hello World example
+The mandatory =Hello_World= example; code view:\newline
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.65
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package("Hello_World")
+  procedure("Bar", "Positive")
+  function("Baz", "Boolean", "Natural")
+private()
+  attribute("Foo", "Natural", 42)
+end()
+#+end_example
+
+*** figure                                                  :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-01-hello-world-example.eps
+!include AdaML.puml
+begin_package("Hello_World")
+  procedure("Bar", "Positive")
+  function("Baz", "Boolean", "Natural")
+private()
+  attribute("Foo", "Natural", 42)
+end()
+#+end_src
+
+#+RESULTS[7a22dc04a15ce1b7518d36e9ca62ab1251d2cf58]:
+[[file:fig-01-hello-world-example.eps]]
+
+*** Ada
+#+begin_src ada :exports code
+package Hello_World is
+  procedure Bar (Arg : Positive);
+  function Baz (Arg : Boolean) return Natural;
+private
+  Foo : Natural := 42;
+end Hello_World;
+#+end_src

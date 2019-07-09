@@ -1,0 +1,140 @@
+* Packages
+** Description
+Ada packages can contain other packages, types, procedures, functions, protected
+objects or tasks. There are two ways to represent them in =AdaML=
+
+- Detail view :: show only package elements (no entities contained)
+\newline
+- Specification view :: show only entities contained (no package elements)
+
+** Detail view
+The simplest detail view is\newline
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.65
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+package("FooBar")
+#+end_example
+
+*** figure                                                  :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.25
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-02-detail-view.eps
+!include AdaML.puml
+package("FooBar")
+#+end_src
+
+#+RESULTS[9e5758013375e35a0f52d80450f7884201531f36]:
+[[file:fig-02-detail-view.eps]]
+
+** More Details
+Detail view is intended to show package elements\newline
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.65
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package("FooBar")
+  procedure(public, "Bar", "in out Natural")
+private()
+  attribute("Foo", "Natural")
+end()
+#+end_example
+
+*** figure                                                  :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-02-more-details.eps
+!include AdaML.puml
+begin_package("FooBar")
+  procedure("Bar", "in out Natural")
+private()
+  attribute("Foo", "Natural")
+end()
+#+end_src
+
+#+RESULTS[1bee01e4589d4a85c718fe8d27f958168f8e5b6c]:
+[[file:fig-02-more-details.eps]]
+
+** Even More Details
+e.g., a /generic/ package with two numerical parameters\newline
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package("FooBar<Min, Max>")
+  generic_with("Min : Natural range 1..10")
+  generic_with("Max : Natural range 100..1024")
+  procedure("Bar", "in out Natural")
+private()
+  attribute("Foo", "Natural")
+end()
+#+end_example
+
+*** figure                                                  :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-02-even-mode-details.eps
+!include AdaML.puml
+begin_package("FooBar<Min, Max>")
+  generic_with("Min : Natural range 1..10")
+  generic_with("Max : Natural range 100..1024")
+  procedure("Bar", "in out Natural")
+private()
+  attribute("Foo", "Natural")
+end()
+#+end_src
+
+#+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
+[[file:fig-02-even-mode-details.eps]]
+
+** Specification view
+Specification view lets you see other entities contained in the package\newline
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package_spec("Hello_World")
+  package("Foo_Bar")
+  type("Bar_Type")
+  type("Baz_Type")
+  depends("Baz_Type", "Bar_Type")
+  depends("Foo_Bar", "Bar_Type")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-02-specification-view.eps
+!include AdaML.puml
+begin_package_spec("Hello_World")
+  package("Foo_Bar")
+  type("Bar_Type")
+  type("Baz_Type")
+  depends("Baz_Type", "Bar_Type")
+  depends("Foo_Bar", "Bar_Type")
+end()
+#+end_src
+
+#+RESULTS[34422c456c5d8327b17464a9dafaba1ccf95e528]:
+[[file:fig-02-specification-view.eps]]
