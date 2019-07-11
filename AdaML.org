@@ -1,4 +1,4 @@
-#+TITLE: AdaML
+#+TITLE: AdaML - v0.1
 #+SUBTITLE: Ada tailored UML Modeling Language
 #+AUTHOR: Francesc Rocher
 #+EMAIL: francesc.rocher@gmail.commit
