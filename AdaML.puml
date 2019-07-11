@@ -1,6 +1,6 @@
 ' ------------------------------------------------------------------------
 '
-' AdaML Modeling Language
+' AdaML Modeling Language - v0.1
 ' Copyright (C) 2019, Francesc Rocher
 '
 ' This library is free software;  you can redistribute it and/or modify it
@@ -63,14 +63,33 @@ set namespaceSeparator none
 !public = 1
 
 'Color configuration
-!color_abstract    = "#ff33f0"
-!color_access      = "#f0f0f0"
-!color_enumeration = "#adff2f"
-!color_interface   = "#aaccff"
-!color_package     = "#ffff33"
-!color_protected   = "#aaccff"
-!color_subtype     = "#ffccaa"
-!color_type        = "#ff6666"
+!abstract_color         = "#ff33f0"
+!abstract_letter        = "A"
+!abstract_stereotype    = "abstract"
+!access_color           = "#f0f0f0"
+!access_letter          = "a"
+!access_stereotype      = "access"
+!enumeration_color      = "#adff2f"
+!enumeration_letter     = "E"
+!enumeration_stereotype = ""
+!interface_color        = "#aaccff"
+!interface_letter       = "I"
+!interface_stereotype   = ""
+!package_color          = "#ffff33"
+!package_letter         = "P"
+!package_stereotype     = ""
+!protected_color        = "#aaccff"
+!protected_letter       = "§"
+!protected_stereotype   = "protected"
+!subtype_color          = "#ffccaa"
+!subtype_letter         = "S"
+!subtype_stereotype     = ""
+!task_color             = "#333333"
+!task_letter            = "•"
+!task_stereotype        = "task"
+!type_color             = "#ff6666"
+!type_letter            = "T"
+!type_stereotype        = ""
 
 'Configuration
 !access_association = "all"
@@ -153,10 +172,10 @@ set namespaceSeparator none
 !endfunction
 
 !function __check_type(name)
-  !if (%strpos("types:Integer,Natural,Positive", name) > 0)
+  !if (%strpos("types:Character,Boolean,Integer,Natural,Positive,String", name) > 0)
     !if (%not(%variable_exists("__type_" + name)))
       %set_variable_value("__type_" + name, 1)
-      __declare_entity("T", color_type, name)
+      __declare_entity("T", type_color, name)
     !endif
   !endif
 !endfunction
@@ -190,69 +209,38 @@ set namespaceSeparator none
   !endif
 !endfunction
 
-!function abstract(name, stereotype="")
-  __declare_entity("A", color_abstract, name, stereotype, "abstract")
+'Component view functions
+!function package(name, stereotype=package_stereotype)
+  __declare_entity(package_letter, package_color, name, __str_guard(stereotype))
 !endfunction
 
-!function begin_abstract(name, stereotype="")
-  __begin_entity("A", color_abstract, name, stereotype, "abstract")
+!function abstract(name, stereotype=abstract_stereotype)
+  __declare_entity(abstract_letter, abstract_color, name, __str_guard(stereotype))
 !endfunction
 
-!function enumeration(name, stereotype="")
-  __declare_entity("E", color_enumeration, name, stereotype)
+!function enumeration(name, stereotype=enumeration_stereotype)
+  __declare_entity(enumeration_letter, enumeration_color, name, __str_guard(stereotype))
 !endfunction
 
-!function begin_enumeration(name, stereotype="")
-  __begin_entity("E", color_enumeration, name, stereotype)
+!function interface(name, stereotype=interface_stereotype)
+  __declare_entity(interface_letter, interface_color, name, __str_guard(stereotype))
 !endfunction
 
-!function interface(name, stereotype="")
-  __declare_entity("I", color_interface, name, __str_guard(stereotype))
+!function subtype(name, stereotype=subtype_stereotype)
+  __declare_entity(subtype_letter, subtype_color, name, __check_array(name, __str_guard(stereotype)))
 !endfunction
 
-!function begin_interface(name, stereotype="")
-  __begin_entity("I", color_interface, name, __str_guard(stereotype))
+!function task(name, stereotype=task_stereotype)
+  __declare_entity(task_letter, task_color, name, __str_guard(stereotype))
 !endfunction
 
-!function package(name, stereotype="")
-  __declare_entity("P", color_package, name, __str_guard(stereotype))
-!endfunction
-
-!function begin_package(name, stereotype="")
-  __begin_entity("P", color_package, name, __str_guard(stereotype))
-!endfunction
-
-!function subtype(name, stereotype="")
-  __declare_entity("S", color_subtype, name, __check_array(name, __str_guard(stereotype)))
-!endfunction
-
-!function begin_subtype(name, stereotype="")
-  __begin_entity("S", color_subtype, name, __check_array(name, __str_guard(stereotype)))
-!endfunction
-
-!function type(name, stereotype="")
-  __declare_entity("T", color_type, name, __check_array(name,  __str_guard(stereotype)))
-!endfunction
-
-!function begin_type(name, stereotype="")
-  __begin_entity("T", color_type, name, __check_array(name, __str_guard(stereotype)))
-!endfunction
-
-!function type_new(type, name, stereotype="", comment="", note="")
-  __check_type(type)
-  __declare_entity("T", color_type, name, __check_array(name, __str_guard(stereotype)))
-  __type_new(type, name, comment, note)
-!endfunction
-
-!function begin_type_new(type, name, stereotype="", comment="", note="")
-  __check_type(type)
-  __type_new(type, name, comment, note)
-  __begin_entity("T", color_type, name, __check_array(name, __str_guard(stereotype)))
+!function type(name, stereotype=type_stereotype)
+  __declare_entity(type_letter, type_color, name, __check_array(name,  __str_guard(stereotype)))
 !endfunction
 
 !function type_access(type, suffix=access_suffix, stereotype=access_stereotype)
   !type_access = type + suffix
-  __declare_entity("a", color_access, type_access, __str_guard(stereotype))
+  __declare_entity(access_letter, access_color, type_access, __str_guard(stereotype))
   !if (%strlen(access_association) == 0)
     type <.. type_access
   !else
@@ -260,12 +248,59 @@ set namespaceSeparator none
   !endif
 !endfunction
 
-!function type_protected(name, stereotype="protected")
-  __declare_entity("P", color_protected, name, __str_guard(stereotype))
+!function type_new(type, name, stereotype=type_stereotype, comment="", note="")
+  __check_type(type)
+  __declare_entity(type_letter, type_color, name, __check_array(name, __str_guard(stereotype)))
+  __type_new(type, name, comment, note)
+!endfunction
+
+!function type_protected(name, stereotype=protected_stereotype)
+  __declare_entity(protected_letter, protected_color, name, __str_guard(stereotype))
+!endfunction
+
+!function type_task(name, stereotype=task_stereotype)
+  __declare_entity(task_letter, task_color, name, __str_guard(stereotype))
 !endfunction
 
 !function object_protected(name, stereotype="")
   __declare_entity("", "", name, "object")
+!endfunction
+
+'Code view functions
+!function begin_package(name, stereotype=package_stereotype)
+  __begin_entity(package_letter, package_color, name, __str_guard(stereotype))
+!endfunction
+
+!function begin_abstract(name, stereotype=abstract_stereotype)
+  __begin_entity(abstract_letter, abstract_color, name, __str_guard(stereotype), "abstract")
+!endfunction
+
+!function begin_enumeration(name, stereotype=enumeration_stereotype)
+  __begin_entity(enumeration_letter, enumeration_color, name, __str_guard(stereotype))
+!endfunction
+
+!function begin_interface(name, stereotype=interface_stereotype)
+  __begin_entity(interface_letter, interface_color, name, __str_guard(stereotype))
+!endfunction
+
+!function begin_subtype(name, stereotype=subtype_stereotype)
+  __begin_entity(subtype_letter, subtype_color, name, __check_array(name, __str_guard(stereotype)))
+!endfunction
+
+!function begin_type(name, stereotype=type_stereotype)
+  __begin_entity(type_letter, type_color, name, __check_array(name, __str_guard(stereotype)))
+!endfunction
+
+!function begin_type_new(type, name, stereotype=type_stereotype, comment="", note="")
+  __check_type(type)
+  __type_new(type, name, comment, note)
+  __begin_entity(type_letter, type_color, name, __check_array(name, __str_guard(stereotype)))
+!endfunction
+
+!function begin_type_protected(type, name, stereotype=protected_stereotype, comment="", note="")
+  __check_type(type)
+  __type_new(type, name, comment, note)
+  __begin_entity(protected_letter, protected_color, name, __check_array(name, __str_guard(stereotype)))
 !endfunction
 
 !function begin_object_protected(name, stereotype="")
@@ -330,6 +365,10 @@ set namespaceSeparator none
   !else
     acc_str {field} name : type := defval
   !endif
+!endfunction
+
+!function variable(name, type, defval="")
+  attribute(name, type, defval)
 !endfunction
 
 !function constant(name, type, value, aliased=0)
