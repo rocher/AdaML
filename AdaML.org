@@ -26,6 +26,7 @@
 #+INCLUDE: "introduction.org"
 #+INCLUDE: "packages.org"
 #+INCLUDE: "types.org"
+#+INCLUDE: "reference.org"
 
 * Config                                                           :noexport:
 Local Variables:
