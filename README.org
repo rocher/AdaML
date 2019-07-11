@@ -32,6 +32,6 @@ Work in progress version. Keep tuned.
 Make sure that the PlantUML environment you're using
 
 - lets you use external files, not only a single piece of text
-- the line ~"!include AdaML.puml"~ on top of your new files effectively includes
+- the line ="!include AdaML.puml"= on top of your new files effectively includes
   the AdaML.puml file
 - Still under development; feedback appreciated
