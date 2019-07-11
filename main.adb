@@ -3,7 +3,12 @@ with Ada.Text_IO;
 procedure Main is
 
    package Unset is
+      type T (<>);
+      type LT_Type is limited record
+         X : Natural := 0;
+      end record;
       procedure Dont_Know (Arg: in out Natural);
+      type T is new Natural range 1 .. 5; -- (One, Two);
    private
       Var : Natural := 42;
    end Unset;
