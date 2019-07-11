@@ -1,5 +1,11 @@
 auto/
 _minted-AdaML/
-AdaML.tex
-AdaML.pdf
+*.tex
+*.pdf
+b__*
 fig-*
+main
+main.adb.*
+main.ali
+main.bexch
+main.o
