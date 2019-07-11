@@ -206,3 +206,44 @@ type Bar_Type is new Integer range -1 .. 20;
 -- or simply
 type Bar_Type is range -1 .. 20;
 #+end_src
+
+
+** Indefinite Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-03-indefinite-types.eps
+!include AdaML.puml
+type_abstract("T1", "tagged limited private")
+type("T2", "tagged")
+begin_package_spec("P<T3>")
+  type("T3", "tagged")
+end()
+#+end_src
+
+#+RESULTS[147bd8dbffd80fd6a841223975d65db61fea4101]:
+[[file:fig-03-indefinite-types.eps]]
+
+*** Ada
+#+begin_src ada :exports code
+type Foo_Type is new Integer;
+type Bar_Type is new Integer range -1 .. 20;
+-- or simply
+type Bar_Type is range -1 .. 20;
+#+end_src
+
+* Config                                                           :noexport:
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:

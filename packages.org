@@ -38,7 +38,7 @@ _=AdaML=_
 begin_package("FooBar")
   procedure(public, "Bar", "in out Natural")
 private()
-  attribute("Foo", "Natural")
+  variable("Foo", "Natural")
 end()
 #+end_example
 
@@ -52,7 +52,7 @@ _=UML=_
 begin_package("FooBar")
   procedure("Bar", "in out Natural")
 private()
-  attribute("Foo", "Natural")
+  variable("Foo", "Natural")
 end()
 #+end_src
 
