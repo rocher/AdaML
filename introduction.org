@@ -1,8 +1,9 @@
 * Introduction
 ** What is =AdaML=?
 - UML tailored for Ada 2012 programming language
-- A modeling language to draw UML diagrams, implemented in PlantUML
+- A modeling language to draw UML diagrams
 - An easy way to learn Ada through the use of UML and OOP concepts
+- Small, extensible tool implemented on top of PlantUML
 
 ** Features
 - UML tailored to use and show particular Ada language characteristics
@@ -15,20 +16,55 @@
 - A reverse engineering tool to draw UML diagrams from Ada code
 - An interactive UML modeling or drawing tool
 
-** Requirements
+** Online Version
+In case you want to test it immediately,
+
+- Visit one of the several available PlantUML online servers
+- Follow any of the examples below, but instead of including the local
+  =AdaML.puml= file, include the URL\newline\newline
+  \scriptsize{https://raw.githubusercontent.com/rocher/AdaML/develop/AdaML.puml}
+\newline
+- Warning :: depending on the version used by the web site you can obtain
+             slightly different graphical results
+
+** Online Version
+Quick start:
+
+- Open [[http://sujoyu.github.io/plantuml-previewer][plantuml-previewer]]
+- Copy & paste the following code:\newline
+
+#+begin_example
+!include https://raw.githubusercontent.com/rocher/AdaML/develop/AdaML.puml
+begin_package("Deep_Thought")
+  function("Get_The_Answer", "", "Natural")
+private()
+  variable("The_Answer", "Natural", 42)
+end()
+#+end_example
+
+- Press '=Shift+Enter=' to get graphical results
+
+** Local Version
+In case you want to integrate work results locally, requirements are:
+
 - [[https://plantuml.com][=PlantUML=]] installed and working in your system
 - The =AdaML= files, check [[https://github.com/rocher/AdaML][=AdaML=]] installation instructions
 - Your favorite text editor, preferably with =PlantUML= support (e.g. Emacs)
 - Check the list of [[http://plantuml.com/running][supported editors]]
 - For better visualization and integration with \LaTeX, [[https://www.fontsquirrel.com/fonts/computer-modern][computer modern]] fonts
 
-** Limitations
-Make sure that the =PlantUML= environment you're using
-
-- lets you use external files, not only a single piece of text
-- the line "=!include AdaML.puml=" on top of your new files effectively includes
-  the =AdaML.puml= file
-- Still under development; feedback appreciated
+** Pros & Cons
+Online:\newline
+\cmark Quick and easy to test\newline
+\cmark Same code can be used to embed into other webs, e.g. github\newline
+\xmark No file saved, no backup\newline
+\xmark Poor bitmap graphics\newline
+\xmark Graphical results may differ without notice\newline
+\newline
+Local:\newline
+\cmark Best results to embed into \LaTeX (eps format)\newline
+\cmark Consistent graphical results over time, when same PlantUML version used\newline
+\xmark Requires PlantUML up and running
 
 ** Document Conventions
 In this document
@@ -43,7 +79,7 @@ In this document
 
 ** OOP Support
 - =AdaML= supports both OOP and non-OOP approaches to software models
-- this document uses OOP concepts as much as possible
+- This document and examples on it use OOP concepts as much as possible
 
 ** Design Conventions
 This document uses two view levels; according to the [[https://c4model.com][C4 model]]:
