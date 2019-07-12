@@ -30,7 +30,7 @@ In case you want to test it immediately,
 ** Online Version - Quick start
 
 - Open [[http://sujoyu.github.io/plantuml-previewer][plantuml-previewer]]
-- Copy & Paste the following code:
+- Remove default lines and paste the following code:
 
 #+begin_example
 !include https://github.com/rocher/AdaML/raw/develop/AdaML.puml
@@ -97,7 +97,7 @@ This document uses two view levels; according to the [[https://c4model.com][C4 m
 
 In some /code views/, Ada code is included.
 
-** Hello World example
+** Deep Thought Example
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.65
@@ -105,12 +105,17 @@ In some /code views/, Ada code is included.
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
-begin_package("Hello_World")
-  procedure("Bar", "Positive")
-  function("Baz", "Boolean", "Natural")
+begin_package("Deep_Thought")
+  function("Get_The_Answer", "", "Natural")
 private()
-  attribute("Foo", "Natural", 42)
+  variable("The_Answer", "Natural", 42)
 end()
+
+begin_type("Pan_Dimensional")
+  procedure("Ask", "in out Natural")
+end()
+
+depends("Pan_Dimensional", "Deep_Thought")
 #+end_example
 
 *** figure                                                  :BMCOL:B_block:
@@ -118,25 +123,20 @@ end()
 :BEAMER_col: 0.35
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-01-hello-world-example.eps
+#+begin_src plantuml :file fig-01-deep-thought-example.eps
 !include AdaML.puml
-begin_package("Hello_World")
-  procedure("Bar", "Positive")
-  function("Baz", "Boolean", "Natural")
+begin_package("Deep_Thought")
+  function("Get_The_Answer", "", "Natural")
 private()
-  attribute("Foo", "Natural", 42)
+  variable("The_Answer", "Natural", 42)
 end()
+
+begin_type("Pan_Dimensional")
+  procedure("Ask", "in out Natural")
+end()
+
+depends("Pan_Dimensional", "Deep_Thought")
 #+end_src
 
 #+RESULTS[7a22dc04a15ce1b7518d36e9ca62ab1251d2cf58]:
-[[file:fig-01-hello-world-example.eps]]
-
-*** Ada
-#+begin_src ada :exports code
-package Hello_World is
-  procedure Bar (Arg : Positive);
-  function Baz (Arg : Boolean) return Natural;
-private
-  Foo : Natural := 42;
-end Hello_World;
-#+end_src
+[[file:fig-01-deep-thought-example.eps]]
