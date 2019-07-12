@@ -22,24 +22,29 @@ In case you want to test it immediately,
 - Visit one of the several available PlantUML online servers
 - Follow any of the examples below, but instead of including the local
   =AdaML.puml= file, include the URL\newline\newline
-  \scriptsize{https://raw.githubusercontent.com/rocher/AdaML/develop/AdaML.puml}
+  \scriptsize{https://github.com/rocher/AdaML/raw/develop/AdaML.puml}
 \newline
 - Warning :: depending on the version used by the web site you can obtain
              slightly different graphical results
 
-** Online Version
-Quick start:
+** Online Version - Quick start
 
 - Open [[http://sujoyu.github.io/plantuml-previewer][plantuml-previewer]]
-- Copy & paste the following code:\newline
+- Copy & Paste the following code:
 
 #+begin_example
-!include https://raw.githubusercontent.com/rocher/AdaML/develop/AdaML.puml
+!include https://github.com/rocher/AdaML/raw/develop/AdaML.puml
 begin_package("Deep_Thought")
   function("Get_The_Answer", "", "Natural")
 private()
   variable("The_Answer", "Natural", 42)
 end()
+
+begin_type("Pan_Dimensional")
+  procedure("Ask", "in out Natural")
+end()
+
+depends("Pan_Dimensional", "Deep_Thought")
 #+end_example
 
 - Press '=Shift+Enter=' to get graphical results
