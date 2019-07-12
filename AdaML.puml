@@ -129,6 +129,7 @@ set namespaceSeparator none
 !__with__ = 0
 !__range__ = 0
 !__generic__ = 0
+!__private__ = 0
 !__attr_line__ = 0
 !__method_line__ = 0
 !endfunction
@@ -155,6 +156,7 @@ set namespaceSeparator none
 !endfunction
 
 !function __declare_entity(type_char, color, name, stereotype="", pre="", post="")
+  __reset()
   !if (%strlen(type_char) == 0)
     pre class name <<stereotype>> post
   !else
@@ -181,6 +183,7 @@ set namespaceSeparator none
 !endfunction
 
 !function __type_new(type1, type2, comment="", note="")
+  __reset()
   !if (%strlen(comment) == 0)
     type1 ^-- type2
   !else
