@@ -15,7 +15,10 @@
 #+LATEX_HEADER: \RequirePackage{fancyvrb}
 #+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
 #+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \usepackage{pifont}
 #+LATEX_HEADER: \hypersetup{colorlinks=true,linkcolor=orange}
+#+LATEX_HEADER: \newcommand{\cmark}{{\color{green}\ \ \ding{51}}\ }%
+#+LATEX_HEADER: \newcommand{\xmark}{{\color{red}\ \ \ding{55}}\ \ }%
 #+BEAMER_FRAME_LEVEL: 2
 #+BEAMER_THEME: Dresden
 #+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
