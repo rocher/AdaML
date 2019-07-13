@@ -448,7 +448,7 @@ set namespaceSeparator none
     !if (arrow != " >") && (arrow != " <")
        client ..> supplier : stereotype
     !else
-       client ..> supplier : stereotype
+       client .. supplier : stereotype
     !endif
   !endif
 !endfunction
