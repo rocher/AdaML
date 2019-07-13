@@ -2,9 +2,8 @@
 ### Development
 Hard work in progress; keep tuned.
 
-### Other Releases
 <details>
-<summary>Click to expand</summary>
+<summary><b>Older Releases</b> &emdash; click to expand &emdash;</summary>
 
 > *no releases yet*
 
