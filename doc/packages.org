@@ -36,7 +36,7 @@ _=AdaML=_
 #+begin_example
 !include AdaML.puml
 begin_package("FooBar")
-  procedure(public, "Bar", "in out Natural")
+  procedure("Bar", "in out Natural")
 private()
   variable("Foo", "Natural")
 end()
@@ -47,7 +47,7 @@ end()
 :BEAMER_col: 0.35
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-02-more-details.eps
+#+begin_src plantuml :file fig-02-code-view.eps
 !include AdaML.puml
 begin_package("FooBar")
   procedure("Bar", "in out Natural")
@@ -57,7 +57,7 @@ end()
 #+end_src
 
 #+RESULTS[1bee01e4589d4a85c718fe8d27f958168f8e5b6c]:
-[[file:fig-02-more-details.eps]]
+[[file:fig-02-code-view.eps]]
 
 *** Ada
 #+begin_src ada :exports code
@@ -79,11 +79,11 @@ _=AdaML=_
 #+begin_example
 !include AdaML.puml
 begin_package("FooBar<Min, Max>")
-  generic_with("Min : Natural range 1..10")
-  generic_with("Max : Natural range 100..1024")
-  procedure("Bar", "in out Natural")
+  generic_with("Size : Natural range 10..100")
 private()
-  attribute("Foo", "Natural")
+  variable("Foo", "Natural")
+public()
+  procedure("Bar", "in out Natural")
 end()
 #+end_example
 
@@ -92,19 +92,23 @@ end()
 :BEAMER_col: 0.4
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-02-even-mode-details.eps
+#+begin_src plantuml :file fig-02-more-details.eps
 !include AdaML.puml
-begin_package("FooBar<Min, Max>")
-  generic_with("Min : Natural range 1..10")
-  generic_with("Max : Natural range 100..1024")
-  procedure("Bar", "in out Natural")
+begin_package("FooBar<Size>")
+  generic_with("Size : Natural range 10..100")
 private()
-  attribute("Foo", "Natural")
+  variable("Foo", "Natural")
+public()
+  procedure("Bar", "in out Natural")
 end()
 #+end_src
 
 #+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
-[[file:fig-02-even-mode-details.eps]]
+[[file:fig-02-more-details.eps]]
+
+*** Warning
+When using /entity specifiers/, like =generic=, variables and methods must be
+manually sorted (contrast with previous slide)
 
 ** Component view
 Component view lets you see other entities contained in the package\newline
