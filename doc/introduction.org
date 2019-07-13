@@ -96,7 +96,7 @@ This document uses two view levels; according to the [[https://c4model.com][C4 m
 
 In some /code views/, Ada code is included.
 
-** Deep Thought Example
+** Deep Thought Example - Code View
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.65
