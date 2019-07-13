@@ -34,14 +34,14 @@ In case you want to test it immediately,
 
 #+begin_example
 !include https://github.com/rocher/AdaML/raw/develop/AdaML.puml
+begin_type("Pan_Dimensional")
+  procedure("Ask", "in out Natural")
+end()
+
 begin_package("Deep_Thought")
   function("Get_The_Answer", "", "Natural")
 private()
   variable("The_Answer", "Natural", 42)
-end()
-
-begin_type("Pan_Dimensional")
-  procedure("Ask", "in out Natural")
 end()
 
 depends("Pan_Dimensional", "Deep_Thought")
@@ -105,14 +105,14 @@ In some /code views/, Ada code is included.
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
+begin_type("Pan_Dimensional")
+  procedure("Ask", "in out Natural")
+end()
+
 begin_package("Deep_Thought")
   function("Get_The_Answer", "", "Natural")
 private()
   variable("The_Answer", "Natural", 42)
-end()
-
-begin_type("Pan_Dimensional")
-  procedure("Ask", "in out Natural")
 end()
 
 depends("Pan_Dimensional", "Deep_Thought")
@@ -125,14 +125,14 @@ depends("Pan_Dimensional", "Deep_Thought")
 _=UML=_
 #+begin_src plantuml :file fig-01-deep-thought-example.eps
 !include AdaML.puml
+begin_type("Pan_Dimensional")
+  procedure("Ask", "in out Natural")
+end()
+
 begin_package("Deep_Thought")
   function("Get_The_Answer", "", "Natural")
 private()
   variable("The_Answer", "Natural", 42)
-end()
-
-begin_type("Pan_Dimensional")
-  procedure("Ask", "in out Natural")
 end()
 
 depends("Pan_Dimensional", "Deep_Thought")
