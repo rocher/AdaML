@@ -19,7 +19,9 @@ Work in progress version. Keep tuned.
 - A reverse engineering tool to draw UML diagrams from Ada code
 - An interactive UML modeling or drawing tool
 
-## Requirements
+## Online Usage
+
+## Local Usage
 - [PlantUML](https://plantuml.com) installed and working in your system
 - The AdaML files, check [AdaML](https://github.com/rocher/AdaML) installation
   instructions
@@ -37,7 +39,29 @@ Make sure that the PlantUML environment you're using
 - Still under development; feedback appreciated
 
 # Online Usage
-## Embedded Diagrams
-First test from `README.org` file
+## Online Version - Quick Start
+- Open [[http://sujoyu.github.io/plantuml-previewer][plantuml-previewer]]
+- Remove default lines and paste the following code:
 
+```
+!include https://github.com/rocher/AdaML/raw/develop/AdaML.puml
+begin_type("Pan_Dimensional")
+  procedure("Ask_The_Question", "in out Natural")
+end()
+
+begin_package("Deep_Thought")
+  function("Answer_The_Question", "", "Natural")
+private()
+  variable("The_Answer", "Natural", 42)
+end()
+
+depends("Pan_Dimensional", "Deep_Thought", "ask >")
+#+end_example
+```
+
+## Embedded Diagrams in GitHub
+- This is an example of the AdaML documentation:
 ![test image](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml)
+
+- Check the raw version of this `README.md` file to see the image link used
+- The PlantUML source code can be found in GitHub here: (deep-thought.puml)[https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml]
