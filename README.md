@@ -40,7 +40,7 @@ Make sure that the PlantUML environment you're using
 
 # Online Usage
 ## Online Version - Quick Start
-- Open [[http://sujoyu.github.io/plantuml-previewer][plantuml-previewer]]
+- Open [plantuml-previewer](http://sujoyu.github.io/plantuml-previewer)
 - Remove default lines and paste the following code:
 
 ```
@@ -61,7 +61,10 @@ depends("Pan_Dimensional", "Deep_Thought", "ask >")
 
 ## Embedded Diagrams in GitHub
 - This is an example of the AdaML documentation:
+
+<p align="center">
 ![test image](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml)
+</p>
 
 - Check the raw version of this `README.md` file to see the image link used
 - The PlantUML source code can be found in GitHub here: (deep-thought.puml)[https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml]
