@@ -139,3 +139,8 @@ depends("Pan_Dimensional", "Deep_Thought", "ask >")
 
 #+RESULTS[7a22dc04a15ce1b7518d36e9ca62ab1251d2cf58]:
 [[file:fig-01-deep-thought-example.eps]]
+
+** Config                                                         :noexport:
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:

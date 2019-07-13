@@ -32,3 +32,8 @@
 - All variables of the form =<entity>=\textunderscore =<feature>=, with
   =<entity>= in =package=, =type= .., and =<feature>= in =stereotype=, =color=,
   .., can be set to a different default values to customize generated diagrams
+
+** Config                                                         :noexport:
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:

@@ -147,3 +147,8 @@ end()
 
 #+RESULTS[34422c456c5d8327b17464a9dafaba1ccf95e528]:
 [[file:fig-02-specification-view.eps]]
+
+** Config                                                         :noexport:
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:

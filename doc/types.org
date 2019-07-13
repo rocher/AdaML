@@ -207,7 +207,7 @@ type Bar_Type is new Integer range -1 .. 20;
 type Bar_Type is range -1 .. 20;
 #+end_src
 
-* Config                                                           :noexport:
+** Config                                                         :noexport:
 Local Variables:
 org-confirm-babel-evaluate: nil
 End:
