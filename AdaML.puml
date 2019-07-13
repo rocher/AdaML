@@ -355,6 +355,10 @@ set namespaceSeparator none
   !__private__ = 1
 !endfunction
 
+!function public()
+  !__private__ = 0
+  !endfunction
+
 !function attribute(name, type, defval="")
   __attr_line()
   !if (__private__ == 0)
@@ -370,7 +374,7 @@ set namespaceSeparator none
 !endfunction
 
 !function variable(name, type, defval="")
-  attribute(name, type, defval)
+  !attribute(name, type, defval)
 !endfunction
 
 !function constant(name, type, value, aliased=0)
