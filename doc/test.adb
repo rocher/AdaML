@@ -1,6 +1,6 @@
 with Ada.Text_IO;
 
-procedure Main is
+procedure Test is
 
    package Unset is
       type T (<>);
@@ -65,4 +65,4 @@ end Foo_Bar;
 begin
    Ada.Text_IO.Put_Line ("Hello, world!");
    Ada.Text_Io.Put_Line ("Today is " & Foo_Bar.Get_Day_Of_Week'Image);
-end Main;
+end Test;

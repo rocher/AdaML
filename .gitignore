@@ -4,8 +4,8 @@ _minted-AdaML/
 *.pdf
 b__*
 fig-*
-main
-main.adb.*
-main.ali
-main.bexch
-main.o
+test
+test.adb.*
+test.ali
+test.bexch
+test.o
