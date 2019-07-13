@@ -439,8 +439,19 @@ set namespaceSeparator none
   owner *--> element
 !endfunction
 
-!function depends(type, from)
-  type ..> from
+!function depends(type, from, relationship="")
+  !len = %strlen(relationship)
+  !if (len == 0)
+    type --> from
+  !else
+    !len = len - 2
+    !arrow = %substr(relationship, len, 2)
+    !if (arrow != " >") && (arrow != " <")
+       type --> from : relationship
+    !else
+       type -- from : relationship
+    !endif
+  !endif
 !endfunction
 
 !function array(array_type, element_type, association=array_association)
