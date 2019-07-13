@@ -78,8 +78,11 @@ In this document
               objects
 
 - Elements :: are /features/, in UML terminology, that correspond to Ada record
-              members, functions, procedures, type discriminant and other Ada
-              specific characteristics (e.g, =range 1..1024=)
+              members, functions or procedures
+
+- Specifiers :: are Ada specific constructions, like type discriminant or range
+                specifications (e.g, =range 1..1024=) that can appear in some
+                entity diagrams
 
 ** OOP Support
 - =AdaML= supports both OOP and non-OOP approaches to software models
