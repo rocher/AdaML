@@ -99,7 +99,7 @@ In some /code views/, Ada code is included.
 ** Deep Thought Example
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.62
+:BEAMER_col: 0.70
 :END:
 _=AdaML=_
 #+begin_example
@@ -114,12 +114,12 @@ private()
   variable("The_Answer", "Natural", 42)
 end()
 
-depends("Pan_Dimensional", "Deep_Thought")
+depends("Pan_Dimensional", "Deep_Thought", "ask >")
 #+end_example
 
 *** figure                                                  :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.38
+:BEAMER_col: 0.40
 :END:
 _=UML=_
 #+begin_src plantuml :file fig-01-deep-thought-example.eps
