@@ -440,17 +440,17 @@ set namespaceSeparator none
   owner *--> element
 !endfunction
 
-!function depends(type, from, stereotype=depends_stereotype)
+!function depends(client, supplier, stereotype=depends_stereotype)
   !len = %strlen(stereotype)
   !if (len == 0)
-    type ..> from
+    client ..> supplier
   !else
     !len = len - 2
     !arrow = %substr(stereotype, len, 2)
     !if (arrow != " >") && (arrow != " <")
-       type ..> from : stereotype
+       client ..> supplier : stereotype
     !else
-       type .. from : stereotype
+       client ..> supplier : stereotype
     !endif
   !endif
 !endfunction
