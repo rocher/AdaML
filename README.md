@@ -63,7 +63,7 @@ depends("Pan_Dimensional", "Deep_Thought", "ask >")
 - This is an example of the AdaML documentation:
 
 <p align="center">
-![test image](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml)
+<img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml">
 </p>
 
 - Check the raw version of this `README.md` file to see the image link used
