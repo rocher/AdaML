@@ -1,32 +1,36 @@
 * Reference
 ** Component Views
-| package                                          | name | stereotype=package\textunderscore stereotype     |
-| begin\textunderscore package\textunderscore spec | name | stereotype=package\textunderscore stereotype     |
-|--------------------------------------------------+------+--------------------------------------------------|
-| abstract                                         | name | stereotype=abstract\textunderscore stereotype    |
-| enumeration                                      | name | stereotype=enumeration\textunderscore stereotype |
-| interface                                        | name | stereotype=interface\textunderscore stereotype   |
-| subtype                                          | name | stereotype=subtype\textunderscore stereotype     |
-|--------------------------------------------------+------+--------------------------------------------------|
-| type                                             | name | stereotype=type\textunderscore stereotype        |
-| type\textunderscore access                       | name | suffix=access\textunderscore suffix              |
-|                                                  |      | stereotype=type\textunderscore stereotype        |
-| type\textunderscore new                          | base | name                                             |
-|                                                  |      | stereotype=type\textunderscore stereotype        |
-| type\textunderscore protected                    | name | stereotype=type\textunderscore stereotype        |
+| \bf{name}                                        | \bf{args} |                                                  |
+|--------------------------------------------------+-----------+--------------------------------------------------|
+| package                                          | name      | stereotype=package\textunderscore stereotype     |
+| begin\textunderscore package\textunderscore spec | name      | stereotype=package\textunderscore stereotype     |
+|--------------------------------------------------+-----------+--------------------------------------------------|
+| abstract                                         | name      | stereotype=abstract\textunderscore stereotype    |
+| enumeration                                      | name      | stereotype=enumeration\textunderscore stereotype |
+| interface                                        | name      | stereotype=interface\textunderscore stereotype   |
+| subtype                                          | name      | stereotype=subtype\textunderscore stereotype     |
+|--------------------------------------------------+-----------+--------------------------------------------------|
+| type                                             | name      | stereotype=type\textunderscore stereotype        |
+| type\textunderscore access                       | name      | suffix=access\textunderscore suffix              |
+|                                                  |           | stereotype=type\textunderscore stereotype        |
+| type\textunderscore new                          | base      | name                                             |
+|                                                  |           | stereotype=type\textunderscore stereotype        |
+| type\textunderscore protected                    | name      | stereotype=type\textunderscore stereotype        |
 
 ** Code Views
-| begin\textunderscore  package                      | name | stereotype=package\textunderscore stereotype     |
-|----------------------------------------------------+------+--------------------------------------------------|
-| begin\textunderscore abstract                      | name | stereotype=abstract\textunderscore stereotype    |
-| begin\textunderscore enumeration                   | name | stereotype=enumeration\textunderscore stereotype |
-| begin\textunderscore interface                     | name | stereotype=interface\textunderscore stereotype   |
-| begin\textunderscore subtype                       | name | stereotype=subtype\textunderscore stereotype     |
-|----------------------------------------------------+------+--------------------------------------------------|
-| begin\textunderscore type                          | name | stereotype=type\textunderscore stereotype        |
-| begin\textunderscore type\textunderscore new       | base | name                                             |
-|                                                    |      | stereotype=type\textunderscore stereotype        |
-| begin\textunderscore type\textunderscore protected | name | stereotype=protected\textunderscore stereotype   |
+| \bf{name}                                          | \bf{args} |                                                  |
+|----------------------------------------------------+-----------+--------------------------------------------------|
+| begin\textunderscore  package                      | name      | stereotype=package\textunderscore stereotype     |
+|----------------------------------------------------+-----------+--------------------------------------------------|
+| begin\textunderscore abstract                      | name      | stereotype=abstract\textunderscore stereotype    |
+| begin\textunderscore enumeration                   | name      | stereotype=enumeration\textunderscore stereotype |
+| begin\textunderscore interface                     | name      | stereotype=interface\textunderscore stereotype   |
+| begin\textunderscore subtype                       | name      | stereotype=subtype\textunderscore stereotype     |
+|----------------------------------------------------+-----------+--------------------------------------------------|
+| begin\textunderscore type                          | name      | stereotype=type\textunderscore stereotype        |
+| begin\textunderscore type\textunderscore new       | base      | name                                             |
+|                                                    |           | stereotype=type\textunderscore stereotype        |
+| begin\textunderscore type\textunderscore protected | name      | stereotype=protected\textunderscore stereotype   |
 
 ** Customization
 - All variables of the form =<entity>=\textunderscore =<feature>=, with
