@@ -62,13 +62,15 @@ set namespaceSeparator none
 !private = 0
 !public = 1
 
-'Color configuration
+'Entities Configuration
 !abstract_color         = "#ff33f0"
 !abstract_char          = "A"
 !abstract_stereotype    = "abstract"
 !access_color           = "#f0f0f0"
 !access_char            = "a"
 !access_stereotype      = "access"
+!access_association     = "all"
+!access_suffix          = "_Access"
 !enumeration_color      = "#adff2f"
 !enumeration_char       = "E"
 !enumeration_stereotype = ""
@@ -91,12 +93,8 @@ set namespaceSeparator none
 !type_char              = "T"
 !type_stereotype        = ""
 
-'Configuration
-!access_association = "all"
-!access_stereotype = "access"
-!access_suffix = "_Access"
+'Other Configuration
 !depends_stereotype = "use"
-
 !array_association = "of"
 
 'Private global variables
@@ -204,7 +202,7 @@ set namespaceSeparator none
 !endfunction
 
 'Public functions
-!function begin_package_spec(name, stereotype="")
+!function begin_package_spec(name, stereotype=package_stereotype)
   !$p_name_is = "package " + name + " is"
   !if (%strlen(stereotype) == 0)
     package "$p_name_is" {
@@ -266,7 +264,7 @@ set namespaceSeparator none
   __declare_entity(task_char, task_color, name, __str_guard(stereotype))
 !endfunction
 
-!function object_protected(name, stereotype="")
+!function object_protected(name, stereotype=protected_stereotype)
   __declare_entity("", "", name, "object")
 !endfunction
 
@@ -307,7 +305,7 @@ set namespaceSeparator none
   __begin_entity(protected_char, protected_color, name, __check_array(name, __str_guard(stereotype)))
 !endfunction
 
-!function begin_object_protected(name, stereotype="")
+!function begin_object_protected(name, stereotype=protected_stereotype)
   hide name circle
   __begin_entity("", "", name, "protected object")
 !endfunction
