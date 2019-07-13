@@ -38,6 +38,6 @@ Make sure that the PlantUML environment you're using
 
 # Online Usage
 ## Embedded Diagrams
-First test from ~README.org~ file
+First test from `README.org` file
 
-![test](http://www.plantuml.com/plantuml/proxy?src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml)
+![test](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml)
