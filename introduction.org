@@ -35,16 +35,16 @@ In case you want to test it immediately,
 #+begin_example
 !include https://github.com/rocher/AdaML/raw/develop/AdaML.puml
 begin_type("Pan_Dimensional")
-  procedure("Ask", "in out Natural")
+  procedure("Ask_The_Question", "in out Natural")
 end()
 
 begin_package("Deep_Thought")
-  function("Get_The_Answer", "", "Natural")
+  function("Answer_The_Question", "", "Natural")
 private()
   variable("The_Answer", "Natural", 42)
 end()
 
-depends("Pan_Dimensional", "Deep_Thought")
+depends("Pan_Dimensional", "Deep_Thought", "ask >")
 #+end_example
 
 - Press '=Shift+Enter=' to get graphical results
@@ -100,17 +100,17 @@ In some /code views/, Ada code is included.
 ** Deep Thought Example
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.65
+:BEAMER_col: 0.62
 :END:
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
 begin_type("Pan_Dimensional")
-  procedure("Ask", "in out Natural")
+  procedure("Ask_The_Question", "in out Natural")
 end()
 
 begin_package("Deep_Thought")
-  function("Get_The_Answer", "", "Natural")
+  function("Answer_The_Question", "", "Natural")
 private()
   variable("The_Answer", "Natural", 42)
 end()
@@ -120,22 +120,22 @@ depends("Pan_Dimensional", "Deep_Thought")
 
 *** figure                                                  :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.35
+:BEAMER_col: 0.38
 :END:
 _=UML=_
 #+begin_src plantuml :file fig-01-deep-thought-example.eps
 !include AdaML.puml
 begin_type("Pan_Dimensional")
-  procedure("Ask", "in out Natural")
+  procedure("Ask_The_Question", "in out Natural")
 end()
 
 begin_package("Deep_Thought")
-  function("Get_The_Answer", "", "Natural")
+  function("Answer_The_Question", "", "Natural")
 private()
   variable("The_Answer", "Natural", 42)
 end()
 
-depends("Pan_Dimensional", "Deep_Thought")
+depends("Pan_Dimensional", "Deep_Thought", "ask >")
 #+end_src
 
 #+RESULTS[7a22dc04a15ce1b7518d36e9ca62ab1251d2cf58]:
