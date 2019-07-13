@@ -2,6 +2,15 @@
 ### development version
 Hard work in progress; keep tuned.
 
+<details>
+<summary>Click to expand</summary>
+
+### release 0.0.1
+- new `depends` function
+ blah balh
+
+</details>
+
 # Introduction
 ### What is AdaML?
 - UML tailored for Ada 2012 programming language
