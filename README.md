@@ -1,6 +1,6 @@
 # ChangeLog
-### `development` version
-Work in progress version. Keep tuned.
+### development version
+Hard work in progress; keep tuned.
 
 # Introduction
 ### What is AdaML?
@@ -38,7 +38,7 @@ AdaML must be used locally to get quality graphics. You can generate diagrams in
 - Remove default lines and paste the following code:
 
 ```
-!include https://github.com/rocher/AdaML/raw/develop/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
 begin_type("Pan_Dimensional")
   procedure("Ask_The_Question", "in out Natural")
 end()
@@ -57,7 +57,7 @@ depends("Pan_Dimensional", "Deep_Thought", "ask >")
 This is an example of the AdaML documentation:
 
 <p align="center">
-<img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml">
+<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml">
 </p>
 
 - Check the [raw version](https://raw.github.com/rocher/AdaML/develop/README.md)

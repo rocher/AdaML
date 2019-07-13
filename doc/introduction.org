@@ -22,7 +22,7 @@ In case you want to test it immediately,
 - Visit one of the several available PlantUML online servers
 - Follow any of the examples below, but instead of including the local
   =AdaML.puml= file, include the URL\newline\newline
-  \scriptsize{https://github.com/rocher/AdaML/raw/develop/AdaML.puml}
+  \scriptsize{https://raw.github.com/rocher/AdaML/develop/AdaML.puml}
 \newline
 - Warning :: depending on the version used by the web site you can obtain
              slightly different graphical results
@@ -32,7 +32,7 @@ In case you want to test it immediately,
 - Remove default lines and paste the following code:
 
 #+begin_example
-!include https://github.com/rocher/AdaML/raw/develop/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
 begin_type("Pan_Dimensional")
   procedure("Ask_The_Question", "in out Natural")
 end()

@@ -1,5 +1,5 @@
 @startuml
-!include https://github.com/rocher/AdaML/raw/develop/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
 begin_type("Pan_Dimensional")
   procedure("Ask_The_Question", "in out Natural")
 end()
