@@ -60,7 +60,7 @@ This is an example of the AdaML documentation:
 <img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml">
 </p>
 
-    - Check the [raw version](https://raw.github.com/rocher/AdaML/develop/README.md)
-      of this `README.md` file to see the image link used (plus how to easily center
-      images in GitHub)
-    - The PlantUML source code can be found in GitHub here: [deep-thought.puml](https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml)
+- Check the [raw version](https://raw.github.com/rocher/AdaML/develop/README.md)
+  of this `README.md` file to see the image link used (plus how to easily center
+  images in GitHub)
+- The PlantUML source code can be found in GitHub here: [deep-thought.puml](https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml)
