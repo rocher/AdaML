@@ -100,27 +100,27 @@ type Power_Type is range -2_048 .. 65_536;
 ** Modular Types
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.6
+:BEAMER_col: 0.65
 :END:
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
 begin_type("Mod_Type")
-  mod("2 ** 1_024")
-  procedure("Add_Ten", "in out Mod_Type")
+  mod("2 ** 10")
+  procedure("Add_Integer", "in Integer")
 end()
 #+end_example
 
 *** figure                                                    :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.4
+:BEAMER_col: 0.35
 :END:
 _=UML=_
 #+begin_src plantuml :file fig-03-modular-types.eps
 !include AdaML.puml
 begin_type("Mod_Type")
-  mod("2 ** 1_024")
-  procedure("Add_Ten", "in out Mod_Type")
+  mod("2 ** 10")
+  procedure("Add_Integer", "in Integer")
 end()
 #+end_src
 
@@ -129,8 +129,8 @@ end()
 
 *** Ada
 #+begin_src ada :exports code
-type Mod_Type is mod 1_024;
-procedure Add_Ten (Arg : in out Mod_Type);
+type Mod_Type is mod 2 ** 10;  --  range 0 .. 1023
+procedure Add_Integer (Self : in out Mod_Type; Value : in Integer);
 #+end_src
 
 ** Enumeration Types
