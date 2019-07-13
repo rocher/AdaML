@@ -1,11 +1,12 @@
 # ChangeLog
-### development version
+### Release 0.5.0
 Hard work in progress; keep tuned.
 
+### Other Releases
 <details>
 <summary>Click to expand</summary>
 
-### release 0.0.1
+#### release 0.0.1
 - new `depends` function
  blah balh
 
