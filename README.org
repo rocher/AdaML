@@ -35,3 +35,8 @@ Make sure that the PlantUML environment you're using
 - the line ="!include AdaML.puml"= on top of your new files effectively includes
   the AdaML.puml file
 - Still under development; feedback appreciated
+
+* Online Usage
+** Embedded Diagrams
+- First test from =README.org= file:
+[[http://www.plantuml.com/plantuml/proxy?src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml]]
