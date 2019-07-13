@@ -28,7 +28,6 @@ In case you want to test it immediately,
              slightly different graphical results
 
 ** Online Version - Quick start
-
 - Open [[http://sujoyu.github.io/plantuml-previewer][plantuml-previewer]]
 - Remove default lines and paste the following code:
 
