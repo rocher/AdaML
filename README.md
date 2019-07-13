@@ -3,7 +3,7 @@
 Hard work in progress; keep tuned.
 
 <details>
-<summary><b>Older Releases</b> &emdash; click to expand &emdash;</summary>
+<summary><b>Older Releases</b> &mdash; click to expand &mdash;</summary>
 
 > *no releases yet*
 
