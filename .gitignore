@@ -2,6 +2,7 @@ auto/
 _minted-AdaML/
 *.tex
 *.pdf
+!AdaML.pdf
 b__*
 fig-*
 test
