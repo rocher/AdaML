@@ -1,3 +1,4 @@
+@startuml
 !include https://github.com/rocher/AdaML/raw/develop/AdaML.puml
 begin_type("Pan_Dimensional")
   procedure("Ask_The_Question", "in out Natural")
@@ -10,3 +11,4 @@ private()
 end()
 
 depends("Pan_Dimensional", "Deep_Thought", "ask >")
+@enduml

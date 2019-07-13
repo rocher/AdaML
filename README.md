@@ -32,7 +32,7 @@ Work in progress version. Keep tuned.
 Make sure that the PlantUML environment you're using
 
 - lets you use external files, not only a single piece of text
-- the line ="!include AdaML.puml"= on top of your new files effectively includes
+- the line `!include AdaML.puml` on top of your new files effectively includes
   the AdaML.puml file
 - Still under development; feedback appreciated
 
@@ -40,4 +40,4 @@ Make sure that the PlantUML environment you're using
 ## Embedded Diagrams
 First test from `README.org` file
 
-![test](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml)
+![test image](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml)
