@@ -31,7 +31,8 @@ skinparam {
   classHeaderBackgroundColor #dadada
   classHeaderBackgroundColor<< object >> #ffd700
   classHeaderBackgroundColor<< protected object >> #ffd700
-  circledCharacterFontSize 10
+  circledCharacterFontName CMU Bright SemiBold
+  circledCharacterFontSize 12
   circledCharacterRadius<< access >> 5
   circledCharacterRadius 10
   componentStyle uml2
