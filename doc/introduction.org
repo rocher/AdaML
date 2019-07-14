@@ -44,8 +44,9 @@ In case you want to test the examples in this doc
 - Replace the line '=!include AdaML.puml=' with\newline \newline
   \scriptsize{!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml}
 \newline
-- Warning :: depending on the PlantUML version used in the web site you can
-             obtain different graphical results
+*** Warning
+Depending on the PlantUML version used in the web site you can obtain different
+graphical results
 
 ** Local Version - Requirements
 In case you want to integrate results in your local docs
