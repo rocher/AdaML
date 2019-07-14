@@ -1,34 +1,24 @@
 * Introduction
 ** What is =AdaML=?
-- UML tailored for Ada 2012 programming language
 - A modeling language to draw UML diagrams
-- An easy way to learn Ada through the use of UML and OOP concepts
+- UML tailored for Ada 2012 programming language
 - Small, extensible tool implemented on top of PlantUML
-
-** Features
-- UML tailored to use and show particular Ada language characteristics
-- Coherent set of functions to design software components for Ada
-- Generates high quality drawings (ps, eps) easy to embedded in other docs
-- Easy to learn by example, both =AdaML= and Ada language
 
 ** What is /not/ =AdaML=?
 - A model-based tool to generate Ada code
-- A reverse engineering tool to draw UML diagrams from Ada code
-- An interactive UML modeling or drawing tool
+- A reverse engineering tool to draw UML diagrams from existing Ada code
+- An GUI-based UML modeling or drawing tool
 
-** Online Version
-In case you want to test it immediately,
+** Features
+- Coherent set of functions to describe components
+- Syntax resembling Ada
+- High quality drawings (=eps=) to embed in other docs
+- =svg= graphics for additional editing (e.g., [[https://inkscape.org/][inkscape]])
+- Online generated diagrams for online docs (e.g., GitHub)
+- Easy to learn by example, both =AdaML= and Ada language
 
-- Visit one of the several available PlantUML online servers
-- Follow any of the examples below, but instead of including the local
-  =AdaML.puml= file, include the URL\newline\newline
-  \scriptsize{https://raw.github.com/rocher/AdaML/develop/AdaML.puml}
-\newline
-- Warning :: depending on the version used by the web site you can obtain
-             slightly different graphical results
-
-** Online Version - Quick start
-- Open [[http://sujoyu.github.io/plantuml-previewer][plantuml-previewer]]
+** Online Version - Quick Start
+- Open [[http://sujoyu.github.io/plantuml-previewer][PlantUML Previewer]] or [[https://www.planttext.com/][PlantText]] editor
 - Remove default lines and paste the following code:
 
 #+begin_example
@@ -46,27 +36,36 @@ end()
 depends("Pan_Dimensional", "Deep_Thought", "ask >")
 #+end_example
 
-- Press '=Shift+Enter=' to get graphical results
+** Online Version - Test Examples
+In case you want to test the examples in this doc
 
-** Local Version
-In case you want to integrate work results locally, requirements are:
+- Visit one of the several available PlantUML online servers
+- Copy and paste the =AdaML= code shown in the examples
+- Replace the line '=!include AdaML.puml=' with\newline \newline
+  \scriptsize{!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml}
+\newline
+- Warning :: depending on the PlantUML version used in the web site you can
+             obtain different graphical results
+
+** Local Version - Requirements
+In case you want to integrate results in your local docs
 
 - [[https://plantuml.com][=PlantUML=]] installed and working in your system
-- The =AdaML= files, check [[https://github.com/rocher/AdaML][=AdaML=]] installation instructions
-- Your favorite text editor, preferably with =PlantUML= support (e.g. Emacs)
+- =AdaML.puml= file, check [[https://github.com/rocher/AdaML][=AdaML=]] releases
+- Your favorite text editor with =PlantUML= support (e.g. Emacs)
 - Check the list of [[http://plantuml.com/running][supported editors]]
-- For better visualization and integration with \LaTeX, [[https://www.fontsquirrel.com/fonts/computer-modern][computer modern]] fonts
+- For better visualization and integration with \LaTeX\_ and other formats,
+  [[https://www.fontsquirrel.com/fonts/computer-modern][computer modern]] fonts
 
 ** Pros & Cons
 - Online Version ::
 \cmark Quick and easy to test\newline
-\cmark Same code can be embedded in other webs, e.g. github\newline
+\cmark Same code can be embedded in online docs\newline
+\qmark Bitmap graphics; =svg= in PlantText\newline
 \xmark No file saved, no backups\newline
-\xmark Bitmap graphics (=png= format); fixed-size image \newline
-\xmark PlantUML version may change without notice, affecting graphical results, layout, style or other incompatibilities \newline
-
+\xmark PlantUML version may change without notice, affecting graphical results, layout, style or other incompatibilities\newline
 - Local Version ::
-\cmark Best graphical results to embed into other docs (=eps= format)\newline
+\cmark Best graphical results to embed in other docs (=eps=)\newline
 \cmark Consistent graphical results over time, if no version changed\newline
 \xmark Requires PlantUML up and running
 
@@ -78,24 +77,27 @@ In this document
               objects
 
 - Elements :: are /features/, in UML terminology, that correspond to Ada record
-              members, functions or procedures
+              members, functions and procedures
 
-- Specifiers :: are Ada specific constructions, like type discriminant or range
+- Specifiers :: are Ada constructions, like type discriminant or range
                 specifications (e.g, =range 1..1024=) that can appear in some
                 entity diagrams
 
 ** OOP Support
 - =AdaML= supports both OOP and non-OOP approaches to software models
+- There is no explicit difference between them in =AdaML=
+- The final implementation in Ada is the last choice between the two options
 - This document and examples on it use OOP concepts as much as possible
 
-** Design Conventions
-This document uses two view levels; according to the [[https://c4model.com][C4 model]]:
+** Abstraction Levels
+=AdaML= provides two main view levels, according to the [[https://c4model.com][C4 model]]:
 
-- Code view :: to show in detail how entity /elements/ (attributes, methods) are
-               implemented and the relationship they have with other entities
+- Code view :: to show in detail how entity elements (attributes, methods) are
+               implemented and the relationship they have with other
+               entities\newline
 
-- Component view :: to show /entities/ building blocks and the overall
-                    relationship with other entities
+- Component view :: to show internal entity building blocks and the overall
+                    relationship with other entities\newline
 
 In some /code views/, Ada code is included.
 
