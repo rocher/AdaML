@@ -68,7 +68,7 @@ private
 end FooBar;
 #+end_src
 
-** More Details - Specifiers
+** More Details - Types & Specifiers
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.6
@@ -76,12 +76,12 @@ end FooBar;
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
-begin_package("FooBar<Min, Max>")
-  generic_with("Size : Natural range 10..100")
+  generic_with("N : Natural range 1 .. 42")
+  type("Range_N", "range 1 .. N")
 private()
-  variable("Foo", "Natural")
+  variable("The_Answer", "Range_N")
 public()
-  procedure("Bar", "in out Natural")
+  procedure("Bar", "in out Range_N")
 end()
 #+end_example
 
@@ -106,8 +106,8 @@ end()
 [[file:fig-02-more-details.eps]]
 
 *** Warning
-When using /entity specifiers/, like =generic=, variables and methods must be
-manually sorted (contrast with previous slide)
+When using /entity specifiers/, like =generic=, types, variables and methods
+must be manually sorted (contrast with previous slide)
 
 ** Component view
 Component view lets you see other entities contained in the package\newline
