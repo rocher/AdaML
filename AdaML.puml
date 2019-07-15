@@ -107,6 +107,14 @@ set namespaceSeparator none
 !__elements_level__ = 0
 
 'Private functions
+!function __get_default(value, default_value)
+  !if (%strlen(value) == 0)
+    !return default_value
+  !else
+    !return value
+  !endif
+!endfunction
+
 !function __replace(string, text, replace)
   !_result = string
   !_pos = %strpos(string, text)
