@@ -41,7 +41,8 @@ AdaML must be used locally to get quality graphics. You can generate diagrams in
 
 # Online Usage
 ### Online Version - Quick Start
-- Open [plantuml-previewer](http://sujoyu.github.io/plantuml-previewer)
+- Open [PlantUML Previewer](http://sujoyu.github.io/plantuml-previewer) or
+  [PlantText](https://www.planttext.com/) editor
 - Remove default lines and paste the following code:
 
 ```
@@ -57,14 +58,13 @@ private()
 end()
 
 depends("Pan_Dimensional", "Deep_Thought", "ask >")
-#+end_example
 ```
 
 ### Embed Diagrams in GitHub
 This is an example of the AdaML documentation:
 
 <p align="center">
-<img src="http://www.plantuml.com/plantuml/proxy?src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml">
+<img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml">
 </p>
 
 - Check the [raw version](https://raw.github.com/rocher/AdaML/develop/README.md)
