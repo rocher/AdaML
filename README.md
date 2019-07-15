@@ -41,7 +41,8 @@ AdaML must be used locally to get quality graphics. You can generate diagrams in
 
 # Online Usage
 ### Online Version - Quick Start
-- Open [plantuml-previewer](http://sujoyu.github.io/plantuml-previewer)
+- Open [PlantUML Previewer](http://sujoyu.github.io/plantuml-previewer) or
+  [PlantText](https://www.planttext.com/) editor
 - Remove default lines and paste the following code:
 
 ```
