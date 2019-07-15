@@ -562,7 +562,7 @@ set namespaceSeparator .
   !endif
 !endfunction
 
-!function up_to_down(obj0, obj1, obj2="", obj3="", obj4="", obj5="", obj6="", obj7="", obj8="", obj9="")
+!function top_to_down(obj0, obj1, obj2="", obj3="", obj4="", obj5="", obj6="", obj7="", obj8="", obj9="")
   obj0 -[hidden]down- obj1
   !if (%strlen(obj2) > 0)
     obj1 -[hidden]down- obj2
