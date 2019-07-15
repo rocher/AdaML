@@ -9,17 +9,17 @@ The simplest package representation is\newline
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
-package("FooBar")
+package("Deep_Thought")
 #+end_example
 
 *** figure                                                  :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.25
+:BEAMER_col: 0.35
 :END:
 _=UML=_
 #+begin_src plantuml :file fig-02-detail-view.eps
 !include AdaML.puml
-package("FooBar")
+package("Deep_Thought")
 #+end_src
 
 #+RESULTS[9e5758013375e35a0f52d80450f7884201531f36]:
@@ -30,15 +30,15 @@ Shows package elements\newline
 
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.65
+:BEAMER_col: 0.6
 :END:
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
-begin_package("FooBar")
-  procedure("Bar", "in out Natural")
+begin_package("Deep_Thought")
+  function("Answer_The_Question", "", "Natural")
 private()
-  variable("Foo", "Natural")
+  variable("The_Answer", "Natural", 42)
 end()
 #+end_example
 
@@ -49,10 +49,10 @@ end()
 _=UML=_
 #+begin_src plantuml :file fig-02-code-view.eps
 !include AdaML.puml
-begin_package("FooBar")
-  procedure("Bar", "in out Natural")
+begin_package("Deep_Thought")
+  function("Answer_The_Question", "", "Natural")
 private()
-  variable("Foo", "Natural")
+  variable("The_Answer", "Natural", 42)
 end()
 #+end_src
 
@@ -61,16 +61,14 @@ end()
 
 *** Ada
 #+begin_src ada :exports code
-package FooBar is
-  procedure Bar (Arg : in out Natural);
+package Deep_Thought is
+  function Answer_The_Question return Natural;
 private
-  Foo : Natural;
+  The_Answer : Natural := 42;
 end FooBar;
 #+end_src
 
-** More Details
-e.g., a /generic/ package with two numerical parameters\newline
-
+** More Details - Specifiers
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.6
@@ -94,12 +92,13 @@ end()
 _=UML=_
 #+begin_src plantuml :file fig-02-more-details.eps
 !include AdaML.puml
-begin_package("FooBar<Size>")
-  generic_with("Size : Natural range 10..100")
+begin_package("Deep_Thought<N>")
+  generic_with("N : Natural range 1 .. 42")
+  type("Range_N", "range 1 .. N")
 private()
-  variable("Foo", "Natural")
+  variable("The_Answer", "Range_N")
 public()
-  procedure("Bar", "in out Natural")
+  procedure("Bar", "in out Range_N")
 end()
 #+end_src
 
