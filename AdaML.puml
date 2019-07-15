@@ -170,22 +170,27 @@ set namespaceSeparator none
   !endif
 !endfunction
 
-!function __declare_entity(type_char, color, name, stereotype="", pre="", post="")
+!function __declare_entity(char, color, name, stereotype="", pre="", post="")
   __reset()
-  !if (%strlen(type_char) == 0)
-    pre class name <<stereotype>> post
+  !if (%strlen(char) == 0)
+    hide name circle
+    !if (%strlen(stereotype) == 0)
+      pre class name post
+    !else
+      pre class name <<stereotype>> post
+    !endif
   !else
-    pre class name <<(type_char, color) stereotype>> post
+    pre class name <<(char, color) stereotype>> post
   !endif
 !endfunction
 
-!function __begin_entity(type_char, color, name, stereotype="", pre="", post="")
+!function __begin_entity(char, color, name, stereotype="", pre="", post="")
   __reset()
   !__elements_level__ = 1
-  !if (%strlen(type_char) == 0)
+  !if (%strlen(char) == 0)
     pre class name <<stereotype>> post {
   !else
-    pre class name <<(type_char, color) stereotype>> post {
+    pre class name <<(char, color) stereotype>> post {
   !endif
 !endfunction
 
