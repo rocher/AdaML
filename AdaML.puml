@@ -59,39 +59,35 @@ hide <<object>> circle
 hide <<object>> stereotype
 set namespaceSeparator none
 
-'Constants
-!private = 0
-!public = 1
-
 'Entities Configuration
-!abstract_color         = "#ff33f0"
 !abstract_char          = "A"
+!abstract_color         = "#ff33f0"
 !abstract_stereotype    = "abstract"
-!access_color           = "#f0f0f0"
-!access_char            = "a"
-!access_stereotype      = "access"
 !access_association     = "all"
+!access_char            = "a"
+!access_color           = "#f0f0f0"
+!access_stereotype      = "access"
 !access_suffix          = "_Access"
-!enumeration_color      = "#adff2f"
 !enumeration_char       = "E"
+!enumeration_color      = "#adff2f"
 !enumeration_stereotype = ""
-!interface_color        = "#aaccff"
 !interface_char         = "I"
+!interface_color        = "#aaccff"
 !interface_stereotype   = ""
-!package_color          = "#ffff33"
 !package_char           = "P"
+!package_color          = "#ffff33"
 !package_stereotype     = ""
-!protected_color        = "#aaccff"
 !protected_char         = "#"
+!protected_color        = "#aaccff"
 !protected_stereotype   = "protected"
-!subtype_color          = "#ffccaa"
 !subtype_char           = "S"
+!subtype_color          = "#ffccaa"
 !subtype_stereotype     = ""
-!task_color             = "#333333"
 !task_char              = "•"
+!task_color             = "#333333"
 !task_stereotype        = "task"
-!type_color             = "#ff6666"
 !type_char              = "T"
+!type_color             = "#ff6666"
 !type_stereotype        = ""
 
 'Other Configuration
