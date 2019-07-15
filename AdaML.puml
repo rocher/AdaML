@@ -195,7 +195,7 @@ set namespaceSeparator .
 !endfunction
 
 !function __check_type(name)
-  !if (%strpos("types:Character,Boolean,Integer,Natural,Positive,String", name) > 0)
+  !if (%strpos("types:Ada.Character,Ada.Boolean,Ada.Integer,Ada.Natural,Ada.Positive,Ada.String", name) > 0)
     !if (%not(%variable_exists("__type_" + name)))
       %set_variable_value("__type_" + name, 1)
       __declare_entity("T", type_color, name)
