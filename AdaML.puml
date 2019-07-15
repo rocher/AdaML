@@ -224,7 +224,8 @@ set namespaceSeparator none
 !endfunction
 
 'Public functions
-!function begin_package_spec(name, stereotype=package_stereotype)
+!function begin_package_spec(name, stereotype="")
+  !stereotype = __get_default(stereotype, package_stereotype)
   !$p_name_is = "package " + name + " is"
   !if (%strlen(stereotype) == 0)
     package "$p_name_is" {
@@ -234,31 +235,37 @@ set namespaceSeparator none
 !endfunction
 
 'Component view functions
-!function package(name, stereotype=package_stereotype)
+!function package(name, stereotype="")
+  !stereotype = __get_default(stereotype, package_stereotype)
   __declare_entity(package_char, package_color, name, __str_guard(stereotype))
 !endfunction
 
-!function abstract(name, stereotype=abstract_stereotype)
+!function abstract(name, stereotype="")
+  !stereotype = __get_default(stereotype, abstract_stereotype)
   __declare_entity(abstract_char, abstract_color, name, __str_guard(stereotype))
 !endfunction
 
-!function enumeration(name, stereotype=enumeration_stereotype)
+!function enumeration(name, stereotype="")
+  !stereotype = __get_default(stereotype, enumeration_stereotype)
   __declare_entity(enumeration_char, enumeration_color, name, __str_guard(stereotype))
 !endfunction
 
-!function interface(name, stereotype=interface_stereotype)
+!function interface(name, stereotype="")
+  !stereotype = __get_default(stereotype, interface_stereotype)
   __declare_entity(interface_char, interface_color, name, __str_guard(stereotype))
 !endfunction
 
-!function subtype(name, stereotype=subtype_stereotype)
+!function subtype(name, stereotype="")
+  !stereotype = __get_default(stereotype, subtype_stereotype)
   __declare_entity(subtype_char, subtype_color, name, __check_array(name, __str_guard(stereotype)))
 !endfunction
 
-!function task(name, stereotype=task_stereotype)
+!function task(name, stereotype="")
+  !stereotype = __get_default(stereotype, task_stereotype)
   __declare_entity(task_char, task_color, name, __str_guard(stereotype))
 !endfunction
 
-!function type(name, stereotype=type_stereotype)
+!function type(name, stereotype="")
   !if (__elements_level__)
     __type_line()
     !if (__private__ == 0)
@@ -272,11 +279,14 @@ set namespaceSeparator none
       acc_str name : stereotype
     !endif
   !else
+    !stereotype = __get_default(stereotype, type_stereotype)
     __declare_entity(type_char, type_color, name, __check_array(name,  __str_guard(stereotype)))
   !endif
 !endfunction
 
-!function type_access(type, suffix=access_suffix, stereotype=access_stereotype)
+!function type_access(type, suffix="", stereotype="")
+  !suffix = __get_default(suffix, access_suffix)
+  !stereotype = __get_default(stereotype, access_stereotype)
   !type_access = type + suffix
   __declare_entity(access_char, access_color, type_access, __str_guard(stereotype))
   !if (%strlen(access_association) == 0)
@@ -286,62 +296,75 @@ set namespaceSeparator none
   !endif
 !endfunction
 
-!function type_new(type, name, stereotype=type_stereotype, comment="", note="")
+!function type_new(type, name, stereotype="", comment="", note="")
+  !stereotype = __get_default(stereotype, type_stereotype)
   __check_type(type)
   __declare_entity(type_char, type_color, name, __check_array(name, __str_guard(stereotype)))
   __type_new(type, name, comment, note)
 !endfunction
 
-!function type_protected(name, stereotype=protected_stereotype)
+!function type_protected(name, stereotype="")
+  !stereotype = __get_default(stereotype, protected_stereotype)
   __declare_entity(protected_char, protected_color, name, __str_guard(stereotype))
 !endfunction
 
-!function type_task(name, stereotype=task_stereotype)
+!function type_task(name, stereotype="")
+  !stereotype = __get_default(stereotype, task_stereotype)
   __declare_entity(task_char, task_color, name, __str_guard(stereotype))
 !endfunction
 
-!function object_protected(name, stereotype=protected_stereotype)
+!function object_protected(name, stereotype="")
+  !stereotype = __get_default(stereotype, protected_stereotype)
   __declare_entity("", "", name, "object")
 !endfunction
 
 'Code view functions
-!function begin_package(name, stereotype=package_stereotype)
+!function begin_package(name, stereotype="")
+  !stereotype = __get_default(stereotype, package_stereotype)
   __begin_entity(package_char, package_color, name, __str_guard(stereotype))
 !endfunction
 
-!function begin_abstract(name, stereotype=abstract_stereotype)
+!function begin_abstract(name, stereotype="")
+  !stereotype = __get_default(stereotype, abstract_stereotype)
   __begin_entity(abstract_char, abstract_color, name, __str_guard(stereotype), "abstract")
 !endfunction
 
-!function begin_enumeration(name, stereotype=enumeration_stereotype)
+!function begin_enumeration(name, stereotype="")
+  !stereotype = __get_default(stereotype, enumeration_stereotype)
   __begin_entity(enumeration_char, enumeration_color, name, __str_guard(stereotype))
 !endfunction
 
-!function begin_interface(name, stereotype=interface_stereotype)
+!function begin_interface(name, stereotype="")
+  !stereotype = __get_default(stereotype, interface_stereotype)
   __begin_entity(interface_char, interface_color, name, __str_guard(stereotype))
 !endfunction
 
-!function begin_subtype(name, stereotype=subtype_stereotype)
+!function begin_subtype(name, stereotype="")
+  !stereotype = __get_default(stereotype, subtype_stereotype)
   __begin_entity(subtype_char, subtype_color, name, __check_array(name, __str_guard(stereotype)))
 !endfunction
 
-!function begin_type(name, stereotype=type_stereotype)
+!function begin_type(name, stereotype="")
+  !stereotype = __get_default(stereotype, type_stereotype)
   __begin_entity(type_char, type_color, name, __check_array(name, __str_guard(stereotype)))
 !endfunction
 
-!function begin_type_new(type, name, stereotype=type_stereotype, comment="", note="")
+!function begin_type_new(type, name, stereotype="", comment="", note="")
+  !stereotype = __get_default(stereotype, type_stereotype)
   __check_type(type)
   __type_new(type, name, comment, note)
   __begin_entity(type_char, type_color, name, __check_array(name, __str_guard(stereotype)))
 !endfunction
 
-!function begin_type_protected(type, name, stereotype=protected_stereotype, comment="", note="")
+!function begin_type_protected(type, name, stereotype="", comment="", note="")
+  !stereotype = __get_default(stereotype, protected_stereotype)
   __check_type(type)
   __type_new(type, name, comment, note)
   __begin_entity(protected_char, protected_color, name, __check_array(name, __str_guard(stereotype)))
 !endfunction
 
-!function begin_object_protected(name, stereotype=protected_stereotype)
+!function begin_object_protected(name, stereotype="")
+  !stereotype = __get_default(stereotype, protected_stereotype)
   hide name circle
   __begin_entity("", "", name, "protected object")
 !endfunction
