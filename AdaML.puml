@@ -105,8 +105,10 @@ set namespaceSeparator none
 !__range__ = 0
 !__generic__ = 0
 !__private__ = 0
+!__type_line__ = 0
 !__attr_line__ = 0
 !__method_line__ = 0
+!__elements_level__ = 0
 
 'Private functions
 !function __replace(string, text, replace)
@@ -130,8 +132,10 @@ set namespaceSeparator none
 !__range__ = 0
 !__generic__ = 0
 !__private__ = 0
+!__type_line__ = 0
 !__attr_line__ = 0
 !__method_line__ = 0
+!__elements_level__ = 0
 !endfunction
 
 !function __detail(line, name, spec)
@@ -139,6 +143,13 @@ set namespaceSeparator none
     .. name ..
   !endif
   ** ** spec
+!endfunction
+
+!function __type_line()
+  !if (__type_line__ == 1)
+== types ==
+    !__type_line__ = 0
+  !endif
 !endfunction
 
 !function __attr_line()
@@ -166,6 +177,7 @@ set namespaceSeparator none
 
 !function __begin_entity(type_char, color, name, stereotype="", pre="", post="")
   __reset()
+  !__elements_level__ = 1
   !if (%strlen(type_char) == 0)
     pre class name <<stereotype>> post {
   !else
@@ -238,7 +250,21 @@ set namespaceSeparator none
 !endfunction
 
 !function type(name, stereotype=type_stereotype)
-  __declare_entity(type_char, type_color, name, __check_array(name,  __str_guard(stereotype)))
+  !if (__elements_level__)
+    __type_line()
+    !if (__private__ == 0)
+      !acc_str = "+"
+    !else
+      !acc_str = "-"
+    !endif
+    !if (%strlen(stereotype) == 0)
+      acc_str name
+    !else
+      acc_str name : stereotype
+    !endif
+  !else
+    __declare_entity(type_char, type_color, name, __check_array(name,  __str_guard(stereotype)))
+  !endif
 !endfunction
 
 !function type_access(type, suffix=access_suffix, stereotype=access_stereotype)
@@ -312,6 +338,7 @@ set namespaceSeparator none
 !endfunction
 
 !function end()
+  !__elements_level__ = 0
   }
 !endfunction
 
@@ -320,6 +347,7 @@ set namespaceSeparator none
 !function mod(spec)
   __detail(__mod__, "mod", spec)
   !__mod__ = 1
+  !__type_line__ = 1
   !__attr_line__ = 1
   !__method_line__ = 1
 !endfunction
@@ -327,6 +355,7 @@ set namespaceSeparator none
 !function enum(spec)
   __detail(__enum__, "enum", "(" + spec + ")" )
   !__enum__ = 1
+  !__type_line__ = 1
   !__attr_line__ = 1
   !__method_line__ = 1
 !endfunction
@@ -334,6 +363,7 @@ set namespaceSeparator none
 !function with(spec)
   __detail(__with__, "with", spec)
   !__with__ = 1
+  !__type_line__ = 1
   !__attr_line__ = 1
   !__method_line__ = 1
 !endfunction
@@ -341,6 +371,7 @@ set namespaceSeparator none
 !function range(spec="<>")
   __detail(__range__, "range", __str_guard(spec))
   !__range__ = 1
+  !__type_line__ = 1
   !__attr_line__ = 1
   !__method_line__ = 1
 !endfunction
@@ -348,6 +379,7 @@ set namespaceSeparator none
 !function generic_with(spec)
   __detail(__generic__, "generic with", spec)
   !__generic__ = 1
+  !__type_line__ = 1
   !__attr_line__ = 1
   !__method_line__ = 1
 !endfunction
