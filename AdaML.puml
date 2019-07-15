@@ -57,7 +57,7 @@ hide empty attributes
 hide empty methods
 hide <<object>> circle
 hide <<object>> stereotype
-set namespaceSeparator none
+set namespaceSeparator .
 
 'Entities Configuration
 !abstract_char          = "A"
