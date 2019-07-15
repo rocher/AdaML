@@ -484,9 +484,11 @@ set namespaceSeparator none
   owner *--> element
 !endfunction
 
-!function depends(client, supplier, stereotype=depends_stereotype)
+!function depends(client, supplier, stereotype="")
+  !stereotype = __get_default(stereotype, depends_stereotype)
+  !arrow = ""
   !len = %strlen(stereotype)
-  !if (len == 0)
+  !if (len < 2)
     client ..> supplier
   !else
     !len = len - 2
