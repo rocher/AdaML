@@ -44,7 +44,7 @@ end()
 
 *** figure                                                  :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.35
+:BEAMER_col: 0.4
 :END:
 _=UML=_
 #+begin_src plantuml :file fig-02-code-view.eps
@@ -87,7 +87,7 @@ end()
 
 *** figure                                                  :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.4
+:BEAMER_col: 0.35
 :END:
 _=UML=_
 #+begin_src plantuml :file fig-02-more-details.eps
@@ -119,12 +119,12 @@ Component view lets you see other entities contained in the package\newline
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
-begin_package_spec("Hello_World")
+!type_color = "#99aaff"
+begin_package_spec("Deep_Thought<N>")
   package("Foo_Bar")
-  type("Bar_Type")
-  type("Baz_Type")
-  depends("Baz_Type", "Bar_Type")
-  depends("Foo_Bar", "Bar_Type")
+  type_new("Ada.Natural", "Range_Type")
+  type("Baz")
+  depends("Foo_Bar", "Baz")
 end()
 #+end_example
 
@@ -135,12 +135,13 @@ end()
 _=UML=_
 #+begin_src plantuml :file fig-02-specification-view.eps
 !include AdaML.puml
-begin_package_spec("Hello_World")
+!depends_stereotype = ""
+!type_color = "#99aaff"
+begin_package_spec("Deep_Thought<N>")
   package("Foo_Bar")
-  type("Bar_Type")
-  type("Baz_Type")
-  depends("Baz_Type", "Bar_Type")
-  depends("Foo_Bar", "Bar_Type")
+  type_new("Ada.Natural", "Range_Type")
+  type("Baz")
+  depends("Foo_Bar", "Baz")
 end()
 #+end_src
 
