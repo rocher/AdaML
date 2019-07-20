@@ -141,7 +141,8 @@ procedure Add_Integer (Self : in out Mod_Type; Value : in Integer);
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
-begin_enumeration("Week_Days")
+type("Year_Months", "enum")
+begin_type("Week_Days")
   enum("Mon, Tue, Wed, Thu, Fri, Sat, Sun")
   function("Day_Of_Week", "", "Week_Days")
 end()
@@ -154,7 +155,8 @@ end()
 _=UML=_
 #+begin_src plantuml :file fig-03-enumeration-types.eps
 !include AdaML.puml
-begin_enumeration("Week_Days")
+type("Year_Months", "enum")
+begin_type("Week_Days")
   enum("Mon, Tue, Wed, Thu, Fri, Sat, Sun")
   function("Day_Of_Week", "", "Week_Days")
 end()

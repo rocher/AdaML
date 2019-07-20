@@ -68,9 +68,6 @@ set namespaceSeparator .
 !access_color           = "#f0f0f0"
 !access_stereotype      = "access"
 !access_suffix          = "_Access"
-!enumeration_char       = "E"
-!enumeration_color      = "#adff2f"
-!enumeration_stereotype = ""
 !interface_char         = "I"
 !interface_color        = "#aaccff"
 !interface_stereotype   = ""
@@ -245,11 +242,6 @@ set namespaceSeparator .
   __declare_entity(abstract_char, abstract_color, name, __str_guard(stereotype))
 !endfunction
 
-!function enumeration(name, stereotype="")
-  !stereotype = __get_default(stereotype, enumeration_stereotype)
-  __declare_entity(enumeration_char, enumeration_color, name, __str_guard(stereotype))
-!endfunction
-
 !function interface(name, stereotype="")
   !stereotype = __get_default(stereotype, interface_stereotype)
   __declare_entity(interface_char, interface_color, name, __str_guard(stereotype))
@@ -327,11 +319,6 @@ set namespaceSeparator .
 !function begin_abstract(name, stereotype="")
   !stereotype = __get_default(stereotype, abstract_stereotype)
   __begin_entity(abstract_char, abstract_color, name, __str_guard(stereotype), "abstract")
-!endfunction
-
-!function begin_enumeration(name, stereotype="")
-  !stereotype = __get_default(stereotype, enumeration_stereotype)
-  __begin_entity(enumeration_char, enumeration_color, name, __str_guard(stereotype))
 !endfunction
 
 !function begin_interface(name, stereotype="")
