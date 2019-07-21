@@ -18,77 +18,63 @@ ELEMENTARY TYPES                 COMPOSITE TYPES
   '-- Access
 #+end_example
 
-** Basic Types
-*** code                                                    :BMCOL:B_block:
-:PROPERTIES:
-:BEAMER_col: 0.55
-:END:
-_=AdaML=_
-#+begin_example
-!include AdaML.puml
-type("Foo_Type")
-begin_type("Bar_Type")
-  function("Answer", "", "Natural")
-  attribute("Baz", "Natural")
-end()
-#+end_example
+** Predefined Types
++ =AdaML= is aware of =Boolean=, =Integer=, =Natural=, =Positive= and =Float=
+  types
++ so there is no need to declare such types
+\newline
++ When needed, refer to them also as, e.g. =Ada.Boolean=[fn:1], to make them appear in
+  a separate package
++  otherwise it might look like the type has been redefined in your package
 
-*** figure                                                    :BMCOL:B_block:
+** Discrete Types
++ For discrete types like /range/, /modular/ or /enumeration/ types, use either
+  the stereotype or the particular specifier
++ The meaning is the same, the appearance changes substantially
++ Prefer stereotypes in component views, and specifiers in code views
++ Both the stereotype and the specifier can be also combined; might be little
+  redundant, but sometimes useful
+
+** Range Types
+*** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.45
 :END:
-_=UML=_
-#+begin_src plantuml :file fig-03-basic-types.eps
-!include AdaML.puml
-type("Foo_Type")
-begin_type("Bar_Type")
-  function("Answer", "", "Natural")
-  attribute("Baz", "Natural")
-end()
-#+end_src
-
-#+RESULTS[5c1d589e39dac08c16326372d2ada6331a1129b0]:
-[[file:fig-03-basic-types.eps]]
-
-*** Ada
-#+begin_src ada
-type Foo_Type; -- incomplete type, full declaration elsewhere
-type Bar_Type is record
-  Baz : Natural;
-end record;
-function Answer (Arg : in Bar_Type) return natural;
-#+end_src
-
-** Range Types
-Use either the /range stereotype/ or the /range attribute/\newline
-
-*** code                                                    :BMCOL:B_block:
-:PROPERTIES:
-:BEAMER_col: 0.55
-:END:
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
-type("Dozen_Type", "range 1..12")
+
+' with stereotype
+type("Dozen_Type", "range 1 .. 12")
+note("top of Dozen_Type", "ste...")
+
+' with specifier
 begin_type("Power_Type")
   range("-2_048 .. 65_536")
 end()
+note("top of Power_Type", "her...")
 #+end_example
 
 *** figure                                                    :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.45
+:BEAMER_col: 0.55
 :END:
 _=UML=_
 #+begin_src plantuml :file fig-03-range-types.eps
 !include AdaML.puml
-type("Dozen_Type", "range 1..12")
+
+' with stereotype
+type("Dozen_Type", "range 1 .. 12")
+note("top of Dozen_Type", "stereotypes can be simple,\nlike <i>«range»</i>,or with details,\nas shown here")
+
+' with specifier
 begin_type("Power_Type")
   range("-2_048 .. 65_536")
 end()
+note("top of Power_Type", "here using\nrange specifier")
 #+end_src
 
-#+RESULTS[09ee69d76a84bbf58e9e8b3d82e38b8b95903cc1]:
+#+RESULTS:
 [[file:fig-03-range-types.eps]]
 
 *** Ada
@@ -100,28 +86,40 @@ type Power_Type is range -2_048 .. 65_536;
 ** Modular Types
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.65
+:BEAMER_col: 0.45
 :END:
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
-begin_type("Mod_Type")
-  mod("2 ** 10")
-  procedure("Add_Integer", "in Integer")
+
+' with stereotype
+type("Mod10_Type", "mod 10")
+note("top of Mod10_Type", "ste...")
+
+' with mod specifier
+begin_type("Mod512_Type", "mod")
+  mod(512)
 end()
+note("top of Mod512_Type", "he...")
 #+end_example
 
 *** figure                                                    :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.35
+:BEAMER_col: 0.55
 :END:
 _=UML=_
 #+begin_src plantuml :file fig-03-modular-types.eps
 !include AdaML.puml
-begin_type("Mod_Type")
-  mod("2 ** 10")
-  procedure("Add_Integer", "in Integer")
+
+' with stereotype
+type("Mod10_Type", "mod 10")
+note("top of Mod10_Type", "stereotypes can be simple,\nlike «mod», or with details,\nas shown here")
+
+' with mod specifier
+begin_type("Mod512_Type", "mod")
+  mod(512)
 end()
+note("top of Mod512_Type", "here using both the\nstereotype and the\nmod specifier")
 #+end_src
 
 #+RESULTS[42d0b89e1728445ebf9a19a879813b200093e6ac]:
@@ -129,8 +127,8 @@ end()
 
 *** Ada
 #+begin_src ada :exports code
-type Mod_Type is mod 2 ** 10;  --  range 0 .. 1023
-procedure Add_Integer (Self : in out Mod_Type; Value : in Integer);
+type Mod10_Type is mod 10;
+type Mod512_Type is mod 512;
 #+end_src
 
 ** Enumeration Types
@@ -141,11 +139,16 @@ procedure Add_Integer (Self : in out Mod_Type; Value : in Integer);
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
+
+' with stereotype
 type("Year_Months", "enum")
+
+' with specifier
 begin_type("Week_Days")
   enum("Mon, Tue, Wed, Thu, Fri, Sat, Sun")
-  function("Day_Of_Week", "", "Week_Days")
 end()
+
+top_down("Year_Months", "Week_Days")
 #+end_example
 
 *** figure                                                    :BMCOL:B_block:
@@ -155,11 +158,16 @@ end()
 _=UML=_
 #+begin_src plantuml :file fig-03-enumeration-types.eps
 !include AdaML.puml
+
+' with stereotype
 type("Year_Months", "enum")
+
+' with specifier
 begin_type("Week_Days")
   enum("Mon, Tue, Wed, Thu, Fri, Sat, Sun")
-  function("Day_Of_Week", "", "Week_Days")
 end()
+
+top_down("Year_Months", "Week_Days")
 #+end_src
 
 #+RESULTS[1e6de9e659710a72e5e64d64cf803032149e6516]:
@@ -167,8 +175,49 @@ end()
 
 *** Ada
 #+begin_src ada :export code
+type Year_Months is (Jan, Feb, Mar, ..., Dec );
 type Week_Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
-function Day_Of_Week return Week_Days;
+#+end_src
+
+** Record Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+type("Foo_Type")
+begin_type("Bar_Type")
+  function("Answer", "", "Natural")
+  attribute("Baz", "Natural")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-03-record-types.eps
+!include AdaML.puml
+type("Foo_Type")
+begin_type("Bar_Type")
+  function("Answer", "", "Natural")
+  attribute("Baz", "Natural")
+end()
+#+end_src
+
+#+RESULTS[5c1d589e39dac08c16326372d2ada6331a1129b0]:
+[[file:fig-03-record-types.eps]]
+
+*** Ada
+#+begin_src ada
+type Foo_Type; -- incomplete type, full declaration elsewhere
+type Bar_Type is record
+  Baz : Natural;
+end record;
+function Answer (Arg : in Bar_Type) return natural;
 #+end_src
 
 ** Derived Types
@@ -213,3 +262,6 @@ type Bar_Type is range -1 .. 20;
 Local Variables:
 org-confirm-babel-evaluate: nil
 End:
+
+* Footnotes
+[fn:1] This is UML notation context, not Ada programming language\newline
