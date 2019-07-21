@@ -83,26 +83,48 @@ begin
          end if;
 end Set_Voltage;
 
-type Day_Type is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
-type Activity (Day : Day_Type) is record
-   Exercise : Natural := 1;
-   case Day is
-      when Mon .. Fri =>
-         Work : Natural := 4;
-      when Sat =>
-         Music : Natural := 2;
-         Party : Natural := 2;
+package Day_Test is
+   type Day_Type is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+   type Activity_Plan (Day : Day_Type) is tagged record
+      Exercise : Float := 0.75;
+      case Day is
+         when Mon .. Fri =>
+            Work : Float := 8.0;
+         when Sat =>
+            Music : Float := 4.0;
+            Tennis : float := 2.0;
          when Sun =>
             null;
-   end case;
-end record;
+      end case;
+   end record;
 
-Working : Activity := (Day => Tue, Exercise => 2, Work => 8);
+   function Total_Hours (Self : in out Activity_Plan) return Float;
+end Day_Test;
+
+package body Day_Test is
+   function Total_Hours (Self : in out Activity_Plan) return Float is
+      Total : Float := Self.Exercise;
+   begin
+      case Self.Day is
+         when Mon .. Fri =>
+            Total := Total + Self.Work;
+         when Sat =>
+            Total := Total + Self.Music + Self.Tennis;
+         when Sun =>
+            null;
+      end case;
+      return Total;
+   end Total_Hours;
+end Day_Test;
+
+use Day_Test;
+Plan : Day_Test.Activity_Plan := (Day => Day_Test.Tue, Exercise => 0.75, Work => 8.0);
+Hours : Float := Plan.Total_Hours;
 
 begin
    Set_Voltage (18);
    -- Voltage := 20;
    Ada.Text_IO.Put_Line ("Hello, world!  Voltage is " & Voltage'Image);
    Ada.Text_Io.Put_Line ("Today is " & Foo_Bar.Get_Day_Of_Week'Image);
-   Ada.Text_IO.Put_Line ("Activity of today is " & Working.Work'Image);
+   Ada.Text_IO.Put_Line ("Activity of today is " & Hours'Image);
 end Test;
