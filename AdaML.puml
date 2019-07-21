@@ -391,7 +391,8 @@ set namespaceSeparator .
 !endfunction
 
 !function enum(spec)
-  __detail(__enum__, "enum", "(" + spec + ")" )
+'  __detail(__enum__, "enum", "(" + spec + ")" )
+  __detail(__enum__, "enum", spec)
   !__enum__ = 1
   !__type_line__ = 1
   !__attr_line__ = 1
