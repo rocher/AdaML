@@ -550,6 +550,7 @@ set namespaceSeparator .
 'Behaviour depending on the number of parameter supplied
 '  arg1     --> floating note, arg1=Comment
 '  arg1+2   --> note on an entity arg1=Entity, arg2=Comment
+'           --> new note created if arg1 is numeric
 !function note(arg1, arg2="")
   !val = %intval(arg1)
   !if (%strlen(arg2) == 0)
