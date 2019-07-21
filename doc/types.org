@@ -187,25 +187,24 @@ type Week_Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
-type("Foo_Type")
-begin_type("Bar_Type")
+begin_type("Foo_Type")
   function("Answer", "", "Natural")
-  attribute("Baz", "Natural")
+  attribute("Bar", "Natural")
 end()
 #+end_example
 
 *** figure                                                    :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.45
+:BEAMER_col: 0.3
 :END:
 _=UML=_
 #+begin_src plantuml :file fig-03-record-types.eps
 !include AdaML.puml
-type("Foo_Type")
-begin_type("Bar_Type")
+begin_type("Foo_Type")
   function("Answer", "", "Natural")
-  attribute("Baz", "Natural")
+  attribute("Bar", "Natural := 42")
 end()
+note("top", "Attributes and methods\nare shown as usual in UML")
 #+end_src
 
 #+RESULTS[5c1d589e39dac08c16326372d2ada6331a1129b0]:
@@ -213,11 +212,12 @@ end()
 
 *** Ada
 #+begin_src ada
-type Foo_Type; -- incomplete type, full declaration elsewhere
-type Bar_Type is record
+type Foo_Type is private record
   Baz : Natural;
 end record;
-function Answer (Arg : in Bar_Type) return natural;
+function Answer (Arg : in out Foo_Type) return Natural;
+#+end_src
+
 ** Record Types with Discriminant (i)
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
@@ -279,8 +279,6 @@ end record;
 function Total_Hours (Plan : in Activity_Plan) return Float;
 #+end_src
 
-
-#+end_src
 
 ** Derived Types
 *** code                                                    :BMCOL:B_block:
