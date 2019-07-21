@@ -33,6 +33,7 @@
 #+INCLUDE: "introduction.org"
 #+INCLUDE: "packages.org"
 #+INCLUDE: "types.org"
+#+INCLUDE: "notes.org"
 #+INCLUDE: "reference.org"
 
 * Config                                                           :noexport:

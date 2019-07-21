@@ -41,6 +41,14 @@ skinparam {
   genericDisplay true
   handwritten false
   monochrome false
+  NoteBackgroundColor #ffff99
+  NoteBorderColor #333333
+  NoteBorderThickness .88
+  NoteFontColor #222222
+  NoteFontName CMU Bright Regular
+  NoteFontSize 10
+  NoteShadowing true
+  NoteTextAlignment left
   objectBorderThickness 0.8
   packageBackgroundColor #f6f6f6
   packageStyle frame
@@ -102,6 +110,7 @@ set namespaceSeparator .
 !__attr_line__ = 0
 !__method_line__ = 0
 !__elements_level__ = 0
+!__note_counter__ = 0
 
 'Private functions
 !function __get_default(value, default_value)
@@ -518,6 +527,31 @@ set namespaceSeparator .
   !else
     array_type +--> element_type : association
   !endif
+!endfunction
+
+'Notes
+'
+'Behaviour depending on the number of parameter supplied
+'  arg1     --> floating note, arg1=Comment
+'  arg1+2   --> note on an entity arg1=Entity, arg2=Comment
+!function note(arg1, arg2="")
+  !val = %intval(arg1)
+  !if (%strlen(arg2) == 0)
+    !__note_counter__ = __note_counter__ + 1
+    !cntr = "__note__" + __note_counter__
+    note "arg1" as cntr
+  !else
+    !if (val > 0)
+      !note_name = "Note_" + arg1
+      note "arg2" as note_name
+    !else
+      note arg1 : arg2
+    !endif
+  !endif
+!endfunction
+
+!function link(arg1, arg2)
+  arg1 .. arg2
 !endfunction
 
 'Geometry hints

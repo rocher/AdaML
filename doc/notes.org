@@ -1,0 +1,210 @@
+* Notes
+** Introduction
++ Notes are usually needed to clarify some =UML= constructions
++ =AdaML= notes can be
+  - /floating/, not associated to any entity
+  - /linked/ to one entity, appeared some slides before
+  - /named notes/ linked simultaneously to several entities
+  - /notes on links/, associated to links between entities
++ =AdaML= supports geometry hints to specify relative position between the note
+  and the entity
+
+** Floating Notes
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+_=AdaML=_
+#+begin_example
+
+
+
+
+
+!include AdaML.puml
+note("Stereotypes help clarify\nrelationhips, right?")
+package("Pan_Dimensional", "questioner")
+type("Deep_Thought", "responder")
+depends("Pan_Dimensional", "Deep_Thought", "ask")
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-notes-floating.eps
+!include AdaML.puml
+note("Stereotypes helps clarify\nrelationhips, right?")
+package("Pan_Dimensional", "questioner")
+type("Deep_Thought", "responder")
+depends("Pan_Dimensional", "Deep_Thought", "ask")
+#+end_src
+
+#+RESULTS:
+[[file:fig-notes-floating.eps]]
+
+** Notes Linked to Latest Defined Entity
++ Notes are automatically associated to the latest defined entity
++ Must specify relative position with =‘top'=, =‘bottom'=, =‘left'= or =‘right'=
+  keyword
+
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+_=AdaML=_
+#+begin_example
+
+!include AdaML.puml
+type("Foo")
+note("left", "What is 'Foo'?")
+
+type("Bar")
+note("right", "What is Bar?")
+
+depends("Foo", "Bar", "foobar")
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-notes-associated-automatic.eps
+!include AdaML.puml
+type("Foo")
+note("left", "What is 'Foo'?")
+
+type("Bar")
+note("right", "What is Bar?")
+
+depends("Foo", "Bar", "foobar")
+#+end_src
+
+#+RESULTS:
+[[file:fig-notes-associated-automatic.eps]]
+
+** Notes Linked to an Explicit Entity
++ Must specify relative position with =‘top of'=, =‘bottom of'=, =‘left of'= or
+  =‘right of'= keyword, followed by the name of the entity
+
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+_=AdaML=_
+#+begin_example
+
+
+!include AdaML.puml
+
+type("Foo_Bar")
+note("top of Foo_Bar", "W...?")
+note("right of Foo_Bar", "W...?")
+note("bottom of Foo_Bar", "W...?")
+note("left of Foo_Bar", "Why is 'Foo_Bar'\nso famous?")
+
+
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-notes-associated-explicit.eps
+!include AdaML.puml
+type("Foo_Bar")
+note("top of Foo_Bar", "What is 'Foo'?")
+note("right of Foo_Bar", "What is 'Bar'?")
+note("bottom of Foo_Bar", "What is 'Foo_Bar'?")
+note("left of Foo_Bar", "Why is 'Foo_Bar'\nso famous?")
+#+end_src
+
+#+RESULTS:
+[[file:fig-notes-associated-explicit.eps]]
+
+** Named Notes Linked to Several Entities
++ Specify a number, e.g. 42, to create the named note =‘Note_42'=, and then link
+  the note to other entities\newline
+
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.7
+:END:
+_=AdaML=_
+#+begin_example
+
+!include AdaML.puml
+type("Foo")
+type_new("Foo", "Bar")
+
+note(42, "Is 'Foo_Bar' in between?")
+link("Foo", "Note_42")
+link("Note_42", "Bar")
+
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-notes-named.eps
+!include AdaML.puml
+type("Foo")
+type_new("Foo", "Bar")
+
+note(42, "Is 'Foo_Bar' in between?")
+link("Foo", "Note_42")
+link("Note_42", "Bar")
+#+end_src
+
+#+RESULTS:
+[[file:fig-notes-named.eps]]
+
+** Notes on Links
++ Automatically associated to the latest relationship defined
++ Must contain =‘on link'= keyword, optionally preceded by =‘top'=, =‘bottom'=,
+  =‘left'= or =‘right'= keyword\newline
+
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=AdaML=_
+#+begin_example
+
+
+!include AdaML.puml
+type("Pan_Dimensional")
+package("Deep_Thought")
+
+depends("Pan_Dimensional", "Deep_Thought", "ask >")
+note("right on link", "hope..")
+
+
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-notes-links.eps
+!include AdaML.puml
+type("Pan_Dimensional")
+package("Deep_Thought")
+
+depends("Pan_Dimensional", "Deep_Thought", "ask >")
+note("right on link", "hope the answer\nchanges some day")
+#+end_src
+
+#+RESULTS:
+[[file:fig-notes-links.eps]]
+
+** Config                                                         :noexport:
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:
