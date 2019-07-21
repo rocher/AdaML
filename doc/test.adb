@@ -1,4 +1,5 @@
 with Ada.Text_IO;
+with Ada.Exceptions;
 
 procedure Test is
 
@@ -62,7 +63,46 @@ procedure Test is
       end;
 end Foo_Bar;
 
+Voltage : Integer range -5 .. +12 := -1;
+
+procedure Set_Voltage (Value : in Integer) is
+   use Ada.Exceptions;
+   use Ada.Text_IO;
 begin
-   Ada.Text_IO.Put_Line ("Hello, world!");
+   Voltage := Value;
+   exception
+      when E : Constraint_Error =>
+         if Value > 12 then
+            Voltage := 12;
+            Put ("EE Voltage restricted to 12V : ");
+            Put_Line (Exception_Message(E));
+         else
+            Voltage := -5;
+            Put ("EE Voltage restricted to -5V : ");
+            Put_Line (Exception_Message(E));
+         end if;
+end Set_Voltage;
+
+type Day_Type is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+type Activity (Day : Day_Type) is record
+   Exercise : Natural := 1;
+   case Day is
+      when Mon .. Fri =>
+         Work : Natural := 4;
+      when Sat =>
+         Music : Natural := 2;
+         Party : Natural := 2;
+         when Sun =>
+            null;
+   end case;
+end record;
+
+Working : Activity := (Day => Tue, Exercise => 2, Work => 8);
+
+begin
+   Set_Voltage (18);
+   -- Voltage := 20;
+   Ada.Text_IO.Put_Line ("Hello, world!  Voltage is " & Voltage'Image);
    Ada.Text_Io.Put_Line ("Today is " & Foo_Bar.Get_Day_Of_Week'Image);
+   Ada.Text_IO.Put_Line ("Activity of today is " & Working.Work'Image);
 end Test;
