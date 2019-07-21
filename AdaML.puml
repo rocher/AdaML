@@ -107,6 +107,7 @@ set namespaceSeparator .
 !__generic__ = 0
 !__private__ = 0
 !__type_line__ = 0
+!__case_line__ = 0
 !__attr_line__ = 0
 !__method_line__ = 0
 !__elements_level__ = 0
@@ -143,6 +144,7 @@ set namespaceSeparator .
 !__generic__ = 0
 !__private__ = 0
 !__type_line__ = 0
+!__case_line__ = 0
 !__attr_line__ = 0
 !__method_line__ = 0
 !__elements_level__ = 0
@@ -159,6 +161,14 @@ set namespaceSeparator .
   !if (__type_line__ == 1)
 == types ==
     !__type_line__ = 0
+  !endif
+!endfunction
+
+!function __case_line()
+  !if (__case_line__ == 0)
+.. case ..
+    !__case_line__ = 1
+    !__method_line__ = 1
   !endif
 !endfunction
 
@@ -410,6 +420,12 @@ set namespaceSeparator .
   !__type_line__ = 1
   !__attr_line__ = 1
   !__method_line__ = 1
+!endfunction
+
+!function case(spec)
+  __case_line()
+  !__method_line__ = 1
+        when spec =>
 !endfunction
 
 !function private()

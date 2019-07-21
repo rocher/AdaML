@@ -218,6 +218,68 @@ type Bar_Type is record
   Baz : Natural;
 end record;
 function Answer (Arg : in Bar_Type) return natural;
+** Record Types with Discriminant (i)
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_type("Activity_Plan<Day : Day_Type>")
+  attribute("Exercise", "Float := 0.75")
+  case("Day is Mon..Fri")
+    attribute("Work", "Float := 8.0")
+  case("Day is Sat")
+    attribute("Music", "Float := 4.0")
+    attribute("Tennis", "Float := 2.0")
+  function("Total_Hours", "", "Float")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-03-record-types-discriminant.eps
+!include AdaML.puml
+begin_type("Activity_Plan<Day : Day_Type>")
+  attribute("Exercise", "Float := 0.75")
+  case("Day is Mon..Fri")
+    attribute("Work", "Float := 8.0")
+  case("Day is Sat")
+    attribute("Music", "Float := 4.0")
+    attribute("Tennis", "Float := 2.0")
+  function("Total_Hours", "", "Float")
+end()
+#+end_src
+
+#+RESULTS[5c1d589e39dac08c16326372d2ada6331a1129b0]:
+[[file:fig-03-record-types-discriminant.eps]]
+
+** Record Types with Discriminant (ii)
++ When a case value is not specified, assume =null=
+
+#+begin_src ada
+type Day_Type is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+type Activity_Plan (Day : Day_Type) is record
+   Exercise : Float := 0.75;
+   case Day is
+      when Mon .. Fri =>
+         Work : Float := 8.0;
+      when Sat =>
+         Music : Float := 4.0;
+         Tennis : Float := 2.0;
+      when Sun =>
+         null;
+   end case;
+end record;
+
+function Total_Hours (Plan : in Activity_Plan) return Float;
+#+end_src
+
+
 #+end_src
 
 ** Derived Types
