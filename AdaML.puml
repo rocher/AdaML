@@ -94,6 +94,9 @@ set namespaceSeparator .
 !type_char              = "T"
 !type_color             = "#ff6666"
 !type_stereotype        = ""
+!subprogram_char          = "Σ"
+!subprogram_color         = "#99aaff"
+!subprogram_stereotype    = ""
 
 'Other Configuration
 !depends_stereotype = "use"
@@ -111,6 +114,7 @@ set namespaceSeparator .
 !__attr_line__ = 0
 !__method_line__ = 0
 !__elements_level__ = 0
+!__in_package_spec__ = 0
 !__note_counter__ = 0
 
 'Private functions
@@ -241,6 +245,7 @@ set namespaceSeparator .
 
 'Public functions
 !function begin_package_spec(name, stereotype="")
+  !__in_package_spec__ = 1
   !stereotype = __get_default(stereotype, package_stereotype)
   !$p_name_is = "package " + name + " is"
   !if (%strlen(stereotype) == 0)
@@ -377,6 +382,7 @@ set namespaceSeparator .
 
 !function end()
   !__elements_level__ = 0
+  !__in_package_spec__ = 0
   }
 !endfunction
 
@@ -481,6 +487,13 @@ set namespaceSeparator .
     !acc_str = "-"
   !endif
   acc_str {field} name
+!endfunction
+
+!function subprogram(name, stereotype="")
+  !if (__in_package_spec__ == 1)
+    !stereotype = __get_default(stereotype, type_stereotype)
+    __declare_entity(subprogram_char, subprogram_color, name, __str_guard(stereotype))
+  !endif
 !endfunction
 
 !function procedure(name, args="")
