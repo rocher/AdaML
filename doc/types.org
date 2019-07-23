@@ -60,7 +60,7 @@ note("top of Power_Type", "her...")
 :BEAMER_col: 0.55
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-03-range-types.eps
+#+begin_src plantuml :file fig-types-range-types.eps
 !include AdaML.puml
 
 ' with stereotype
@@ -75,7 +75,7 @@ note("top of Power_Type", "here using\nrange specifier")
 #+end_src
 
 #+RESULTS:
-[[file:fig-03-range-types.eps]]
+[[file:fig-types-range-types.eps]]
 
 *** Ada
 #+begin_src ada :exports code
@@ -108,7 +108,7 @@ note("top of Mod512_Type", "he...")
 :BEAMER_col: 0.55
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-03-modular-types.eps
+#+begin_src plantuml :file fig-types-modular-types.eps
 !include AdaML.puml
 
 ' with stereotype
@@ -123,7 +123,7 @@ note("top of Mod512_Type", "here using both the\nstereotype and the\nmod specifi
 #+end_src
 
 #+RESULTS[42d0b89e1728445ebf9a19a879813b200093e6ac]:
-[[file:fig-03-modular-types.eps]]
+[[file:fig-types-modular-types.eps]]
 
 *** Ada
 #+begin_src ada :exports code
@@ -156,7 +156,7 @@ top_down("Year_Months", "Week_Days")
 :BEAMER_col: 0.4
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-03-enumeration-types.eps
+#+begin_src plantuml :file fig-types-enumeration-types.eps
 !include AdaML.puml
 
 ' with stereotype
@@ -171,7 +171,7 @@ top_down("Year_Months", "Week_Days")
 #+end_src
 
 #+RESULTS[1e6de9e659710a72e5e64d64cf803032149e6516]:
-[[file:fig-03-enumeration-types.eps]]
+[[file:fig-types-enumeration-types.eps]]
 
 *** Ada
 #+begin_src ada :export code
@@ -198,7 +198,7 @@ end()
 :BEAMER_col: 0.3
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-03-record-types.eps
+#+begin_src plantuml :file fig-types-record-types.eps
 !include AdaML.puml
 begin_type("Foo_Type")
   function("Answer", "", "Natural")
@@ -208,7 +208,7 @@ note("top", "Attributes and methods\nare shown as usual in UML")
 #+end_src
 
 #+RESULTS[5c1d589e39dac08c16326372d2ada6331a1129b0]:
-[[file:fig-03-record-types.eps]]
+[[file:fig-types-record-types.eps]]
 
 *** Ada
 #+begin_src ada
@@ -242,7 +242,7 @@ end()
 :BEAMER_col: 0.4
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-03-record-types-discriminant.eps
+#+begin_src plantuml :file fig-types-record-types-discriminant.eps
 !include AdaML.puml
 begin_type("Activity_Plan<Day : Day_Type>")
   attribute("Exercise", "Float := 0.75")
@@ -256,7 +256,7 @@ end()
 #+end_src
 
 #+RESULTS[5c1d589e39dac08c16326372d2ada6331a1129b0]:
-[[file:fig-03-record-types-discriminant.eps]]
+[[file:fig-types-record-types-discriminant.eps]]
 
 ** Record Types with Discriminant (ii)
 + When a case value is not specified, assume =null=
@@ -299,7 +299,7 @@ end()
 :BEAMER_col: 0.45
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-03-derived-types.eps
+#+begin_src plantuml :file fig-types-derived-types.eps
 !include AdaML.puml
 type_new("Integer", "Foo_Type")
 begin_type_new("Integer", "Bar_Type")
@@ -308,7 +308,7 @@ end()
 #+end_src
 
 #+RESULTS[147bd8dbffd80fd6a841223975d65db61fea4101]:
-[[file:fig-03-derived-types.eps]]
+[[file:fig-types-derived-types.eps]]
 
 *** Ada
 #+begin_src ada :exports code

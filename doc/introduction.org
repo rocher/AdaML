@@ -128,7 +128,7 @@ depends("Pan_Dimensional", "Deep_Thought", "ask >")
 :BEAMER_col: 0.45
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-01-deep-thought-example.eps
+#+begin_src plantuml :file fig-introduction-deep-thought-example.eps
 !include AdaML.puml
 begin_type("Pan_Dimensional")
   procedure("Ask_The_Question", "in out Natural")
@@ -144,7 +144,7 @@ depends("Pan_Dimensional", "Deep_Thought", "ask >")
 #+end_src
 
 #+RESULTS[7a22dc04a15ce1b7518d36e9ca62ab1251d2cf58]:
-[[file:fig-01-deep-thought-example.eps]]
+[[file:fig-introduction-deep-thought-example.eps]]
 
 ** Config                                                         :noexport:
 Local Variables:
