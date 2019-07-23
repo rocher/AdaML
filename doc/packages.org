@@ -137,18 +137,19 @@ _=AdaML=_
 :END:
 _=UML=_
 #+begin_src plantuml :file fig-packages-component-view.eps
-  !include AdaML.puml
-  !depends_stereotype = ""
-  begin_package_spec("Deep_Thought<N>")
-    package("Foo_Bar")
-    type("Range_Type<N>")
-    type_new("Ada.Natural", "Range_Type")
-    subprogram("Hello_World")
-    subprogram("Hello_Bar")
-      depends("Foo_Bar", "Range_Type")
-    depends("Hello_Bar", "Hello_World")
-    depends("Foo_Bar", "Hello_World")
-  end()
+!include AdaML.puml
+!depends_stereotype = ""
+begin_package_spec("Deep_Thought<N>")
+  package("Foo_Bar")
+  type("Range_Type<N>")
+  type_new("Ada.Natural", "Range_Type")
+  subprogram("Hello_World")
+  subprogram("Hello_Bar")
+  depends("Foo_Bar", "Range_Type")
+  depends("Hello_Bar", "Hello_World")
+  depends("Foo_Bar", "Hello_World")
+  top_down("Hello_World", "Ada.Natural")
+end()
 #+end_src
 
 #+RESULTS[34422c456c5d8327b17464a9dafaba1ccf95e528]:
