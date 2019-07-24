@@ -30,7 +30,7 @@ package("Deep_Thought")
 #+end_src
 
 #+RESULTS[9e5758013375e35a0f52d80450f7884201531f36]:
-[[file:fig-02-detail-view.eps]]
+[[file:fig-packages-detail-view.eps]]
 
 ** Component view
 Component view lets you see other entities contained in the package\newline
