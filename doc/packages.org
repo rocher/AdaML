@@ -1,4 +1,11 @@
 * Packages
+** Visualization Levels
++ Minimal :: only shows the package entity and generic parameters
++ Component View :: shows package elements and their relationships; do not
+                    include details of such elements
++ Code View :: shows package elements with certain level of detail; elements can
+               be other packages, types subprograms, tasks, constants, variables
+               and protected objects
 ** Minimal view
 The simplest package representation is\newline
 
@@ -24,6 +31,52 @@ package("Deep_Thought")
 
 #+RESULTS[9e5758013375e35a0f52d80450f7884201531f36]:
 [[file:fig-02-detail-view.eps]]
+
+** Component view
+Component view lets you see other entities contained in the package\newline
+
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package_spec("Deep_Thought<N>")
+  package("Foo_Bar")
+  type("Range_Type<N>")
+  type_new("Ada.Natural", "Range_Type")
+  subprogram("Hello_World")
+  subprogram("Hello_Bar")
+    depends("Foo_Bar", "Range_Type")
+  depends("Hello_Bar", "Hello_World")
+  depends("Foo_Bar", "Hello_World")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+_=UML=_
+#+begin_src plantuml :file fig-packages-component-view.eps
+!include AdaML.puml
+!depends_stereotype = ""
+begin_package_spec("Deep_Thought<N>")
+  package("Foo_Bar")
+  type("Range_Type<N>")
+  type_new("Ada.Natural", "Range_Type")
+  subprogram("Hello_World")
+  subprogram("Hello_Bar")
+  depends("Foo_Bar", "Range_Type")
+  depends("Hello_Bar", "Hello_World")
+  depends("Foo_Bar", "Hello_World")
+  top_down("Hello_World", "Ada.Natural")
+end()
+#+end_src
+
+#+RESULTS[34422c456c5d8327b17464a9dafaba1ccf95e528]:
+[[file:fig-packages-component-view.eps]]
 
 ** Code View
 Shows package elements\newline
@@ -68,7 +121,7 @@ private
 end FooBar;
 #+end_src
 
-** More Details - Types & Specifiers
+** Types and Specifiers
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.6
@@ -90,7 +143,7 @@ end()
 :BEAMER_col: 0.35
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-packages-more-details.eps
+#+begin_src plantuml :file fig-packages-types-specifiers.eps
 !include AdaML.puml
 begin_package("Deep_Thought<N>")
   generic_with("N : Natural range 1 .. 42")
@@ -103,57 +156,11 @@ end()
 #+end_src
 
 #+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
-[[file:fig-packages-more-details.eps]]
+[[file:fig-packages-types-specifiers.eps]]
 
 *** Warning
 When using /entity specifiers/, like =generic=, types, variables and methods
 must be manually sorted (contrast with previous slide)
-
-** Component view
-Component view lets you see other entities contained in the package\newline
-
-*** code                                                    :BMCOL:B_block:
-:PROPERTIES:
-:BEAMER_col: 0.5
-:END:
-_=AdaML=_
-#+begin_example
-!include AdaML.puml
-  begin_package_spec("Deep_Thought<N>")
-    package("Foo_Bar")
-    type("Range_Type<N>")
-    type_new("Ada.Natural", "Range_Type")
-    subprogram("Hello_World")
-    subprogram("Hello_Bar")
-      depends("Foo_Bar", "Range_Type")
-    depends("Hello_Bar", "Hello_World")
-    depends("Foo_Bar", "Hello_World")
-  end()
-#+end_example
-
-*** figure                                                    :BMCOL:B_block:
-:PROPERTIES:
-:BEAMER_col: 0.5
-:END:
-_=UML=_
-#+begin_src plantuml :file fig-packages-component-view.eps
-!include AdaML.puml
-!depends_stereotype = ""
-begin_package_spec("Deep_Thought<N>")
-  package("Foo_Bar")
-  type("Range_Type<N>")
-  type_new("Ada.Natural", "Range_Type")
-  subprogram("Hello_World")
-  subprogram("Hello_Bar")
-  depends("Foo_Bar", "Range_Type")
-  depends("Hello_Bar", "Hello_World")
-  depends("Foo_Bar", "Hello_World")
-  top_down("Hello_World", "Ada.Natural")
-end()
-#+end_src
-
-#+RESULTS[34422c456c5d8327b17464a9dafaba1ccf95e528]:
-[[file:fig-packages-component-view.eps]]
 
 ** Config                                                         :noexport:
 Local Variables:
