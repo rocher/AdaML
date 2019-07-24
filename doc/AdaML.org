@@ -3,7 +3,7 @@
 #+LATEX_HEADER: \newcommand{\AdaMLversion}{ 0.1.0 }
 #+SUBTITLE: \vspace{.5cm}\ding{125} \textit{Ada tailored UML\newline Modeling Language} \ding{126}\vspace{.3cm}\newline\textbf{User Guide}\newline for version \AdaMLversion
 #+AUTHOR: Francesc Rocher
-#+EMAIL: francesc.rocher@gmail.commit
+#+EMAIL: francesc.rocher@gmail.com
 #+KEYWORDS: AdaML, Ada, UML, PlantUML
 #+LANGUAGE: en
 #+OPTIONS: H:2 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
