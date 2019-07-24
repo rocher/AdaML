@@ -14,20 +14,20 @@
 #+LINK_HOME:
 #+STARTUP: beamer
 #+LATEX_CLASS: beamer
+#+BEAMER_FRAME_LEVEL: 2
+#+BEAMER_THEME: AdaML
 #+LATEX_HEADER: \usepackage{fancyvrb}
-#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
 #+LATEX_HEADER: \usepackage{minted}
 #+LATEX_HEADER: \usepackage{pifont}
+#+LATEX_HEADER: \newcommand{\insertdoctype}{User Guide}
 #+LATEX_HEADER: \hypersetup{colorlinks=true,linkcolor=orange}
+#+LATEX_HEADER: \defineverbatimenvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
 #+LATEX_HEADER: \definecolor{ForestGreen}{HTML}{22AB22}
 #+LATEX_HEADER: \definecolor{Grey}{HTML}{808080}
 #+LATEX_HEADER: \definecolor{RubinRed}{HTML}{CB111E}
 #+LATEX_HEADER: \newcommand{\cmark}{{\color{ForestGreen}\ \ \ding{51}}\ }%
 #+LATEX_HEADER: \newcommand{\qmark}{{\color{Grey}\ \ \ding{93}}\ }%
 #+LATEX_HEADER: \newcommand{\xmark}{{\color{RubinRed}\ \ \ding{55}}\ \ }%
-#+LATEX_HEADER: \newcommand{\insertdoctype}{User Guide}
-#+BEAMER_FRAME_LEVEL: 2
-#+BEAMER_THEME: AdaML
 #+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
 #+PROPERTY: header-args :eval never-export :cache yes
 
