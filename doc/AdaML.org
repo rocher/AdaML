@@ -21,7 +21,7 @@
 #+LATEX_HEADER: \usepackage{pifont}
 #+LATEX_HEADER: \newcommand{\insertdoctype}{User Guide}
 #+LATEX_HEADER: \hypersetup{colorlinks=true,linkcolor=orange}
-#+LATEX_HEADER: \defineverbatimenvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
 #+LATEX_HEADER: \definecolor{ForestGreen}{HTML}{22AB22}
 #+LATEX_HEADER: \definecolor{Grey}{HTML}{808080}
 #+LATEX_HEADER: \definecolor{RubinRed}{HTML}{CB111E}
