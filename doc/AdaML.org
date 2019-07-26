@@ -1,7 +1,11 @@
-#+TITLE: \textbf{AdaML}
+#+TITLE: AdaML
+# -- version settings
 #+MACRO:                            version 0.1.0
-#+LATEX_HEADER: \newcommand{\AdaMLversion}{ 0.1.0 }
-#+SUBTITLE: \vspace{.5cm}\ding{125} \textit{Ada tailored UML\newline Modeling Language} \ding{126}\vspace{.3cm}\newline\textbf{User Guide}\newline for version \AdaMLversion
+#+LATEX_HEADER: \newcommand{\AdaMLVersion}{ 0.1.0 }
+# -- subtitle settings
+#+LATEX_HEADER: \newcommand{\PDFSubtitle}{Ada tailored UML Modeling Language - User's Guide}
+#+LATEX_HEADER: \newcommand{\AdaMLSubtitle}{\vspace{.5cm}\ding{125} \textit{Ada tailored UML\newline Modeling Language} \ding{126}\vspace{.3cm}\newline\textbf{User's Guide}}
+# --
 #+AUTHOR: Francesc Rocher
 #+EMAIL: francesc.rocher@gmail.com
 #+KEYWORDS: AdaML, Ada, UML, PlantUML
