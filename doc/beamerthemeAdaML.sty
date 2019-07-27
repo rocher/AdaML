@@ -8,6 +8,16 @@
 
 \setbeamercolor{titlelike}{parent=structure}
 
+%% remove small circles of the headline
+%%
+%\setbeamertemplate{headline}
+%{%
+%  \begin{beamercolorbox}[ht=3.5ex,dp=1ex,%
+%    leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}
+%    \insertsectionhead
+%  \end{beamercolorbox}%
+%}
+
 \setbeamertemplate{footline}
 {
   \leavevmode%
@@ -52,6 +62,26 @@
 \fi%
 
 %% redefined commands end
+
+%% inserts a shaded/highlighted outline at the beginning of sections
+%%
+% \AtBeginSection[]{
+%  \setbeamercolor{section in toc shaded}{use=structure,fg=structure.fg}
+%  \setbeamercolor{section in toc}{fg=mycolor}
+%  \setbeamercolor{subsection in toc shaded}{fg=black}
+%  \setbeamercolor{subsection in toc}{fg=mycolor}
+%  \setbeamercolor{subsubsection in toc shaded}{fg=black}
+%  \setbeamercolor{subsubsection in toc}{fg=mycolor}
+%  \frame<beamer>{
+%      \frametitle{Outline}
+%      \setcounter{tocdepth}{3}
+%      \tableofcontents[
+%      sectionstyle=show/shaded,
+%      subsectionstyle=show/show/shaded,
+%      subsubsectionstyle=show/show/show/shaded
+%      ]
+%  }
+%}
 
 \mode
 <all>
