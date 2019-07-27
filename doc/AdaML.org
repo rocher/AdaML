@@ -3,14 +3,14 @@
 #+MACRO:                            version 0.1.0
 #+LATEX_HEADER: \newcommand{\AdaMLVersion}{ 0.1.0 }
 # -- subtitle settings
-#+LATEX_HEADER: \newcommand{\PDFSubtitle}{Ada tailored UML Modeling Language - User's Guide}
-#+LATEX_HEADER: \newcommand{\AdaMLSubtitle}{\vspace{.5cm}\ding{125} \textit{Ada tailored UML\newline Modeling Language} \ding{126}\vspace{.3cm}\newline\textbf{User's Guide}}
+#+LATEX_HEADER: \newcommand{\PDFSubtitle}{Ada tailored UML Modeling Language}
+#+LATEX_HEADER: \newcommand{\AdaMLSubtitle}{\vspace{.77cm}\ding{125}\ \textit{Ada-tailored UML\newline Modeling Language} \ding{126}\vspace{1cm}}
 # --
 #+AUTHOR: Francesc Rocher
 #+EMAIL: francesc.rocher@gmail.com
 #+KEYWORDS: AdaML, Ada, UML, PlantUML
 #+LANGUAGE: en
-#+OPTIONS: H:2 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS: TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil view:nil ltoc:t mouse:underline buttons:0
 #+EXPORT_SELECT_TAGS: export
 #+EXPORT_EXCLUDE_TAGS: noexport
@@ -18,7 +18,6 @@
 #+LINK_HOME:
 #+STARTUP: beamer
 #+LATEX_CLASS: beamer
-#+BEAMER_FRAME_LEVEL: 2
 #+BEAMER_THEME: AdaML
 #+LATEX_HEADER: \usepackage{fancyvrb}
 #+LATEX_HEADER: \usepackage{minted}
