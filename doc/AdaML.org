@@ -22,7 +22,7 @@
 #+LATEX_HEADER: \usepackage{fancyvrb}
 #+LATEX_HEADER: \usepackage{minted}
 #+LATEX_HEADER: \usepackage{pifont}
-#+LATEX_HEADER: \newcommand{\insertdoctype}{User Guide}
+#+LATEX_HEADER: \newcommand{\insertdoctype}{Overview}
 #+LATEX_HEADER: \hypersetup{colorlinks=true,linkcolor=orange}
 #+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
 #+LATEX_HEADER: \definecolor{ForestGreen}{HTML}{22AB22}
