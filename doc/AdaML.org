@@ -36,10 +36,10 @@
 
 \setminted{fontsize=\scriptsize}
 
-# +INCLUDE: "introduction.org"
+#+INCLUDE: "introduction.org"
 #+INCLUDE: "packages.org"
-# +INCLUDE: "types.org"
-# +INCLUDE: "notes.org"
+#+INCLUDE: "types.org"
+#+INCLUDE: "notes.org"
 
 * Pending                                                          :noexport:
 #+INCLUDE: "reference.org"
