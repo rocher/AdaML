@@ -109,7 +109,7 @@ set namespaceSeparator .
 !__range__ = 0
 !__generic__ = 0
 !__private__ = 0
-!__type_line__ = 0
+!__type_line__ = 1
 !__case_line__ = 0
 !__attr_line__ = 0
 !__method_line__ = 0
@@ -147,7 +147,7 @@ set namespaceSeparator .
 !__range__ = 0
 !__generic__ = 0
 !__private__ = 0
-!__type_line__ = 0
+!__type_line__ = 1
 !__case_line__ = 0
 !__attr_line__ = 0
 !__method_line__ = 0
@@ -165,6 +165,7 @@ set namespaceSeparator .
   !if (__type_line__ == 1)
 == types ==
     !__type_line__ = 0
+    !__attr_line__ = 1
   !endif
 !endfunction
 
@@ -178,14 +179,14 @@ set namespaceSeparator .
 
 !function __attr_line()
   !if (__attr_line__ == 1)
-    --
+--
     !__attr_line__ = 0
   !endif
 !endfunction
 
 !function __method_line()
   !if (__method_line__ == 1)
-    --
+--
     !__method_line__ = 0
   !endif
 !endfunction
@@ -391,7 +392,6 @@ set namespaceSeparator .
 !function mod(spec)
   __detail(__mod__, "mod", spec)
   !__mod__ = 1
-  !__type_line__ = 1
   !__attr_line__ = 1
   !__method_line__ = 1
 !endfunction
@@ -400,7 +400,6 @@ set namespaceSeparator .
 '  __detail(__enum__, "enum", "(" + spec + ")" )
   __detail(__enum__, "enum", spec)
   !__enum__ = 1
-  !__type_line__ = 1
   !__attr_line__ = 1
   !__method_line__ = 1
 !endfunction
@@ -408,7 +407,6 @@ set namespaceSeparator .
 !function with(spec)
   __detail(__with__, "with", spec)
   !__with__ = 1
-  !__type_line__ = 1
   !__attr_line__ = 1
   !__method_line__ = 1
 !endfunction
@@ -416,7 +414,6 @@ set namespaceSeparator .
 !function range(spec="<>")
   __detail(__range__, "range", __str_guard(spec))
   !__range__ = 1
-  !__type_line__ = 1
   !__attr_line__ = 1
   !__method_line__ = 1
 !endfunction
@@ -424,7 +421,6 @@ set namespaceSeparator .
 !function generic_with(spec)
   __detail(__generic__, "generic with", spec)
   !__generic__ = 1
-  !__type_line__ = 1
   !__attr_line__ = 1
   !__method_line__ = 1
 !endfunction
