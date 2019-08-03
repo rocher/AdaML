@@ -1,11 +1,12 @@
 * Packages
-** Visualization Levels
-+ Minimal :: only shows the package entity and generic parameters
+** View Levels
++ Minimal :: only shows the package entity and generic parameters\newline
 + Component View :: shows package elements and their relationships; do not
-                    include details of such elements
+                    include details of such elements\newline
 + Code View :: shows package elements with certain level of detail; elements can
                be other packages, types subprograms, tasks, constants, variables
                and protected objects
+
 ** Minimal view
 The simplest package representation is\newline
 
@@ -32,52 +33,6 @@ package("Deep_Thought")
 #+RESULTS[9e5758013375e35a0f52d80450f7884201531f36]:
 [[file:packages/detail-view.eps]]
 
-** Component view
-Component view lets you see other entities contained in the package\newline
-
-*** code                                                    :BMCOL:B_block:
-:PROPERTIES:
-:BEAMER_col: 0.5
-:END:
-_=AdaML=_
-#+begin_example
-!include AdaML.puml
-begin_package_spec("Deep_Thought<N>")
-  package("Foo_Bar")
-  type("Range_Type<N>")
-  type_new("Ada.Natural", "Range_Type")
-  subprogram("Hello_World")
-  subprogram("Hello_Bar")
-    depends("Foo_Bar", "Range_Type")
-  depends("Hello_Bar", "Hello_World")
-  depends("Foo_Bar", "Hello_World")
-end()
-#+end_example
-
-*** figure                                                    :BMCOL:B_block:
-:PROPERTIES:
-:BEAMER_col: 0.5
-:END:
-_=UML=_
-#+begin_src plantuml :file packages/code-view.eps
-!include AdaML.puml
-!depends_stereotype = ""
-begin_package_spec("Deep_Thought<N>")
-  package("Foo_Bar")
-  type("Range_Type<N>")
-  type_new("Ada.Natural", "Range_Type")
-  subprogram("Hello_World")
-  subprogram("Hello_Bar")
-  depends("Foo_Bar", "Range_Type")
-  depends("Hello_Bar", "Hello_World")
-  depends("Foo_Bar", "Hello_World")
-  top_down("Hello_World", "Ada.Natural")
-end()
-#+end_src
-
-#+RESULTS[1bee01e4589d4a85c718fe8d27f958168f8e5b6c]:
-[[file:packages/code-view.eps]]
-
 ** Code View
 Shows package elements\newline
 
@@ -100,7 +55,7 @@ end()
 :BEAMER_col: 0.4
 :END:
 _=UML=_
-#+begin_src plantuml :file packages/add-types.eps
+#+begin_src plantuml :file packages/code-view.eps
 !include AdaML.puml
 begin_package("Deep_Thought")
   function("Answer_The_Question", "", "Natural")
@@ -109,8 +64,8 @@ private()
 end()
 #+end_src
 
-#+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
-[[file:packages/add-types.eps]]
+#+RESULTS[1bee01e4589d4a85c718fe8d27f958168f8e5b6c]:
+[[file:packages/code-view.eps]]
 
 *** Ada
 #+begin_src ada :exports code
@@ -121,7 +76,9 @@ private
 end FooBar;
 #+end_src
 
-** Types and Specifiers
+#+RESULTS:
+
+** Adding Types
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
 :BEAMER_col: 0.6
@@ -129,6 +86,47 @@ end FooBar;
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
+  generic_with("N : Natural range 1 .. 42")
+  type("Range_N", "range 1 .. N")
+private()
+  variable("The_Answer", "Range_N")
+public()
+  procedure("Bar", "in out Range_N")
+end()
+#+end_example
+
+*** figure                                                  :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:END:
+_=UML=_
+#+begin_src plantuml :file packages/add-types.eps
+!include AdaML.puml
+begin_package("Deep_Thought")
+  type("Range_42", "range 1 .. 42")
+private()
+  variable("The_Answer", "Range_42")
+public()
+  procedure("Bar", "in out Range_42")
+end()
+#+end_src
+
+#+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
+[[file:packages/add-types.eps]]
+
+*** Warning
+When using /entity specifiers/, like =generic=, types, variables and methods
+must be manually sorted (contrast with previous slide)
+
+** Generic Packages
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package("Deep_Thought<N>")
   generic_with("N : Natural range 1 .. 42")
   type("Range_N", "range 1 .. N")
 private()
@@ -161,6 +159,52 @@ end()
 *** Warning
 When using /entity specifiers/, like =generic=, types, variables and methods
 must be manually sorted (contrast with previous slide)
+
+** Component view
+Component view lets you see other entities contained in the package\newline
+
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package_spec("Deep_Thought<N>")
+  package("Foo_Bar")
+  type("Range_Type<N>")
+  type_new("Ada.Natural", "Range_Type")
+  subprogram("Hello_World")
+  subprogram("Hello_Bar")
+    depends("Foo_Bar", "Range_Type")
+  depends("Hello_Bar", "Hello_World")
+  depends("Foo_Bar", "Hello_World")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+_=UML=_
+#+begin_src plantuml :file packages/component-view.eps
+!include AdaML.puml
+!depends_stereotype = ""
+begin_package_spec("Deep_Thought<N>")
+  package("Foo_Bar")
+  type("Range_Type<N>")
+  type_new("Ada.Natural", "Range_Type")
+  subprogram("Hello_World")
+  subprogram("Hello_Bar")
+  depends("Foo_Bar", "Range_Type")
+  depends("Hello_Bar", "Hello_World")
+  depends("Foo_Bar", "Hello_World")
+  top_down("Hello_World", "Ada.Natural")
+end()
+#+end_src
+
+#+RESULTS[34422c456c5d8327b17464a9dafaba1ccf95e528]:
+[[file:packages/component-view.eps]]
 
 ** Config                                                         :noexport:
 Local Variables:
