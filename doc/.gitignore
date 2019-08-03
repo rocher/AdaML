@@ -3,5 +3,4 @@ _minted-AdaML/
 *.tex
 *.pdf
 !AdaML.pdf
-b__*
 fig-*
