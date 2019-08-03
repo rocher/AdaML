@@ -35,7 +35,7 @@ depends("Pan_Dimensional", "Deep_Thought", "ask")
 :BEAMER_col: 0.55
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-notes-floating.eps
+#+begin_src plantuml :file notes/floating.eps
 !include AdaML.puml
 note("Stereotypes helps clarify\nrelationhips, <i>right?</i>")
 type("Pan_Dimensional", "questioner")
@@ -44,7 +44,7 @@ depends("Pan_Dimensional", "Deep_Thought", "ask")
 #+end_src
 
 #+RESULTS:
-[[file:fig-notes-floating.eps]]
+[[file:notes/floating.eps]]
 
 ** Notes Linked to Latest Defined Entity
 + Notes are automatically associated to the latest defined entity
@@ -73,7 +73,7 @@ depends("Foo", "Bar", "baz")
 :BEAMER_col: 0.6
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-notes-associated-automatic.eps
+#+begin_src plantuml :file notes/associated-automatic.eps
 !include AdaML.puml
 type("Foo")
 note("left", "What is 'Foo'?")
@@ -85,7 +85,7 @@ depends("Foo", "Bar", "baz")
 #+end_src
 
 #+RESULTS:
-[[file:fig-notes-associated-automatic.eps]]
+[[file:notes/associated-automatic.eps]]
 
 ** Notes Linked to an Explicit Entity
 + Must specify relative position with =‘top of'=, =‘bottom of'=, =‘left of'= or
@@ -115,7 +115,7 @@ note("left of Foo_Bar", "Why...?")
 :BEAMER_col: 0.6
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-notes-associated-explicit.eps
+#+begin_src plantuml :file notes/associated-explicit.eps
 !include AdaML.puml
 type("Foo_Bar")
 note("top of Foo_Bar", "What is 'Foo'?")
@@ -125,7 +125,7 @@ note("left of Foo_Bar", "Why is 'Foo_Bar'\nso famous?")
 #+end_src
 
 #+RESULTS:
-[[file:fig-notes-associated-explicit.eps]]
+[[file:notes/associated-explicit.eps]]
 
 ** Named Notes Linked to Several Entities
 + Specify a number, e.g. 42, to create the named note =‘Note_42'=, and then link
@@ -153,7 +153,7 @@ link("Note_42", "Bar")
 :BEAMER_col: 0.3
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-notes-named.eps
+#+begin_src plantuml :file notes/named.eps
 !include AdaML.puml
 type("Foo")
 type_new("Foo", "Bar")
@@ -164,7 +164,7 @@ link("Note_42", "Bar")
 #+end_src
 
 #+RESULTS:
-[[file:fig-notes-named.eps]]
+[[file:notes/named.eps]]
 
 ** Notes on Links
 + Automatically associated to the latest relationship defined
@@ -194,7 +194,7 @@ note("right on link", "hope..")
 :BEAMER_col: 0.45
 :END:
 _=UML=_
-#+begin_src plantuml :file fig-notes-links.eps
+#+begin_src plantuml :file notes/links.eps
 !include AdaML.puml
 type("Pan_Dimensional")
 package("Deep_Thought")
@@ -204,7 +204,7 @@ note("right on link", "hope the answer\nchanges some day")
 #+end_src
 
 #+RESULTS:
-[[file:fig-notes-links.eps]]
+[[file:notes/links.eps]]
 
 ** Config                                                         :noexport:
 Local Variables:
