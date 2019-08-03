@@ -1,6 +1,7 @@
 auto/
 _minted-AdaML/
 *.tex
+*.tex~
 *.pdf
 !AdaML.pdf
-fig-*
+*.eps
