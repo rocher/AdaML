@@ -1,6 +1,6 @@
 #+TITLE: AdaML
 # -- version settings
-#+MACRO:                         gitbranch r0.1.0
+#+MACRO:                  gitbranch release/0.1.0
 #+MACRO:                           version  0.1.0
 #+LATEX_HEADER: \newcommand{\AdaMLVersion}{ 0.1.0 }
 # -- subtitle settings
