@@ -19,8 +19,8 @@ ELEMENTARY TYPES                 COMPOSITE TYPES
 #+end_example
 
 ** Predefined Types
-+ =AdaML= is aware of =Boolean=, =Integer=, =Natural=, =Positive= and =Float=
-  types
++ =AdaML= is aware of =Boolean=, =Integer=, =Natural=, =Positive=, =Float=,
+  =Character= and =String= types
 + so there is no need to declare such types
 \newline
 + When needed, refer to them also as, e.g. =Ada.Boolean=[fn:1], to make them appear in
@@ -233,6 +233,8 @@ begin_type("Activity_Plan<Day : Day_Type>")
   case("Day is Sat")
     attribute("Music", "Float := 4.0")
     attribute("Tennis", "Float := 2.0")
+  case()
+  attribute("Location", "String")
   function("Total_Hours", "", "Float")
 end()
 #+end_example
@@ -251,6 +253,8 @@ begin_type("Activity_Plan<Day : Day_Type>")
   case("Day is Sat")
     attribute("Music", "Float := 4.0")
     attribute("Tennis", "Float := 2.0")
+  case()
+  attribute("Location", "String")
   function("Total_Hours", "", "Float")
 end()
 #+end_src
@@ -274,11 +278,11 @@ type Activity_Plan (Day : Day_Type) is record
       when Sun =>
          null;
    end case;
+   Location : String;
 end record;
 
 function Total_Hours (Plan : in Activity_Plan) return Float;
 #+end_src
-
 
 ** Derived Types
 *** code                                                    :BMCOL:B_block:
@@ -317,6 +321,88 @@ type Bar_Type is new Integer range -1 .. 20;
 -- or simply
 type Bar_Type is range -1 .. 20;
 #+end_src
+
+** Abstract Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_abstract("Animal", "tagged")
+  attribute("Class", "String")
+end()
+
+begin_type_new("Animal", "Mammal")
+  attribute("Arms", "Natural")
+  attribute("Legs", "Natural")
+end()
+
+begin_type_new("Animal", "Reptile")
+  attribute("Diurnal", "Boolean")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+_=UML=_
+#+begin_src plantuml :file types/abstract-types.eps
+!include AdaML.puml
+begin_abstract("Animal", "tagged")
+  attribute("Class", "String")
+end()
+
+begin_type_new("Animal", "Mammal")
+  attribute("Arms", "Natural")
+  attribute("Legs", "Natural")
+end()
+
+begin_type_new("Animal", "Reptile")
+  attribute("Diurnal", "Boolean")
+end()
+#+end_src
+
+#+RESULTS[147bd8dbffd80fd6a841223975d65db61fea4101]:
+[[file:types/abstract-types.eps]]
+
+** Access Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_abstract("Animal", "tagged")
+  attribute("Class", "String")
+end()
+
+type_access("Animal")
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.25
+:END:
+_=UML=_
+#+begin_src plantuml :file types/access-types.eps
+!include AdaML.puml
+begin_abstract("Animal", "tagged")
+  attribute("Class", "String")
+end()
+
+type_access("Animal")
+#+end_src
+
+#+RESULTS[147bd8dbffd80fd6a841223975d65db61fea4101]:
+[[file:types/access-types.eps]]
+
+*** Note
+Suffix =`_Access'= is automatically added to access types; suffix can be
+configured or suppressed
 
 ** Config                                                         :noexport:
 Local Variables:

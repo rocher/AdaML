@@ -1,6 +1,7 @@
 #+TITLE: AdaML
 # -- version settings
-#+MACRO:                            version 0.1.0
+#+MACRO:                         gitbranch r0.1.0
+#+MACRO:                           version  0.1.0
 #+LATEX_HEADER: \newcommand{\AdaMLVersion}{ 0.1.0 }
 # -- subtitle settings
 #+LATEX_HEADER: \newcommand{\PDFSubtitle}{Ada tailored UML Modeling Language}
@@ -40,6 +41,8 @@
 #+INCLUDE: "packages.org"
 #+INCLUDE: "types.org"
 #+INCLUDE: "notes.org"
+# TODO +INCLUDE: "associations.org"
+#+INCLUDE: "appendix.org"
 
 * Pending                                                          :noexport:
 #+INCLUDE: "reference.org"

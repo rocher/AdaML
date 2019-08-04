@@ -1,11 +1,11 @@
 * Packages
 ** View Levels
 + Minimal :: only shows the package entity and generic parameters\newline
-+ Component View :: shows package elements and their relationships; do not
-                    include details of such elements\newline
 + Code View :: shows package elements with certain level of detail; elements can
                be other packages, types subprograms, tasks, constants, variables
-               and protected objects
+               and protected objects\newline
++ Component View :: shows package elements and their relationships; do not
+                    include details of such elements
 
 ** Minimal view
 The simplest package representation is\newline
@@ -34,7 +34,7 @@ package("Deep_Thought")
 [[file:packages/detail-view.eps]]
 
 ** Code View
-Shows package elements\newline
+Shows package elements; here variables and subprograms shown\newline
 
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
@@ -44,7 +44,7 @@ _=AdaML=_
 #+begin_example
 !include AdaML.puml
 begin_package("Deep_Thought")
-  function("Answer_The_Question", "", "Natural")
+  function("Get_Answer", "", "Natural")
 private()
   variable("The_Answer", "Natural", 42)
 end()
@@ -58,7 +58,7 @@ _=UML=_
 #+begin_src plantuml :file packages/code-view.eps
 !include AdaML.puml
 begin_package("Deep_Thought")
-  function("Answer_The_Question", "", "Natural")
+  function("Get_Answer", "", "Natural")
 private()
   variable("The_Answer", "Natural", 42)
 end()
@@ -70,7 +70,7 @@ end()
 *** Ada
 #+begin_src ada :exports code
 package Deep_Thought is
-  function Answer_The_Question return Natural;
+  function Get_Answer return Natural;
 private
   The_Answer : Natural := 42;
 end FooBar;
@@ -86,12 +86,12 @@ end FooBar;
 _=AdaML=_
 #+begin_example
 !include AdaML.puml
-  generic_with("N : Natural range 1 .. 42")
-  type("Range_N", "range 1 .. N")
+begin_package("Deep_Thought")
+  type("Range_42", "range 1 .. 42")
 private()
-  variable("The_Answer", "Range_N")
+  variable("The_Answer", "Range_42")
 public()
-  procedure("Bar", "in out Range_N")
+  function("Get_Answer", "Range_42")
 end()
 #+end_example
 
@@ -107,16 +107,55 @@ begin_package("Deep_Thought")
 private()
   variable("The_Answer", "Range_42")
 public()
-  procedure("Bar", "in out Range_42")
+  function("Get_Answer", "", "Range_42")
 end()
 #+end_src
 
 #+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
 [[file:packages/add-types.eps]]
 
-*** Warning
-When using /entity specifiers/, like =generic=, types, variables and methods
-must be manually sorted (contrast with previous slide)
+*** Note
+When using extra /entity elements/, like =types= or =tasks=, then variables and
+methods must be manually sorted (contrast with previous slide)
+
+** Adding Tasks
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package("Deep_Thought")
+  type("Range_42", "range 1 .. 42")
+  task("Compute")
+  variable("-The_Answer", "Range_42")
+  function("Get_Answer", "", "Range_42")
+end()
+#+end_example
+
+*** figure                                                  :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:END:
+_=UML=_
+#+begin_src plantuml :file packages/add-tasks.eps
+!include AdaML.puml
+begin_package("Deep_Thought")
+  type("Range_42", "range 1 .. 42")
+  task("Compute")
+  variable("-The_Answer", "Range_42")
+  function("Get_Answer", "", "Range_42")
+end()
+#+end_src
+
+#+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
+[[file:packages/add-tasks.eps]]
+
+*** Element visibility
++ use =private()= and =public()= functions, as in previous slides
++ put =`-'=, =`+'= or =`#'= in front of the element's name; this has priority
+  over pri/pub functions
 
 ** Generic Packages
 *** code                                                    :BMCOL:B_block:
@@ -129,16 +168,15 @@ _=AdaML=_
 begin_package("Deep_Thought<N>")
   generic_with("N : Natural range 1 .. 42")
   type("Range_N", "range 1 .. N")
-private()
-  variable("The_Answer", "Range_N")
-public()
-  procedure("Bar", "in out Range_N")
+  task("Compute")
+  variable("-The_Answer", "Range_N")
+  function("Get_Answer", "", "Range_N")
 end()
 #+end_example
 
 *** figure                                                  :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.35
+:BEAMER_col: 0.38
 :END:
 _=UML=_
 #+begin_src plantuml :file packages/generic-packages.eps
@@ -146,22 +184,16 @@ _=UML=_
 begin_package("Deep_Thought<N>")
   generic_with("N : Natural range 1 .. 42")
   type("Range_N", "range 1 .. N")
-private()
-  variable("The_Answer", "Range_N")
-public()
-  procedure("Bar", "in out Range_N")
+  task("Compute")
+  variable("-The_Answer", "Range_N")
+  function("Get_Answer", "", "Range_N")
 end()
 #+end_src
 
 #+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
 [[file:packages/generic-packages.eps]]
 
-*** Warning
-When using /entity specifiers/, like =generic=, types, variables and methods
-must be manually sorted (contrast with previous slide)
-
 ** Component view
-Component view lets you see other entities contained in the package\newline
 
 *** code                                                    :BMCOL:B_block:
 :PROPERTIES:
@@ -171,35 +203,34 @@ _=AdaML=_
 #+begin_example
 !include AdaML.puml
 begin_package_spec("Deep_Thought<N>")
-  package("Foo_Bar")
   type("Range_Type<N>")
   type_new("Ada.Natural", "Range_Type")
-  subprogram("Hello_World")
-  subprogram("Hello_Bar")
-    depends("Foo_Bar", "Range_Type")
-  depends("Hello_Bar", "Hello_World")
-  depends("Foo_Bar", "Hello_World")
+  task("Compute")
+  subprogram("Get_Answer")
+  variable("The_Answer")
+  depends("Get_Answer", "The_Answer");
+  depends("Compute", "The_Answer");
+  is("The_Answer", "Range_Type")
 end()
 #+end_example
 
 *** figure                                                    :BMCOL:B_block:
 :PROPERTIES:
-:BEAMER_col: 0.5
+:BEAMER_col: 0.6
 :END:
 _=UML=_
 #+begin_src plantuml :file packages/component-view.eps
 !include AdaML.puml
 !depends_stereotype = ""
 begin_package_spec("Deep_Thought<N>")
-  package("Foo_Bar")
   type("Range_Type<N>")
   type_new("Ada.Natural", "Range_Type")
-  subprogram("Hello_World")
-  subprogram("Hello_Bar")
-  depends("Foo_Bar", "Range_Type")
-  depends("Hello_Bar", "Hello_World")
-  depends("Foo_Bar", "Hello_World")
-  top_down("Hello_World", "Ada.Natural")
+  task("Compute")
+  subprogram("Get_Answer")
+  variable("The_Answer")
+  depends("Get_Answer", "The_Answer")
+  depends("Compute", "The_Answer")
+  is("The_Answer", "Range_Type")
 end()
 #+end_src
 

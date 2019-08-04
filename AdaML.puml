@@ -71,7 +71,7 @@ set namespaceSeparator .
 'Entities Configuration
 !abstract_char          = "A"
 !abstract_color         = "#ff33f0"
-!abstract_stereotype    = "abstract"
+!abstract_stereotype    = ""
 !access_association     = "all"
 !access_char            = "a"
 !access_color           = "#f0f0f0"
@@ -89,15 +89,18 @@ set namespaceSeparator .
 !subtype_char           = "S"
 !subtype_color          = "#ffccaa"
 !subtype_stereotype     = ""
-!task_char              = "•"
-!task_color             = "#333333"
-!task_stereotype        = "task"
+!task_char              = "t"
+!task_color             = "#9fcfbf"
+!task_stereotype        = ""
 !type_char              = "T"
 !type_color             = "#ff6666"
 !type_stereotype        = ""
-!subprogram_char          = "Σ"
-!subprogram_color         = "#99aaff"
-!subprogram_stereotype    = ""
+!subprogram_char        = "s"
+!subprogram_color       = "#99aaff"
+!subprogram_stereotype  = ""
+!variable_char          = "v"
+!variable_color         = "#f0f099"
+!variable_stereotype    = ""
 
 'Other Configuration
 !depends_stereotype = "use"
@@ -110,10 +113,13 @@ set namespaceSeparator .
 !__range__ = 0
 !__generic__ = 0
 !__private__ = 0
-!__type_line__ = 1
-!__case_line__ = 0
+!__draw_lines__ = 0
 !__attr_line__ = 0
+!__case_line__ = 0
 !__method_line__ = 0
+!__subprogram_line__ = 0
+!__task_line__ = 0
+!__type_line__ = 0
 !__elements_level__ = 0
 !__in_package_spec__ = 0
 !__note_counter__ = 0
@@ -125,6 +131,20 @@ set namespaceSeparator .
   !else
     !return value
   !endif
+!endfunction
+
+!function __get_visibility(name)
+  !_ichar = %substr(name, 0, 1)
+  !if (_ichar == "-" || _ichar == "+" || _ichar == "#")
+    !_ichar = ""
+  !else
+    !if (__private__ == 0)
+      !_ichar = "+"
+    !else
+      !_ichar = "-"
+    !endif
+  !endif
+  !return _ichar
 !endfunction
 
 !function __replace(string, text, replace)
@@ -148,10 +168,13 @@ set namespaceSeparator .
 !__range__ = 0
 !__generic__ = 0
 !__private__ = 0
-!__type_line__ = 1
-!__case_line__ = 0
+!__draw_lines__ = 0
 !__attr_line__ = 0
+!__case_line__ = 0
 !__method_line__ = 0
+!__subprogram_line__ = 0
+!__task_line__ = 0
+!__type_line__ = 0
 !__elements_level__ = 0
 !endfunction
 
@@ -162,33 +185,51 @@ set namespaceSeparator .
   ** ** spec
 !endfunction
 
-!function __type_line()
-  !if (__type_line__ == 1)
-== types ==
-    !__type_line__ = 0
+!function __attr_line()
+  !if (__draw_lines__ == 1 && __attr_line__ == 0)
     !__attr_line__ = 1
+--
   !endif
 !endfunction
 
 !function __case_line()
   !if (__case_line__ == 0)
-.. case ..
+    !__draw_lines__ = 1
     !__case_line__ = 1
-    !__method_line__ = 1
-  !endif
-!endfunction
-
-!function __attr_line()
-  !if (__attr_line__ == 1)
---
-    !__attr_line__ = 0
+    !__attr_line__ = 1
+    !__method_line__ = 0
+.. case ..
   !endif
 !endfunction
 
 !function __method_line()
-  !if (__method_line__ == 1)
+  !if (__draw_lines__ == 1 && __method_line__ == 0)
+    !__method_line__ = 1
 --
-    !__method_line__ = 0
+  !endif
+!endfunction
+
+!function __subprogram_line()
+  !if (__subprogram_line__ == 0)
+    !__draw_lines__ = 1
+    !__subprogram_line__ = 1
+-- subprograms --
+  !endif
+!endfunction
+
+!function __task_line()
+  !if (__task_line__ == 0)
+    !__draw_lines__ = 1
+    !__task_line__ = 1
+-- tasks --
+  !endif
+!endfunction
+
+!function __type_line()
+  !if (__type_line__ == 0)
+    !__draw_lines__ = 1
+    !__type_line__ = 1
+-- types --
   !endif
 !endfunction
 
@@ -279,22 +320,26 @@ set namespaceSeparator .
 !endfunction
 
 !function task(name, stereotype="")
-  !stereotype = __get_default(stereotype, task_stereotype)
-  __declare_entity(task_char, task_color, name, __str_guard(stereotype))
+  !if (__elements_level__)
+    __task_line()
+    !if (%strlen(stereotype) == 0)
+       __get_visibility(name) {method} name
+    !else
+       __get_visibility(name) {method} name : stereotype
+    !endif
+  !else
+    !stereotype = __get_default(stereotype, task_stereotype)
+    __declare_entity(task_char, task_color, name, __str_guard(stereotype))
+  !endif
 !endfunction
 
 !function type(name, stereotype="")
   !if (__elements_level__)
     __type_line()
-    !if (__private__ == 0)
-      !acc_str = "+"
-    !else
-      !acc_str = "-"
-    !endif
     !if (%strlen(stereotype) == 0)
-      acc_str name
+      __get_visibility(name) name
     !else
-      acc_str name : stereotype
+      __get_visibility(name) name : stereotype
     !endif
   !else
     !stereotype = __get_default(stereotype, type_stereotype)
@@ -393,43 +438,41 @@ set namespaceSeparator .
 !function mod(spec)
   __detail(__mod__, "mod", spec)
   !__mod__ = 1
-  !__attr_line__ = 1
-  !__method_line__ = 1
+  !__draw_lines__ = 1
 !endfunction
 
 !function enum(spec)
 '  __detail(__enum__, "enum", "(" + spec + ")" )
   __detail(__enum__, "enum", spec)
   !__enum__ = 1
-  !__attr_line__ = 1
-  !__method_line__ = 1
+  !__draw_lines__ = 1
 !endfunction
 
 !function with(spec)
   __detail(__with__, "with", spec)
   !__with__ = 1
-  !__attr_line__ = 1
-  !__method_line__ = 1
+  !__draw_lines__ = 1
 !endfunction
 
 !function range(spec="<>")
   __detail(__range__, "range", __str_guard(spec))
   !__range__ = 1
-  !__attr_line__ = 1
-  !__method_line__ = 1
+  !__draw_lines__ = 1
 !endfunction
 
 !function generic_with(spec)
   __detail(__generic__, "generic with", spec)
   !__generic__ = 1
-  !__attr_line__ = 1
-  !__method_line__ = 1
+  !__draw_lines__ = 1
 !endfunction
 
-!function case(spec)
-  __case_line()
-  !__method_line__ = 1
-        when spec =>
+!function case(spec="")
+  !if (spec == "")
+....
+  !else
+    __case_line()
+          when spec =>
+  !endif
 !endfunction
 
 !function private()
@@ -438,52 +481,46 @@ set namespaceSeparator .
 
 !function public()
   !__private__ = 0
-  !endfunction
+!endfunction
 
 !function attribute(name, type, defval="")
   __attr_line()
-  !if (__private__ == 0)
-    !acc_str = "+"
-  !else
-    !acc_str = "-"
-  !endif
   !if (%strlen(defval) == 0)
-    acc_str {field} name : type
+    __get_visibility(name) {field} name : type
   !else
-    acc_str {field} name : type := defval
+    __get_visibility(name) {field} name : type := defval
   !endif
 !endfunction
 
-!function variable(name, type, defval="")
-  !attribute(name, type, defval)
+' variable function can be used in code and component views
+'    code view: argv1 => type, argv2 => defval=""
+'   comp. view: argv1 => stereotype=""
+!function variable(name, argv1="", argv2="")
+  !assert (__elements_level__ == 0 || argv1 != "") : "type cannot be empty"
+  !if (__elements_level__)
+    attribute(name, argv1, argv2)
+  !else
+    !stereotype = __get_default(argv1, variable_stereotype)
+    __declare_entity(variable_char, variable_color, name, __str_guard(argv2))
+  !endif
 !endfunction
 
 !function constant(name, type, value, aliased=0)
   !__attr_line()
-  !if (__private__ == 0)
-    !acc_str = "+"
-  !else
-    !acc_str = "-"
-  !endif
   !if (aliased == 1)
     !als_str = "aliased"
   !else
     !als_str = ""
   !endif
   !if (%strpos(type, "String") >= 0)
-    acc_str {field} name : constant als_str type := "value"
+    __get_visibility(name) {field} name : constant als_str type := "value"
   !else
-    acc_str {field} name : constant als_str type := value
+    __get_visibility(name) {field} name : constant als_str type := value
   !endif
 !endfunction
 
 !function protected_object(name)
-  !if (__private__ == 0)
-    !acc_str = "+"
-  !else
-    !acc_str = "-"
-  !endif
-  acc_str {field} name
+  __get_visibility(name) {field} name
 !endfunction
 
 !function subprogram(name, stereotype="")
@@ -495,29 +532,19 @@ set namespaceSeparator .
 
 !function procedure(name, args="")
   __method_line()
-  !if (__private__ == 0)
-    !acc_str = "+"
-  !else
-    !acc_str = "-"
-  !endif
   !if (%strlen(args) == 0)
-    acc_str {method} name
+    __get_visibility(name) {method} name
   !else
-    acc_str {method} name (args)
+    __get_visibility(name) {method} name (args)
   !endif
 !endfunction
 
 !function function(name, args, return)
   __method_line()
-  !if (__private__ == 0)
-    !acc_str = "+"
-  !else
-    !acc_str = "-"
-  !endif
   !if (%strlen(args) == 0)
-    acc_str {method} name : return
+    __get_visibility(name) {method} name : return
   !else
-    acc_str {method} name (args) : return
+    __get_visibility(name) {method} name (args) : return
   !endif
 !endfunction
 
@@ -528,6 +555,10 @@ set namespaceSeparator .
 
 !function owns(owner, element)
   owner *--> element
+!endfunction
+
+!function is(object, type)
+  object -- type
 !endfunction
 
 !function depends(client, supplier, stereotype="")
