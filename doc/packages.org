@@ -1,0 +1,243 @@
+* Packages
+** View Levels
++ Minimal :: only shows the package entity and generic parameters\newline
++ Code View :: shows package elements with certain level of detail; elements can
+               be other packages, types subprograms, tasks, constants, variables
+               and protected objects\newline
++ Component View :: shows package elements and their relationships; do not
+                    include details of such elements
+
+** Minimal view
+The simplest package representation is\newline
+
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.65
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+package("Deep_Thought")
+#+end_example
+
+*** figure                                                  :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:END:
+_=UML=_
+#+begin_src plantuml :file packages/detail-view.eps
+!include AdaML.puml
+package("Deep_Thought")
+#+end_src
+
+#+RESULTS[9e5758013375e35a0f52d80450f7884201531f36]:
+[[file:packages/detail-view.eps]]
+
+** Code View
+Shows package elements; here variables and subprograms shown\newline
+
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package("Deep_Thought")
+  function("Get_Answer", "", "Natural")
+private()
+  variable("The_Answer", "Natural", 42)
+end()
+#+end_example
+
+*** figure                                                  :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+_=UML=_
+#+begin_src plantuml :file packages/code-view.eps
+!include AdaML.puml
+begin_package("Deep_Thought")
+  function("Get_Answer", "", "Natural")
+private()
+  variable("The_Answer", "Natural", 42)
+end()
+#+end_src
+
+#+RESULTS[1bee01e4589d4a85c718fe8d27f958168f8e5b6c]:
+[[file:packages/code-view.eps]]
+
+*** Ada
+#+begin_src ada :exports code
+package Deep_Thought is
+  function Get_Answer return Natural;
+private
+  The_Answer : Natural := 42;
+end FooBar;
+#+end_src
+
+#+RESULTS:
+
+** Adding Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package("Deep_Thought")
+  type("Range_42", "range 1 .. 42")
+private()
+  variable("The_Answer", "Range_42")
+public()
+  function("Get_Answer", "Range_42")
+end()
+#+end_example
+
+*** figure                                                  :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:END:
+_=UML=_
+#+begin_src plantuml :file packages/add-types.eps
+!include AdaML.puml
+begin_package("Deep_Thought")
+  type("Range_42", "range 1 .. 42")
+private()
+  variable("The_Answer", "Range_42")
+public()
+  function("Get_Answer", "", "Range_42")
+end()
+#+end_src
+
+#+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
+[[file:packages/add-types.eps]]
+
+*** Note
+When using extra /entity elements/, like =types= or =tasks=, then variables and
+methods must be manually sorted (contrast with previous slide)
+
+** Adding Tasks
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package("Deep_Thought")
+  type("Range_42", "range 1 .. 42")
+  task("Compute")
+  variable("-The_Answer", "Range_42")
+  function("Get_Answer", "", "Range_42")
+end()
+#+end_example
+
+*** figure                                                  :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:END:
+_=UML=_
+#+begin_src plantuml :file packages/add-tasks.eps
+!include AdaML.puml
+begin_package("Deep_Thought")
+  type("Range_42", "range 1 .. 42")
+  task("Compute")
+  variable("-The_Answer", "Range_42")
+  function("Get_Answer", "", "Range_42")
+end()
+#+end_src
+
+#+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
+[[file:packages/add-tasks.eps]]
+
+*** Element visibility
++ use =private()= and =public()= functions, as in previous slides
++ put =`-'=, =`+'= or =`#'= in front of the element's name; this has priority
+  over pri/pub functions
+
+** Generic Packages
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package("Deep_Thought<N>")
+  generic_with("N : Natural range 1 .. 42")
+  type("Range_N", "range 1 .. N")
+  task("Compute")
+  variable("-The_Answer", "Range_N")
+  function("Get_Answer", "", "Range_N")
+end()
+#+end_example
+
+*** figure                                                  :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.38
+:END:
+_=UML=_
+#+begin_src plantuml :file packages/generic-packages.eps
+!include AdaML.puml
+begin_package("Deep_Thought<N>")
+  generic_with("N : Natural range 1 .. 42")
+  type("Range_N", "range 1 .. N")
+  task("Compute")
+  variable("-The_Answer", "Range_N")
+  function("Get_Answer", "", "Range_N")
+end()
+#+end_src
+
+#+RESULTS[1f2eabbbd77050b8369aee525a52eeefeef00e6d]:
+[[file:packages/generic-packages.eps]]
+
+** Component view
+
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_package_spec("Deep_Thought<N>")
+  type("Range_Type<N>")
+  type_new("Ada.Natural", "Range_Type")
+  task("Compute")
+  subprogram("Get_Answer")
+  variable("The_Answer")
+  depends("Get_Answer", "The_Answer");
+  depends("Compute", "The_Answer");
+  is("The_Answer", "Range_Type")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=UML=_
+#+begin_src plantuml :file packages/component-view.eps
+!include AdaML.puml
+!depends_stereotype = ""
+begin_package_spec("Deep_Thought<N>")
+  type("Range_Type<N>")
+  type_new("Ada.Natural", "Range_Type")
+  task("Compute")
+  subprogram("Get_Answer")
+  variable("The_Answer")
+  depends("Get_Answer", "The_Answer")
+  depends("Compute", "The_Answer")
+  is("The_Answer", "Range_Type")
+end()
+#+end_src
+
+#+RESULTS[34422c456c5d8327b17464a9dafaba1ccf95e528]:
+[[file:packages/component-view.eps]]
+
+** Config                                                         :noexport:
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:
