@@ -46,7 +46,7 @@ AdaML must be used locally to get quality graphics. You can generate diagrams in
 - Remove default lines and paste the following code:
 
 ```
-!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/release/0.1.0/AdaML.puml
 begin_type("Pan_Dimensional")
   procedure("Ask_The_Question", "in out Natural")
 end()
@@ -64,10 +64,10 @@ depends("Pan_Dimensional", "Deep_Thought", "ask >")
 This is an example of the AdaML documentation:
 
 <p align="center">
-<img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml">
+<img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.puml">
 </p>
 
-- Check the [raw version](https://raw.github.com/rocher/AdaML/develop/README.md)
+- Check the [raw version](https://raw.github.com/rocher/AdaML/release/0.1.0/README.md)
   of this `README.md` file to see the image link used (plus how to easily center
   images in GitHub)
-- The PlantUML source code can be found in GitHub here: [deep-thought.puml](https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml)
+- The PlantUML source code can be found in GitHub here: [deep-thought.puml](https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.puml)
