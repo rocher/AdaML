@@ -49,3 +49,6 @@ Local Variables:
 org-confirm-babel-evaluate: nil
 compile-command: "make AdaML.pdf"
 End:
+
+# export to pdf evaluating this:
+(org-beamer-export-to-pdf)
