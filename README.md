@@ -1,11 +1,11 @@
 # ChangeLog
-### Development
-Hard work in progress; keep tuned.
+Current release is 0.1.0, the first publicly available. Please take a look at
+[AdaML.pdf](doc/AdaML.pdf) to see examples and features of this release.
 
 <details>
 <summary><b>Older Releases</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
 
-> *no releases yet*
+> *no older releases yet*
 
 </details>
 
@@ -19,6 +19,7 @@ Hard work in progress; keep tuned.
 - UML tailored to use and show particular Ada language characteristics
 - Coherent set of functions to design software components for Ada
 - Generates high quality drawings (ps, eps) easy to embedded in other docs
+- Syntax resembling Ada programming language
 - Easy to learn by example, both AdaML and Ada language
 
 ### What is /not/ AdaML?
@@ -46,7 +47,7 @@ AdaML must be used locally to get quality graphics. You can generate diagrams in
 - Remove default lines and paste the following code:
 
 ```
-!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/release/0.1.0/AdaML.puml
 begin_type("Pan_Dimensional")
   procedure("Ask_The_Question", "in out Natural")
 end()
@@ -64,10 +65,10 @@ depends("Pan_Dimensional", "Deep_Thought", "ask >")
 This is an example of the AdaML documentation:
 
 <p align="center">
-<img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml">
+<img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.puml">
 </p>
 
-- Check the [raw version](https://raw.github.com/rocher/AdaML/develop/README.md)
+- Check the [raw version](https://raw.github.com/rocher/AdaML/release/0.1.0/README.md)
   of this `README.md` file to see the image link used (plus how to easily center
   images in GitHub)
-- The PlantUML source code can be found in GitHub here: [deep-thought.puml](https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.puml)
+- The PlantUML source code can be found in GitHub here: [deep-thought.puml](https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.puml)
