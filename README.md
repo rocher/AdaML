@@ -1,11 +1,11 @@
 # ChangeLog
-### Development
-Hard work in progress; keep tuned.
+Current release is 0.1.0, the first publicly available. Please take a look at
+[AdaML.pdf](doc/AdaML.pdf) to see examples and features of this release.
 
 <details>
 <summary><b>Older Releases</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
 
-> *no releases yet*
+> *no older releases yet*
 
 </details>
 
@@ -19,6 +19,7 @@ Hard work in progress; keep tuned.
 - UML tailored to use and show particular Ada language characteristics
 - Coherent set of functions to design software components for Ada
 - Generates high quality drawings (ps, eps) easy to embedded in other docs
+- Syntax resembling Ada programming language
 - Easy to learn by example, both AdaML and Ada language
 
 ### What is /not/ AdaML?
