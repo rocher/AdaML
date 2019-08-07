@@ -76,6 +76,8 @@ AdaML must be used locally to get quality graphics. You can generate diagrams in
 
 ```
 !include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
+scale 300 width
+
 begin_type("Pan_Dimensional")
   procedure("Ask_The_Question", "in out Natural")
 end()
