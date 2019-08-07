@@ -8,7 +8,7 @@ Self Explanatory introduction:
 <table style="width:100%">
   <tr>
     <pre>
-!include http://raw.github.com/rocher/AdaML/release/0.1.0/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/release/0.1.0/AdaML.puml
 
 package("PlantUML")
 package("AdaML")
