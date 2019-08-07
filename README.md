@@ -9,12 +9,9 @@ with AdaML. The source code can be seen below.
   <img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/self-AdaML.puml">
 </p>
 
-### AdaML Code
-This AdaML code describe AdaML itself, including relationships between PlatUML, UML and Ada packages.
-
 <details>
 <summary><b>AdaML Source Code</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
-```
+<pre>
 !include https://raw.github.com/rocher/AdaML/release/0.1.0/AdaML.puml
 
 package("PlantUML")
@@ -30,7 +27,7 @@ note("AdaML draws Ada-tailored\nUML diagrams based on\nPlantUML")
 
 left_right("PlantUML", "UML")
 left_right("UML", "Ada")
-```
+</pre>
 </details>
 
 # Introduction
