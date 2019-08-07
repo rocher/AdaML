@@ -1,8 +1,8 @@
-@startuml
 !include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
+scale 600 width
 
-package("PlantUML")
 package("AdaML")
+package("PlantUML")
 package("Ada")
 package("UML")
 
@@ -14,4 +14,3 @@ note("AdaML draws Ada-tailored\nUML diagrams based on\nPlantUML")
 
 left_right("PlantUML", "UML")
 left_right("UML", "Ada")
-@enduml

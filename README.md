@@ -13,9 +13,10 @@ AdaML. See below the AdaML source code.
 <summary><b>AdaML Source Code</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
 <pre>
 !include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
+scale 600 width
 
-package("PlantUML")
 package("AdaML")
+package("PlantUML")
 package("Ada")
 package("UML")
 
