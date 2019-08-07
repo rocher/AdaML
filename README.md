@@ -27,7 +27,7 @@ note("AdaML draws Ada-tailored\nUML diagrams based on\nPlantUML")
 
 left_right("PlantUML", "UML")
 left_right("UML", "Ada")
-<pre>
+</pre>
 </details>
 
 # Introduction
