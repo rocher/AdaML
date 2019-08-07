@@ -6,7 +6,7 @@ PlatUML, UML and Ada *packages*. This diagram has been generated, in turn, with
 AdaML. See below the AdaML source code.
 
 <p align="center">
-  <img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/self-AdaML.puml">
+  <img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/self-AdaML.puml">
 </p>
 
 <details>
@@ -92,7 +92,7 @@ depends("Pan_Dimensional", "Deep_Thought", "ask >")
 This is an example of the AdaML documentation:
 
 <p align="center">
-<img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.puml">
+<img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.puml">
 </p>
 
 - Check the [raw version](https://raw.github.com/rocher/AdaML/release/0.1.0/README.md)
