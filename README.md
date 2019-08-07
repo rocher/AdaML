@@ -6,7 +6,7 @@ PlatUML, UML and Ada *packages*. This diagram has been generated, in turn, with
 AdaML. See below the AdaML source code.
 
 <p align="center">
-  <img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/self-AdaML.puml">
+  <img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/self-AdaML.aml">
 </p>
 
 <details>
@@ -92,14 +92,14 @@ depends("Pan_Dimensional", "Deep_Thought", "ask >")
 This is an example of the AdaML documentation:
 
 <p align="center">
-<img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.puml">
+<img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.aml">
 </p>
 
 - Check the [raw version](https://raw.github.com/rocher/AdaML/release/0.1.0/README.md)
   of this `README.md` file to see the image link used (plus how to easily center
   images in GitHub)
 - The AdaML source code can be found in GitHub:
-  [deep-thought.puml](https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.puml)
+  [deep-thought.adm](https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.aml)
 
 # ChangeLog
 ### Development
