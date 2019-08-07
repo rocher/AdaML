@@ -22,7 +22,7 @@
 - Remove default lines and paste the following code:
 
 #+begin_example
-!include https://raw.github.com/rocher/AdaML/release/0.1.0/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
 begin_type("Pan_Dimensional")
   procedure("Ask_The_Question", "in out Natural")
 end()
@@ -42,7 +42,7 @@ In case you want to test the examples in this doc
 - Visit one of the several available PlantUML online servers
 - Copy and paste the =AdaML= code shown in the examples
 - Replace the line '=!include AdaML.puml=' with\newline \newline
-  \scriptsize{!include https://raw.github.com/rocher/AdaML/release/0.1.0/AdaML.puml}
+  \scriptsize{!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml}
 \newline
 *** Warning
 Depending on the PlantUML version used in the web site you can obtain different
