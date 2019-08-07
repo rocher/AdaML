@@ -2,8 +2,8 @@
 
 ### AdaML Diagram
 This AdaML diagram describes AdaML itself, including relationships between
-PlatUML, UML and Ada *packages*. This diagrams has been generated, in turn, with
-AdaML. The AdaML source code can be seen below.
+PlatUML, UML and Ada *packages*. This diagram has been generated, in turn, with
+AdaML. See below the AdaML source code.
 
 <p align="center">
   <img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/self-AdaML.puml">
