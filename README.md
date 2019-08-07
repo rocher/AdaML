@@ -30,6 +30,12 @@ left_right("UML", "Ada")
 </pre>
 </details>
 
+### Doc
+For more information and examples, download
+[AdaML.pdf](https://raw.github.com/rocher/AdaML/release/0.1.0/doc/AdaML.pdf) or
+[read online](https://github.com/rocher/AdaML/blob/release/0.1.0/doc/AdaML.pdf)
+in GitHub.
+
 # Introduction
 
 ### What is AdaML?
