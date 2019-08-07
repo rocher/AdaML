@@ -1,13 +1,10 @@
 # Quick Introduction
 
-Self Explanatory introduction:
-
-- On the left side, AdaML code describing relationships between packages
+### AdaML Code
+This AdaML code describe AdaML itself, including relationships between PlatUML, UML and Ada packages.
 - On the right side, the UML diagram produced
 
-<table style="width:100%">
-  <tr>
-    <pre style="width:50%">
+```
 !include https://raw.github.com/rocher/AdaML/release/0.1.0/AdaML.puml
 
 package("PlantUML")
@@ -23,14 +20,13 @@ note("AdaML draws Ada-tailored\nUML diagrams based on\nPlantUML")
 
 left_right("PlantUML", "UML")
 left_right("UML", "Ada")
-    </pre>
-  </tr>
-  <tr>
-    <p align="center">
-      <img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/self-AdaML.puml">
-    </p>
-  </tr>
-</table>
+```
+### AdaML Diagram
+This is the result obtained with code above:
+
+<p align="center">
+  <img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/self-AdaML.puml">
+</p>
 
 # Introduction
 
