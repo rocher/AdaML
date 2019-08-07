@@ -1,15 +1,37 @@
-# ChangeLog
-Current release is 0.1.0, the first publicly available. Please take a look at
-[AdaML.pdf](doc/AdaML.pdf) to see examples and features of this release.
+# Quick Introduction
+
+### AdaML Diagram
+This AdaML diagram describes AdaML itself, including relationships between
+PlatUML, UML and Ada *packages*. This diagram has been generated, in turn, with
+AdaML. See below the AdaML source code.
+
+<p align="center">
+  <img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/self-AdaML.puml">
+</p>
 
 <details>
-<summary><b>Older Releases</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
+<summary><b>AdaML Source Code</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
+<pre>
+!include https://raw.github.com/rocher/AdaML/release/0.1.0/AdaML.puml
 
-> *no older releases yet*
+package("PlantUML")
+package("AdaML")
+package("Ada")
+package("UML")
 
+owns("AdaML", "PlantUML")
+depends("AdaML", "Ada", "tailored")
+depends("AdaML", "UML", "draws")
+
+note("AdaML draws Ada-tailored\nUML diagrams based on\nPlantUML")
+
+left_right("PlantUML", "UML")
+left_right("UML", "Ada")
+</pre>
 </details>
 
 # Introduction
+
 ### What is AdaML?
 - UML tailored for Ada 2012 programming language
 - A modeling language to draw UML diagrams, implemented in PlantUML
@@ -19,7 +41,6 @@ Current release is 0.1.0, the first publicly available. Please take a look at
 - UML tailored to use and show particular Ada language characteristics
 - Coherent set of functions to design software components for Ada
 - Generates high quality drawings (ps, eps) easy to embedded in other docs
-- Syntax resembling Ada programming language
 - Easy to learn by example, both AdaML and Ada language
 
 ### What is /not/ AdaML?
@@ -71,4 +92,16 @@ This is an example of the AdaML documentation:
 - Check the [raw version](https://raw.github.com/rocher/AdaML/release/0.1.0/README.md)
   of this `README.md` file to see the image link used (plus how to easily center
   images in GitHub)
-- The PlantUML source code can be found in GitHub here: [deep-thought.puml](https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.puml)
+- The AdaML source code can be found in GitHub:
+  [deep-thought.puml](https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.puml)
+
+# ChangeLog
+### Development
+Hard work in progress; keep tuned.
+
+<details>
+<summary><b>Older Releases</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
+
+> *no releases yet*
+
+</details>
