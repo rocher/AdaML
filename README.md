@@ -1,9 +1,19 @@
 # Quick Introduction
 
+### AdaML Diagram
+This AdaML diagram describes AdaML itself, including relationships between
+PlatUML, UML and Ada packages. This diagrams has been generated, in turn, using
+with AdaML. The source code can be seen below.
+
+<p align="center">
+  <img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/self-AdaML.puml">
+</p>
+
 ### AdaML Code
 This AdaML code describe AdaML itself, including relationships between PlatUML, UML and Ada packages.
-- On the right side, the UML diagram produced
 
+<details>
+<summary><b>AdaML Source Code</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
 ```
 !include https://raw.github.com/rocher/AdaML/release/0.1.0/AdaML.puml
 
@@ -21,12 +31,7 @@ note("AdaML draws Ada-tailored\nUML diagrams based on\nPlantUML")
 left_right("PlantUML", "UML")
 left_right("UML", "Ada")
 ```
-### AdaML Diagram
-This is the result obtained with code above:
-
-<p align="center">
-  <img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/self-AdaML.puml">
-</p>
+</details>
 
 # Introduction
 
