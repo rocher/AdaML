@@ -105,12 +105,16 @@ This is an example of the AdaML documentation:
   [deep-thought.adm](https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.aml)
 
 # ChangeLog
-### Development
-Hard work in progress; keep tuned.
+### Release 0.1.1
+
++ Scaled images of `REAME.md` file
++ AdaML file extension changed to `*.aml`
 
 <details>
 <summary><b>Older Releases</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
 
-> *no releases yet*
+### Release 0.1.0
+
++ First public release
 
 </details>
