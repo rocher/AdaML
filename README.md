@@ -12,6 +12,7 @@ with AdaML. The source code can be seen below.
 <details>
 <summary><b>AdaML Source Code</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
 <pre>
+<code>
 !include https://raw.github.com/rocher/AdaML/release/0.1.0/AdaML.puml
 
 package("PlantUML")
@@ -27,6 +28,7 @@ note("AdaML draws Ada-tailored\nUML diagrams based on\nPlantUML")
 
 left_right("PlantUML", "UML")
 left_right("UML", "Ada")
+</code>
 </pre>
 </details>
 
