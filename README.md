@@ -6,13 +6,13 @@ PlatUML, UML and Ada *packages*. This diagram has been generated, in turn, with
 AdaML. See below the AdaML source code.
 
 <p align="center">
-  <img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/develop/diagram/self-AdaML-01.aml">
+  <img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.1/diagram/self-AdaML-01.aml">
 </p>
 
 <details>
 <summary><b>AdaML Source Code</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
 <pre>
-!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/release/0.1.1/AdaML.puml
 scale 600 width
 
 package("AdaML")
@@ -33,8 +33,8 @@ left_right("UML", "Ada")
 
 ### Doc
 For more information and examples, download
-[AdaML.pdf](https://raw.github.com/rocher/AdaML/develop/doc/AdaML.pdf) or
-[read online](https://github.com/rocher/AdaML/blob/develop/doc/AdaML.pdf)
+[AdaML.pdf](https://raw.github.com/rocher/AdaML/release/0.1.1/doc/AdaML.pdf) or
+[read online](https://github.com/rocher/AdaML/blob/release/0.1.1/doc/AdaML.pdf)
 in GitHub.
 
 # Introduction
@@ -75,7 +75,7 @@ AdaML must be used locally to get quality graphics. You can generate diagrams in
 - Remove default lines and paste the following code:
 
 ```
-!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/release/0.1.1/AdaML.puml
 scale 300 width
 
 begin_type("Pan_Dimensional")
@@ -95,14 +95,14 @@ depends("Pan_Dimensional", "Deep_Thought", "ask >")
 This is an example of the AdaML documentation:
 
 <p align="center">
-<img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought-01.aml">
+<img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.1/diagram/deep-thought-01.aml">
 </p>
 
-- Check the [raw version](https://raw.github.com/rocher/AdaML/develop/README.md)
+- Check the [raw version](https://raw.github.com/rocher/AdaML/release/0.1.1/README.md)
   of this `README.md` file to see the image link used (plus how to easily center
   images in GitHub)
 - The AdaML source code can be found in GitHub:
-  [deep-thought.adm](https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought.aml)
+  [deep-thought.adm](https://raw.github.com/rocher/AdaML/release/0.1.1/diagram/deep-thought.aml)
 
 # ChangeLog
 ### Release 0.1.1
