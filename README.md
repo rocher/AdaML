@@ -92,7 +92,28 @@ This is an example of the AdaML documentation:
 - Check the [raw version](https://raw.github.com/rocher/AdaML/release/0.1.0/README.md)
   of this `README.md` file to see the image link used (plus how to easily center
   images in GitHub)
-- The PlantUML source code can be found in GitHub here: [deep-thought.puml](https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.puml)
+- The AdaML source code can seen below, and also can be found in GitHub:
+  [deep-thought.puml](https://raw.github.com/rocher/AdaML/release/0.1.0/diagram/deep-thought.puml)
+
+<details>
+<summary><b>AdaML Source Code</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
+<pre>
+@startuml
+!include https://raw.github.com/rocher/AdaML/release/0.1.0/AdaML.puml
+begin_type("Pan_Dimensional")
+  procedure("Ask_The_Question", "in out Natural")
+end()
+
+begin_package("Deep_Thought")
+  function("Answer_The_Question", "", "Natural")
+private()
+  variable("The_Answer", "Natural", 42)
+end()
+
+depends("Pan_Dimensional", "Deep_Thought", "ask >")
+@enduml
+</pre>
+</details>
 
 # ChangeLog
 ### Development
