@@ -1,0 +1,49 @@
+!include AdaML.puml
+begin_package_spec("XAda.Dispatching.TTS<NwId, NsId, TTp>")
+
+  begin_type_new("Ada.Positive", "TT_Work_Id")
+    range("1 .. NwId")
+  end()
+
+  begin_type_new("Ada.Positive", "TT_Sync_Id")
+    range("1 .. NsId")
+  end()
+
+  begin_abstract("Time_Slot", "tagged")
+    attribute("Slot_Duration", "Ada.Real_Time.Time_Span")
+  end()
+  type_access("Time_Slot")
+
+  type_new("Time_Slot", "Empty_Slot")
+  type_access("Empty_Slot")
+
+  type_new("Time_Slot", "Mode_Change_Slot")
+  type_access("Mode_Change_Slot")
+
+  type_new("Time_Slot", "Sync_Slot")
+  type_access("Sync_Slot")
+
+  type_new("Time_Slot", "Work_Slot")
+  type_access("Work_Slot")
+
+  type_new("Time_Slot", "Regular_Slot")
+  type_access("Regular_Slot")
+
+  type_new("Time_Slot", "Optional_Slot")
+  type_access("Optional_Slot")
+
+  type("Time_Triggered_Plan", "array")
+  array("Time_Triggered_Plan", "Time_Slot_Access")
+  type_access("Time_Triggered_Plan")
+
+  subprogram("Set_Plan")
+  depends("Set_Plan", "Time_Triggered_Plan_Access")
+
+  subprogram("Wait_For_Activation")
+  depends("Wait_For_Activation", "TT_Work_Id")
+  'depends("Wait_For_Activation", "Ada.Real_Time.Time")
+
+  'left_right("Time_Slot_Access", "Time_Slot")
+  'left_right("Time_Slot", "Time_Slot_Access")
+
+end()
