@@ -2,12 +2,9 @@
 
 * Diagrams
 
-#+begin_src plantuml :file components.png
-!include components.adm
+#+begin_src plantuml :file components.eps :results none
+!include components.aml
 #+end_src
-
-#+RESULTS:
-[[file:components.png]]
 
 * Config                                                         :noexport:
 Local Variables:
