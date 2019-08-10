@@ -33,7 +33,7 @@ private()
   variable("The_Answer", "Natural", 42)
 end()
 
-depends("Pan_Dimensional", "Deep_Thought", "ask >")
+depends("Pan_Dimensional", "Deep_Thought", "ask")
 #+end_example
 
 ** Online Version - Test Examples
@@ -120,7 +120,7 @@ private()
   variable("The_Answer", "Natural", 42)
 end()
 
-depends("Pan_Dimensional", "Deep_Thought", "ask >")
+depends("Pan_Dimensional", "Deep_Thought", "ask")
 #+end_example
 
 *** figure                                                  :BMCOL:B_block:
@@ -140,7 +140,7 @@ private()
   variable("The_Answer", "Natural", 42)
 end()
 
-depends("Pan_Dimensional", "Deep_Thought", "ask >")
+depends("Pan_Dimensional", "Deep_Thought", "ask")
 #+end_src
 
 #+RESULTS[7a22dc04a15ce1b7518d36e9ca62ab1251d2cf58]:
