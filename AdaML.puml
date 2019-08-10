@@ -20,6 +20,12 @@
 
 'Skin parameters
 skinparam {
+  actorBackgroundColor #ff9988
+  actorBorderColor #black
+  actorBorderThickness 0.5
+  agentBackgroundColor white
+  agentBorderColor black
+  agentBorderThickness 0.5
   arrowColor black
   arrowThickness 0.8
   boxpadding 0
