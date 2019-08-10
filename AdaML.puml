@@ -123,7 +123,6 @@ set namespaceSeparator .
 !__attr_line__ = 0
 !__case_line__ = 0
 !__method_line__ = 0
-!__subprogram_line__ = 0
 !__task_line__ = 0
 !__type_line__ = 0
 !__elements_level__ = 0
@@ -178,7 +177,6 @@ set namespaceSeparator .
 !__attr_line__ = 0
 !__case_line__ = 0
 !__method_line__ = 0
-!__subprogram_line__ = 0
 !__task_line__ = 0
 !__type_line__ = 0
 !__elements_level__ = 0
@@ -212,14 +210,6 @@ set namespaceSeparator .
   !if (__draw_lines__ == 1 && __method_line__ == 0)
     !__method_line__ = 1
 --
-  !endif
-!endfunction
-
-!function __subprogram_line()
-  !if (__subprogram_line__ == 0)
-    !__draw_lines__ = 1
-    !__subprogram_line__ = 1
--- subprograms --
   !endif
 !endfunction
 
