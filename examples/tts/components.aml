@@ -1,8 +1,9 @@
 !include AdaML.puml
-begin_package_spec("XAda.Dispatching.TTS<NwId, NsId, TTp>")
 
-  type_new("Ada.Positive", "TT_Work_Id", "range 1..NsId")
-  type_new("Ada.Positive", "TT_Sync_Id", "range 1 .. NsId")
+begin_package_spec("XAda.Dispatching.TTS<WID, SID, TTP>")
+
+  type_new("Ada.Positive", "TT_Work_Id", "range 1..WID")
+  type_new("Ada.Positive", "TT_Sync_Id", "range 1 .. SID")
 
   abstract("Time_Slot", "tagged")
   type_access("Time_Slot")
@@ -45,8 +46,8 @@ begin_package_spec("XAda.Dispatching.TTS<NwId, NsId, TTp>")
 ''  subprogram("Wait_For_Sync")
 ''  'depends("Wait_For_Sync", "TT_Sync_Id")
 
-  'left_right("Time_Slot_Access", "Time_Slot")
+  left_right("Empty_Slot", "Regular_Slot", "Work_Slot", "Mode_Change_Slot", "Sync_Slot")
   'left_right("Time_Slot", "Time_Slot_Access")
-  left_right("TT_Work_Id", "TT_Sync_Id")
+  'left_right("TT_Work_Id", "TT_Sync_Id")
 
 end()

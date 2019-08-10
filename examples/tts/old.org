@@ -1,0 +1,229 @@
+#+title: TTS Ravenscar
+#+subtitle: \em{Time Triggered Scheduling in the Ada Ravenscar profile}
+#+keywords: Ada, UML, Time-Triggered
+#+author: Francesc Rocher
+#+email: francesc.rocher@gmail.com
+#+options: ':t *:t -:t ::t email:t tasks:t
+#+latex_class: article
+#+latex_class_options: [a4paper,10pt]
+#+latex_header: \usepackage[a4paper,left=3cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+#+latex_header: \usepackage{listings}
+#+latex_header: \usepackage{minted}
+#+latex_header: \hypersetup{colorlinks=true,linkcolor=blue}
+
+\usemintedstyle{pastie}
+\newpage
+
+* About this document
+This document contains a Summary of UML diagrams to help and better understand
+TTS features.
+
+#+begin_src plantuml :file TTS_01.eps :results none
+!include AdaML.puml
+
+begin_package_spec("XAda.Dispatching.TTS")
+  type_new("Ada.Positive", "TT_Work_Id")
+  type_new("Ada.Positive", "TT_Sync_Id")
+  abstract("Time_Slot", "tagged record")
+  type_new("Time_Slot", "Empty_Slot", "null record")
+  type_new("Time_Slot", "Mode_Change_Slot", "null record")
+  type_new("Time_Slot", "Sync_Slot")
+  type_new("Time_Slot", "Work_Slot")
+  type_new("Work_Slot", "Optional_Work_Slot")
+  object_protected("Time_Triggered_Scheduler")
+  type("Time_Triggered_Plan")
+end()
+
+depends("Time_Triggered_Plan", "Time_Triggered_Scheduler", "use <")
+depends("Time_Triggered_Plan", "Time_Slot")
+
+left_right("TT_Work_Id", "TT_Sync_Id")
+left_right("Empty_Slot", "Mode_Change_Slot", "Work_Slot", "Sync_Slot")
+#+end_src
+
+#+label: fig:TTS_01
+#+attr_latex: :width 0.8\textwidth
+#+caption: Package specification
+[[file:TTS_01.eps]]
+
+
+#+begin_src plantuml :file TTS_02.eps :results none
+!include AdaML.puml
+
+package("TTS<Number_Of_Work_IDs,\nNumber_Of_Sync_IDs>")
+
+begin_type_new("Ada.Positive", "TT_Work_Id")
+  range("1 .. Number_Of_Work_IDs")
+end()
+
+begin_type_new("Ada.Positive", "TT_Sync_Id")
+  range("1 .. Number_Of_Sync_IDs")
+end()
+
+begin_abstract("Time_Slot", "tagged record")
+  attribute("Slot_Duration", "Ada.Real_Time.Time_Span")
+end()
+type_access("Time_Slot")
+
+type_new("Time_Slot", "Empty_Slot", "null record")
+type_access("Empty_Slot")
+
+type_new("Time_Slot", "Mode_Change_Slot", "null record")
+type_access("Mode_Change_Slot")
+
+begin_type_new("Time_Slot", "Sync_Slot")
+  attribute("Sync_Id", "TT_Sync_Id");
+end()
+type_access("Sync_Slot")
+
+begin_type_new("Time_Slot", "Work_Slot")
+  attribute("Work_Id", "TT_Work_Id")
+  attribute("Is_Continuation", "Boolean")
+  attribute("Padding", "Ada.Real_Time.Time_Span")
+end()
+type_access("Work_Slot")
+
+type_new("Work_Slot", "Optional_Work_Slot", "null record")
+type_access("Optional_Work_Slot")
+
+array("Time_Triggered_Plan", "Time_Slot_Access")
+begin_type("Time_Triggered_Plan")
+  range("Natural range <>")
+end()
+type_access("Time_Triggered_Plan")
+
+object_protected("Time_Triggered_Scheduler")
+
+'associations
+owns("TTS", "Time_Triggered_Scheduler")
+depends("Time_Triggered_Scheduler", "Time_Triggered_Plan")
+
+left_right("TT_Work_Id", "TT_Sync_Id")
+left_right("Empty_Slot", "Sync_Slot", "Work_Slot")
+#+end_src
+
+#+label: fig:TTS_02
+#+attr_latex: :width 0.8\textwidth
+#+caption: Package details
+[[file:TTS_02.eps]]
+
+#+begin_src plantuml :file TTS_04.eps :results none
+!include AdaML.puml
+
+begin_abstract("Time_Slot", "tagged record")
+  attribute(1, "Slot_Duration", "Ada.Real_Time.Time_Span")
+end()
+type_access("Time_Slot")
+
+type_new("Time_Slot", "Empty_Slot", "null record")
+type_access("Empty_Slot")
+
+type_new("Time_Slot", "Mode_Change_Slot", "null record")
+type_access("Mode_Change_Slot")
+
+begin_type_new("Time_Slot", "Sync_Slot")
+  attribute("Sync_Id", "TT_Sync_Id");
+end()
+type_access("Sync_Slot")
+
+begin_type_new("Time_Slot", "Work_Slot")
+  attribute("Work_Id", "TT_Work_Id")
+  attribute("Is_Continuation", "Boolean")
+  attribute("Padding", "Ada.Real_Time.Time_Span")
+end()
+type_access("Work_Slot")
+
+type_new("Work_Slot", "Optional_Work_Slot", "null record")
+type_access("Optional_Work_Slot")
+
+left_right("Time_Slot", "Time_Slot_Access")
+'left_right("Optional_Work_Slot", "Work_Slot_Access")
+left_right("Empty_Slot", "Work_Slot", "Sync_Slot", "Mode_Change_Slot")
+#+end_src
+
+#+label: fig:TTS_04
+#+attr_latex: :width 1.0\textwidth
+#+caption: Package details
+[[file:TTS_04.eps]]
+
+#+begin_src plantuml :file TTS_05.eps :results none
+!include AdaML.puml
+
+begin_package("TTS<Number_Of_Work_IDs,\nNumber_Of_Sync_IDs>")
+  .. generic with ..
+  attribute("Number_Of_Work_IDs", "Positive")
+  attribute("Number_Of_Sync_IDs", "Positive", "1")
+end()
+
+begin_abstract("Time_Slot", "tagged record")
+  attribute("Slot_Duration", "Ada.Real_Time.Time_Span")
+end()
+type_access("Time_Slot")
+
+array("Time_Triggered_Plan", "Time_Slot_Access")
+begin_type("Time_Triggered_Plan")
+  range("Natural range <>")
+end()
+type_access("Time_Triggered_Plan")
+
+object_protected("Time_Triggered_Scheduler")
+
+'associations
+owns("TTS", "Time_Triggered_Scheduler")
+has("Time_Triggered_Scheduler", "Time_Triggered_Plan_Access")
+
+'geometry hints
+left_right("TTS", "Time_Triggered_Plan", "Time_Slot")
+left_right("Time_Triggered_Scheduler", "Time_Triggered_Plan_Access")
+#+end_src
+
+#+label: fig:TTS_05
+#+attr_latex: :width 0.8\textwidth
+#+caption: Package details
+[[file:TTS_05.eps]]
+
+#+begin_src plantuml :file TTS_06.eps :results none
+!include AdaML.puml
+
+begin_package("TTS<Number_Of_Work_IDs,\nNumber_Of_Sync_IDs>")
+  generic_with("Number_Of_Work_IDs : Positive")
+  generic_with("Number_Of_Sync_IDs : Positive := 1")
+  procedure("Set_Plan", "Time_Triggered_Plan_Access")
+  procedure("Wait_For_Activation", "TT_Work_Id; out Ada.Real_Time.Time")
+  procedure("Continue_Sliced")
+  procedure("Leave_TT_Level")
+  function("Get_Last_Plan_Release", "", "Ada.Real_Time.Time")
+  procedure("Wait_For_Sync", "TT_Sync_Id; out Ada.Real_Time.Time")
+end()
+
+begin_object_protected("Time_Triggered_Scheduler")
+  with("Priority => System.Interrupt_Priority'Last")
+  attribute("- NS_Event", "Ada.Real_Time.Timing_Events.Timing_Event")
+  attribute("- NS_Handler_Access", "Ada.Real_Time.Timing_Events.Timing_Event_Handler", "NS_Handler'Access")
+  attribute("- Hold_Event", "Ada.Real_Time.Timing_Events.Timing_Event")
+  attribute("- Hold_Handler_Access", "Ada.Real_Time.Timing_Events.Timing_Event_Handler", "Hold_Handler'Access")
+  attribute("- Current_Plan", "Time_Triggered_Plan_Access", "null")
+  attribute("- Next_Plan", "Time_Triggered_Plan_Access", "null")
+  attribute("- Current_Slot_Index", "Natural", "0")
+  attribute("- Next_slot_Index", "Natural", "0")
+  attribute("- Next_Slot_Release", "Ada.Real_Time.Time", "Ada.Real_Time.Time_Last")
+  attribute("- First_Slot_Release", "Ada.Real_Time.Time", "Ada.Real_Time.Time_First")
+  procedure("Set_Plan", "Time_Triggered_Plan_Access")
+  procedure("Prepare_For_Activation", "TT_Work_Id")
+  procedure("Continue_Sliced")
+  procedure("Leave_TT_Level")
+  function("Get_Last_Plan_Release", "", "Ada.Real_Time.Time")
+  procedure("Prepare_For_Sync", "TT_Sync_Id")
+  procedure("- NS_Handler", "in out Ada.Real_Time.Timing_Events.Timing_Event")
+  procedure("- Hold_Handler", "in out Ada.Real_Time.Timing_Events.Timing_Event")
+  procedure("- Change_Plan", "At_Time : Ada.Real_Time.Time")
+end()
+
+'associations
+owns("TTS", "Time_Triggered_Scheduler")
+#+end_src
+
+#+label: fig:TTS_06
+#+attr_latex: :width 0.8\textwidth
+#+caption: Package details
+[[file:TTS_06.eps]]
