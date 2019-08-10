@@ -88,7 +88,7 @@ private()
   variable("The_Answer", "Natural", 42)
 end()
 
-depends("Pan_Dimensional", "Deep_Thought", "ask >")
+depends("Pan_Dimensional", "Deep_Thought", "ask")
 ```
 
 ### Embed Diagrams in GitHub
