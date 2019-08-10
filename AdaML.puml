@@ -79,7 +79,7 @@ set namespaceSeparator .
 !abstract_color         = "#ff33f0"
 !abstract_stereotype    = ""
 !access_association     = "all"
-!access_char            = "a"
+!access_char            = ""
 !access_color           = "#f0f0f0"
 !access_stereotype      = "access"
 !access_suffix          = "_Access"
@@ -109,7 +109,7 @@ set namespaceSeparator .
 !variable_stereotype    = ""
 
 'Other Configuration
-!depends_stereotype = "use"
+!depends_stereotype = ""
 !array_association = "of"
 
 'Private global variables
