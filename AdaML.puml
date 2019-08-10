@@ -567,9 +567,10 @@ set namespaceSeparator .
     !len = len - 2
     !arrow = %substr(stereotype, len, 2)
     !if (arrow != " >") && (arrow != " <")
-       client ..> supplier : stereotype
+      client ..> supplier : stereotype
     !else
-       client .. supplier : stereotype
+      client .. supplier : stereotype
+      client -[hidden]right- supplier
     !endif
   !endif
 !endfunction
