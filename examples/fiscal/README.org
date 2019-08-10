@@ -1,10 +1,13 @@
-#+title: Example for TTS packages
+#+title: FISCAL
 
 * Diagrams
 
-#+begin_src plantuml :file components.eps :results none
-!include components.aml
+#+begin_src plantuml :file fiscal.eps :results none!
+!include fiscal.aml
 #+end_src
+
+#+RESULTS:
+[[file:fiscal.eps]]
 
 * Configuration                                                    :noexport:
 Local Variables:
