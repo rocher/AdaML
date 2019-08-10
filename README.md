@@ -95,7 +95,7 @@ depends("Pan_Dimensional", "Deep_Thought", "ask >")
 This is an example of the AdaML documentation:
 
 <p align="center">
-<img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought-01.aml">
+<img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought-02.aml">
 </p>
 
 - Check the [raw version](https://raw.github.com/rocher/AdaML/develop/README.md)
