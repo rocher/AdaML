@@ -6,7 +6,7 @@ agent Screen
 agent Touch_Screen
 agent Microphone
 
-begin_package_spec("Fiscal")
+begin_package_spec("Floyd_Tuner")
 
   subprogram("Main")
 

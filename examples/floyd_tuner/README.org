@@ -1,13 +1,13 @@
-#+title: FISCAL
+#+title: FLOYD_TUNER
 
 * Diagrams
 
-#+begin_src plantuml :file fiscal.eps :results none!
-!include fiscal.aml
+#+begin_src plantuml :file floyd_tuner.eps :results none!
+!include floyd_tuner.aml
 #+end_src
 
 #+RESULTS:
-[[file:fiscal.eps]]
+[[file:floyd_tuner.eps]]
 
 * Configuration                                                    :noexport:
 Local Variables:
