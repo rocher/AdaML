@@ -20,12 +20,6 @@
 
 'Skin parameters
 skinparam {
-  actorBackgroundColor #ff9988
-  actorBorderColor #black
-  actorBorderThickness 0.5
-  agentBackgroundColor white
-  agentBorderColor black
-  agentBorderThickness 0.5
   arrowColor black
   arrowThickness 0.8
   boxpadding 0
@@ -79,7 +73,7 @@ set namespaceSeparator .
 !abstract_color         = "#ff33f0"
 !abstract_stereotype    = ""
 !access_association     = "all"
-!access_char            = ""
+!access_char            = "a"
 !access_color           = "#f0f0f0"
 !access_stereotype      = "access"
 !access_suffix          = "_Access"
@@ -109,7 +103,7 @@ set namespaceSeparator .
 !variable_stereotype    = ""
 
 'Other Configuration
-!depends_stereotype = ""
+!depends_stereotype = "use"
 !array_association = "of"
 
 'Private global variables
@@ -123,6 +117,7 @@ set namespaceSeparator .
 !__attr_line__ = 0
 !__case_line__ = 0
 !__method_line__ = 0
+!__subprogram_line__ = 0
 !__task_line__ = 0
 !__type_line__ = 0
 !__elements_level__ = 0
@@ -166,37 +161,38 @@ set namespaceSeparator .
   !return _result
 !endfunction
 
-!function __reset()
-!__mod__ = 0
-!__enum__ = 0
-!__with__ = 0
-!__range__ = 0
-!__generic__ = 0
-!__private__ = 0
-!__draw_lines__ = 0
-!__attr_line__ = 0
-!__case_line__ = 0
-!__method_line__ = 0
-!__task_line__ = 0
-!__type_line__ = 0
-!__elements_level__ = 0
-!endfunction
+!procedure __reset()
+  !__mod__ = 0
+  !__enum__ = 0
+  !__with__ = 0
+  !__range__ = 0
+  !__generic__ = 0
+  !__private__ = 0
+  !__draw_lines__ = 0
+  !__attr_line__ = 0
+  !__case_line__ = 0
+  !__method_line__ = 0
+  !__subprogram_line__ = 0
+  !__task_line__ = 0
+  !__type_line__ = 0
+  !__elements_level__ = 0
+!endprocedure
 
-!function __detail(line, name, spec)
+!procedure __detail(line, name, spec)
   !if (line == 0)
     .. name ..
   !endif
   ** ** spec
-!endfunction
+!endprocedure
 
-!function __attr_line()
+!procedure __attr_line()
   !if (__draw_lines__ == 1 && __attr_line__ == 0)
     !__attr_line__ = 1
 --
   !endif
-!endfunction
+!endprocedure
 
-!function __case_line()
+!procedure __case_line()
   !if (__case_line__ == 0)
     !__draw_lines__ = 1
     !__case_line__ = 1
@@ -204,32 +200,40 @@ set namespaceSeparator .
     !__method_line__ = 0
 .. case ..
   !endif
-!endfunction
+!endprocedure
 
-!function __method_line()
+!procedure __method_line()
   !if (__draw_lines__ == 1 && __method_line__ == 0)
     !__method_line__ = 1
 --
   !endif
-!endfunction
+!endprocedure
 
-!function __task_line()
+!procedure __subprogram_line()
+  !if (__subprogram_line__ == 0)
+    !__draw_lines__ = 1
+    !__subprogram_line__ = 1
+-- subprograms --
+  !endif
+!endprocedure
+
+!procedure __task_line()
   !if (__task_line__ == 0)
     !__draw_lines__ = 1
     !__task_line__ = 1
 -- tasks --
   !endif
-!endfunction
+!endprocedure
 
-!function __type_line()
+!procedure __type_line()
   !if (__type_line__ == 0)
     !__draw_lines__ = 1
     !__type_line__ = 1
 -- types --
   !endif
-!endfunction
+!endprocedure
 
-!function __declare_entity(char, color, name, stereotype="", pre="", post="")
+!procedure __declare_entity(char, color, name, stereotype="", pre="", post="")
   __reset()
   !if (%strlen(char) == 0)
     hide name circle
@@ -241,9 +245,9 @@ set namespaceSeparator .
   !else
     pre class name <<(char, color) stereotype>> post
   !endif
-!endfunction
+!endprocedure
 
-!function __begin_entity(char, color, name, stereotype="", pre="", post="")
+!procedure __begin_entity(char, color, name, stereotype="", pre="", post="")
   __reset()
   !__elements_level__ = 1
   !if (%strlen(char) == 0)
@@ -251,25 +255,25 @@ set namespaceSeparator .
   !else
     pre class name <<(char, color) stereotype>> post {
   !endif
-!endfunction
+!endprocedure
 
-!function __check_type(name)
+!procedure __check_type(name)
   !if (%strpos("types:Ada.Character,Ada.Boolean,Ada.Integer,Ada.Natural,Ada.Positive,Ada.String", name) > 0)
     !if (%not(%variable_exists("__type_" + name)))
       %set_variable_value("__type_" + name, 1)
       __declare_entity("T", type_color, name)
     !endif
   !endif
-!endfunction
+!endprocedure
 
-!function __type_new(type1, type2, comment="", note="")
+!procedure __type_new(type1, type2, comment="", note="")
   __reset()
   !if (%strlen(comment) == 0)
     type1 ^-- type2
   !else
     type1 ^-- type2 : comment
   !endif
-!endfunction
+!endprocedure
 
 !function __check_array(name, stereotype)
   !if (%variable_exists("__array_" + name))
@@ -283,7 +287,7 @@ set namespaceSeparator .
 !endfunction
 
 'Public functions
-!function begin_package_spec(name, stereotype="")
+!procedure begin_package_spec(name, stereotype="")
   !__in_package_spec__ = 1
   !stereotype = __get_default(stereotype, package_stereotype)
   !$p_name_is = "package " + name + " is"
@@ -292,30 +296,30 @@ set namespaceSeparator .
   !else
     package "$p_name_is" <<stereotype>> {
   !endif
-!endfunction
+!endprocedure
 
 'Component view functions
-!function package(name, stereotype="")
+!procedure package(name, stereotype="")
   !stereotype = __get_default(stereotype, package_stereotype)
   __declare_entity(package_char, package_color, name, __str_guard(stereotype))
-!endfunction
+!endprocedure
 
-!function abstract(name, stereotype="")
+!procedure abstract(name, stereotype="")
   !stereotype = __get_default(stereotype, abstract_stereotype)
   __declare_entity(abstract_char, abstract_color, name, __str_guard(stereotype))
-!endfunction
+!endprocedure
 
-!function interface(name, stereotype="")
+!procedure interface(name, stereotype="")
   !stereotype = __get_default(stereotype, interface_stereotype)
   __declare_entity(interface_char, interface_color, name, __str_guard(stereotype))
-!endfunction
+!endprocedure
 
-!function subtype(name, stereotype="")
+!procedure subtype(name, stereotype="")
   !stereotype = __get_default(stereotype, subtype_stereotype)
   __declare_entity(subtype_char, subtype_color, name, __check_array(name, __str_guard(stereotype)))
-!endfunction
+!endprocedure
 
-!function task(name, stereotype="")
+!procedure task(name, stereotype="")
   !if (__elements_level__)
     __task_line()
     !if (%strlen(stereotype) == 0)
@@ -327,9 +331,9 @@ set namespaceSeparator .
     !stereotype = __get_default(stereotype, task_stereotype)
     __declare_entity(task_char, task_color, name, __str_guard(stereotype))
   !endif
-!endfunction
+!endprocedure
 
-!function type(name, stereotype="")
+!procedure type(name, stereotype="")
   !if (__elements_level__)
     __type_line()
     !if (%strlen(stereotype) == 0)
@@ -341,9 +345,9 @@ set namespaceSeparator .
     !stereotype = __get_default(stereotype, type_stereotype)
     __declare_entity(type_char, type_color, name, __check_array(name,  __str_guard(stereotype)))
   !endif
-!endfunction
+!endprocedure
 
-!function type_access(type, suffix="", stereotype="")
+!procedure type_access(type, suffix="", stereotype="")
   !suffix = __get_default(suffix, access_suffix)
   !stereotype = __get_default(stereotype, access_stereotype)
   !type_access = type + suffix
@@ -353,145 +357,145 @@ set namespaceSeparator .
   !else
     type <.. type_access : access_association
   !endif
-!endfunction
+!endprocedure
 
-!function type_new(type, name, stereotype="", comment="", note="")
+!procedure type_new(type, name, stereotype="", comment="", note="")
   !stereotype = __get_default(stereotype, type_stereotype)
   __check_type(type)
   __declare_entity(type_char, type_color, name, __check_array(name, __str_guard(stereotype)))
   __type_new(type, name, comment, note)
-!endfunction
+!endprocedure
 
-!function type_protected(name, stereotype="")
+!procedure type_protected(name, stereotype="")
   !stereotype = __get_default(stereotype, protected_stereotype)
   __declare_entity(protected_char, protected_color, name, __str_guard(stereotype))
-!endfunction
+!endprocedure
 
-!function type_task(name, stereotype="")
+!procedure type_task(name, stereotype="")
   !stereotype = __get_default(stereotype, task_stereotype)
   __declare_entity(task_char, task_color, name, __str_guard(stereotype))
-!endfunction
+!endprocedure
 
-!function object_protected(name, stereotype="")
+!procedure object_protected(name, stereotype="")
   !stereotype = __get_default(stereotype, protected_stereotype)
   __declare_entity("", "", name, "object")
-!endfunction
+!endprocedure
 
 'Code view functions
-!function begin_package(name, stereotype="")
+!procedure begin_package(name, stereotype="")
   !stereotype = __get_default(stereotype, package_stereotype)
   __begin_entity(package_char, package_color, name, __str_guard(stereotype))
-!endfunction
+!endprocedure
 
-!function begin_abstract(name, stereotype="")
+!procedure begin_abstract(name, stereotype="")
   !stereotype = __get_default(stereotype, abstract_stereotype)
   __begin_entity(abstract_char, abstract_color, name, __str_guard(stereotype), "abstract")
-!endfunction
+!endprocedure
 
-!function begin_interface(name, stereotype="")
+!procedure begin_interface(name, stereotype="")
   !stereotype = __get_default(stereotype, interface_stereotype)
   __begin_entity(interface_char, interface_color, name, __str_guard(stereotype))
-!endfunction
+!endprocedure
 
-!function begin_subtype(name, stereotype="")
+!procedure begin_subtype(name, stereotype="")
   !stereotype = __get_default(stereotype, subtype_stereotype)
   __begin_entity(subtype_char, subtype_color, name, __check_array(name, __str_guard(stereotype)))
-!endfunction
+!endprocedure
 
-!function begin_type(name, stereotype="")
+!procedure begin_type(name, stereotype="")
   !stereotype = __get_default(stereotype, type_stereotype)
   __begin_entity(type_char, type_color, name, __check_array(name, __str_guard(stereotype)))
-!endfunction
+!endprocedure
 
-!function begin_type_new(type, name, stereotype="", comment="", note="")
+!procedure begin_type_new(type, name, stereotype="", comment="", note="")
   !stereotype = __get_default(stereotype, type_stereotype)
   __check_type(type)
   __type_new(type, name, comment, note)
   __begin_entity(type_char, type_color, name, __check_array(name, __str_guard(stereotype)))
-!endfunction
+!endprocedure
 
-!function begin_type_protected(type, name, stereotype="", comment="", note="")
+!procedure begin_type_protected(type, name, stereotype="", comment="", note="")
   !stereotype = __get_default(stereotype, protected_stereotype)
   __check_type(type)
   __type_new(type, name, comment, note)
   __begin_entity(protected_char, protected_color, name, __check_array(name, __str_guard(stereotype)))
-!endfunction
+!endprocedure
 
-!function begin_object_protected(name, stereotype="")
+!procedure begin_object_protected(name, stereotype="")
   !stereotype = __get_default(stereotype, protected_stereotype)
   hide name circle
   __begin_entity("", "", name, "protected object")
-!endfunction
+!endprocedure
 
-!function end()
+!procedure end()
   !__elements_level__ = 0
   !__in_package_spec__ = 0
   }
-!endfunction
+!endprocedure
 
 'Details, attributes, constants and objects
 'use access=0 for 'private', access=1 for 'public'
-!function mod(spec)
+!procedure mod(spec)
   __detail(__mod__, "mod", spec)
   !__mod__ = 1
   !__draw_lines__ = 1
-!endfunction
+!endprocedure
 
-!function enum(spec)
+!procedure enum(spec)
 '  __detail(__enum__, "enum", "(" + spec + ")" )
   __detail(__enum__, "enum", spec)
   !__enum__ = 1
   !__draw_lines__ = 1
-!endfunction
+!endprocedure
 
-!function with(spec)
+!procedure with(spec)
   __detail(__with__, "with", spec)
   !__with__ = 1
   !__draw_lines__ = 1
-!endfunction
+!endprocedure
 
-!function range(spec="<>")
+!procedure range(spec="<>")
   __detail(__range__, "range", __str_guard(spec))
   !__range__ = 1
   !__draw_lines__ = 1
-!endfunction
+!endprocedure
 
-!function generic_with(spec)
+!procedure generic_with(spec)
   __detail(__generic__, "generic with", spec)
   !__generic__ = 1
   !__draw_lines__ = 1
-!endfunction
+!endprocedure
 
-!function case(spec="")
+!procedure case(spec="")
   !if (spec == "")
 ....
   !else
     __case_line()
           when spec =>
   !endif
-!endfunction
+!endprocedure
 
-!function private()
+!procedure private()
   !__private__ = 1
-!endfunction
+!endprocedure
 
-!function public()
+!procedure public()
   !__private__ = 0
-!endfunction
+!endprocedure
 
-!function attribute(name, type, defval="")
+!procedure attribute(name, type, defval="")
   __attr_line()
   !if (%strlen(defval) == 0)
     __get_visibility(name) {field} name : type
   !else
     __get_visibility(name) {field} name : type := defval
   !endif
-!endfunction
+!endprocedure
 
 ' variable function can be used in code and component views
 '    code view: argv1 => type, argv2 => defval=""
 '   comp. view: argv1 => stereotype=""
-!function variable(name, argv1="", argv2="")
+!procedure variable(name, argv1="", argv2="")
   !assert (__elements_level__ == 0 || argv1 != "") : "type cannot be empty"
   !if (__elements_level__)
     attribute(name, argv1, argv2)
@@ -499,9 +503,9 @@ set namespaceSeparator .
     !stereotype = __get_default(argv1, variable_stereotype)
     __declare_entity(variable_char, variable_color, name, __str_guard(argv2))
   !endif
-!endfunction
+!endprocedure
 
-!function constant(name, type, value, aliased=0)
+!procedure constant(name, type, value, aliased=0)
   !__attr_line()
   !if (aliased == 1)
     !als_str = "aliased"
@@ -513,51 +517,51 @@ set namespaceSeparator .
   !else
     __get_visibility(name) {field} name : constant als_str type := value
   !endif
-!endfunction
+!endprocedure
 
-!function protected_object(name)
+!procedure protected_object(name)
   __get_visibility(name) {field} name
-!endfunction
+!endprocedure
 
-!function subprogram(name, stereotype="")
+!procedure subprogram(name, stereotype="")
   !if (__in_package_spec__ == 1)
     !stereotype = __get_default(stereotype, type_stereotype)
     __declare_entity(subprogram_char, subprogram_color, name, __str_guard(stereotype))
   !endif
-!endfunction
+!endprocedure
 
-!function procedure(name, args="")
+!procedure procedure(name, args="")
   __method_line()
   !if (%strlen(args) == 0)
     __get_visibility(name) {method} name
   !else
     __get_visibility(name) {method} name (args)
   !endif
-!endfunction
+!endprocedure
 
-!function function(name, args, return)
+!procedure function(name, args, return)
   __method_line()
   !if (%strlen(args) == 0)
     __get_visibility(name) {method} name : return
   !else
     __get_visibility(name) {method} name (args) : return
   !endif
-!endfunction
+!endprocedure
 
 'Associations
-!function has(owner, element)
+!procedure has(owner, element)
   owner --> element
-!endfunction
+!endprocedure
 
-!function owns(owner, element)
+!procedure owns(owner, element)
   owner *--> element
-!endfunction
+!endprocedure
 
-!function is(object, type)
+!procedure is(object, type)
   object -- type
-!endfunction
+!endprocedure
 
-!function depends(client, supplier, stereotype="")
+!procedure depends(client, supplier, stereotype="")
   !stereotype = __get_default(stereotype, depends_stereotype)
   !arrow = ""
   !len = %strlen(stereotype)
@@ -567,22 +571,21 @@ set namespaceSeparator .
     !len = len - 2
     !arrow = %substr(stereotype, len, 2)
     !if (arrow != " >") && (arrow != " <")
-      client ..> supplier : stereotype
+       client ..> supplier : stereotype
     !else
-      client .. supplier : stereotype
-      client -[hidden]right- supplier
+       client .. supplier : stereotype
     !endif
   !endif
-!endfunction
+!endprocedure
 
-!function array(array_type, element_type, association=array_association)
+!procedure array(array_type, element_type, association=array_association)
   %set_variable_value("__array_" + array_type, 1)
   !if (%strlen(association) == 0)
     array_type +--> element_type
   !else
     array_type +--> element_type : association
   !endif
-!endfunction
+!endprocedure
 
 'Notes
 '
@@ -590,7 +593,7 @@ set namespaceSeparator .
 '  arg1     --> floating note, arg1=Comment
 '  arg1+2   --> note on an entity arg1=Entity, arg2=Comment
 '           --> new note created if arg1 is numeric
-!function note(arg1, arg2="")
+!procedure note(arg1, arg2="")
   !val = %intval(arg1)
   !if (%strlen(arg2) == 0)
     !__note_counter__ = __note_counter__ + 1
@@ -604,14 +607,14 @@ set namespaceSeparator .
       note arg1 : arg2
     !endif
   !endif
-!endfunction
+!endprocedure
 
-!function link(arg1, arg2)
+!procedure link(arg1, arg2)
   arg1 .. arg2
-!endfunction
+!endprocedure
 
 'Geometry hints
-!function left_right(obj0, obj1, obj2="", obj3="", obj4="", obj5="", obj6="", obj7="", obj8="", obj9="")
+!procedure left_right(obj0, obj1, obj2="", obj3="", obj4="", obj5="", obj6="", obj7="", obj8="", obj9="")
   obj0 -[hidden]right- obj1
   !if (%strlen(obj2) > 0)
     obj1 -[hidden]right- obj2
@@ -637,9 +640,9 @@ set namespaceSeparator .
   !if (%strlen(obj9) > 0)
     obj8 -[hidden]right- obj9
   !endif
-!endfunction
+!endprocedure
 
-!function top_down(obj0, obj1, obj2="", obj3="", obj4="", obj5="", obj6="", obj7="", obj8="", obj9="")
+!procedure top_down(obj0, obj1, obj2="", obj3="", obj4="", obj5="", obj6="", obj7="", obj8="", obj9="")
   obj0 -[hidden]down- obj1
   !if (%strlen(obj2) > 0)
     obj1 -[hidden]down- obj2
@@ -665,4 +668,4 @@ set namespaceSeparator .
   !if (%strlen(obj9) > 0)
     obj8 -[hidden]down- obj9
   !endif
-!endfunction
+!endprocedure
