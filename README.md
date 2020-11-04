@@ -102,7 +102,7 @@ This is an example of the AdaML documentation:
   of this `README.md` file to see the image link used (plus how to easily center
   images in GitHub)
 - The AdaML source code can be found in GitHub:
-  [deep-thought.adm](https://raw.github.com/rocher/AdaML/release/0.1.1/diagram/deep-thought.aml)
+  [deep-thought-02.aml](https://raw.github.com/rocher/AdaML/release/0.1.1/diagram/deep-thought-02.aml)
 
 # ChangeLog
 ### Release 0.1.1
