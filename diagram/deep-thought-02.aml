@@ -1,6 +1,6 @@
 @startuml
 
-!include https://raw.github.com/rocher/AdaML/release/0.1.1/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/master/AdaML.puml
 scale 300 width
 
 begin_type("Pan_Dimensional")
