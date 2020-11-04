@@ -6,7 +6,7 @@ PlatUML, UML and Ada *packages*. This diagram has been generated, in turn, with
 AdaML. See below the AdaML source code.
 
 <p align="center">
-  <img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.1/diagram/self-AdaML-01.aml">
+  <img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/master/diagram/self-AdaML-01.aml">
 </p>
 
 <details>
@@ -34,7 +34,7 @@ left_right("UML", "Ada")
 ### Doc
 For more information and examples, download
 [AdaML.pdf](https://raw.github.com/rocher/AdaML/release/0.1.1/doc/AdaML.pdf) or
-[read online](https://github.com/rocher/AdaML/blob/release/0.1.1/doc/AdaML.pdf)
+[read online](https://github.com/rocher/AdaML/blob/master/doc/AdaML.pdf)
 in GitHub.
 
 # Introduction
@@ -98,11 +98,11 @@ This is an example of the AdaML documentation:
 <img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.1/diagram/deep-thought-01.aml">
 </p>
 
-- Check the [raw version](https://raw.github.com/rocher/AdaML/release/0.1.1/README.md)
+- Check the [raw version](https://raw.github.com/rocher/AdaML/master/README.md)
   of this `README.md` file to see the image link used (plus how to easily center
   images in GitHub)
 - The AdaML source code can be found in GitHub:
-  [deep-thought-02.aml](https://raw.github.com/rocher/AdaML/release/0.1.1/diagram/deep-thought-02.aml)
+  [deep-thought-02.aml](https://raw.github.com/rocher/AdaML/master/diagram/deep-thought-02.aml)
 
 # ChangeLog
 ### Release 0.1.1
