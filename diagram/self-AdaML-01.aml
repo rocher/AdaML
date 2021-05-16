@@ -1,6 +1,6 @@
 @startuml
 
-!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/master/AdaML.puml
 scale 600 width
 
 package("AdaML")

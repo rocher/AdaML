@@ -75,7 +75,7 @@ AdaML must be used locally to get quality graphics. You can generate diagrams in
 - Remove default lines and paste the following code:
 
 ```
-!include https://raw.github.com/rocher/AdaML/develop/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/release/0.1.1/AdaML.puml
 scale 300 width
 
 begin_type("Pan_Dimensional")
@@ -88,7 +88,7 @@ private()
   variable("The_Answer", "Natural", 42)
 end()
 
-depends("Pan_Dimensional", "Deep_Thought", "ask")
+depends("Pan_Dimensional", "Deep_Thought", "ask >")
 ```
 
 ### Embed Diagrams in GitHub
