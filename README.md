@@ -6,7 +6,7 @@ PlatUML, UML and Ada *packages*. This diagram has been generated, in turn, with
 AdaML. See below the AdaML source code.
 
 <p align="center">
-  <img src="http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/rocher/AdaML/release/0.1.2/diagram/self-AdaML-01.aml">
+  <img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.2/diagram/self-AdaML-01.aml">
 </p>
 
 <details>
