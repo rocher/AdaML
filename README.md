@@ -33,7 +33,7 @@ left_right("UML", "Ada")
 
 ### Doc
 For more information and examples, download
-[AdaML.pdf](https://raw.github.com/rocher/AdaML/relese/0.1.2/doc/AdaML.pdf) or
+[AdaML.pdf](https://raw.github.com/rocher/AdaML/release/0.1.2/doc/AdaML.pdf) or
 [read online](https://github.com/rocher/AdaML/blob/release/0.1.2/doc/AdaML.pdf)
 in GitHub.
 
