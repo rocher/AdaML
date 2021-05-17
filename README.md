@@ -6,13 +6,13 @@ PlatUML, UML and Ada *packages*. This diagram has been generated, in turn, with
 AdaML. See below the AdaML source code.
 
 <p align="center">
-  <img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.1/diagram/self-AdaML-01.aml">
+  <img src="http://www.plantuml.com/plantuml/proxy?cache=yes&src=https://raw.github.com/rocher/AdaML/release/0.1.2/diagram/self-AdaML-01.aml">
 </p>
 
 <details>
 <summary><b>AdaML Source Code</b> &nbsp; &mdash; <i>click to expand</i> &mdash;</summary>
 <pre>
-!include https://raw.github.com/rocher/AdaML/release/0.1.1/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/release/0.1.2/AdaML.puml
 scale 600 width
 
 package("AdaML")
@@ -33,8 +33,8 @@ left_right("UML", "Ada")
 
 ### Doc
 For more information and examples, download
-[AdaML.pdf](https://raw.github.com/rocher/AdaML/relese/1.1.0/doc/AdaML.pdf) or
-[read online](https://github.com/rocher/AdaML/blob/release/1.1.0/doc/AdaML.pdf)
+[AdaML.pdf](https://raw.github.com/rocher/AdaML/relese/0.1.2/doc/AdaML.pdf) or
+[read online](https://github.com/rocher/AdaML/blob/release/0.1.2/doc/AdaML.pdf)
 in GitHub.
 
 # Introduction
@@ -75,7 +75,7 @@ AdaML must be used locally to get quality graphics. You can generate diagrams in
 - Remove default lines and paste the following code:
 
 ```
-!include https://raw.github.com/rocher/AdaML/release/0.1.1/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/release/0.1.2/AdaML.puml
 scale 300 width
 
 begin_type("Pan_Dimensional")
@@ -105,6 +105,10 @@ This is an example of the AdaML documentation:
   [deep-thought-02.aml](https://raw.github.com/rocher/AdaML/develop/diagram/deep-thought-02.aml)
 
 # ChangeLog
+### Release 0.1.2
+
++ Adapt to new PlantUML interface
+
 ### Release 0.1.1
 
 + Scaled images of `REAME.md` file
