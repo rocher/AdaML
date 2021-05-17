@@ -1,0 +1,57 @@
+#+TITLE: AdaML
+# -- version settings
+#+MACRO:                  gitbranch 0.1.2
+#+MACRO:                           version  0.1.2
+#+LATEX_HEADER: \newcommand{\AdaMLVersion}{ 0.1.2 }
+# -- subtitle settings
+#+LATEX_HEADER: \newcommand{\PDFSubtitle}{Ada tailored UML Modeling Language}
+#+LATEX_HEADER: \newcommand{\AdaMLSubtitle}{\vspace{.77cm}\ding{125}\ \textit{Ada-tailored UML\newline Modeling Language} \ding{126}\vspace{1cm}}
+# --
+#+AUTHOR: Francesc Rocher
+#+EMAIL: francesc.rocher@gmail.com
+#+KEYWORDS: AdaML, Ada, UML, PlantUML
+#+LANGUAGE: en
+#+OPTIONS: H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil view:nil ltoc:t mouse:underline buttons:0
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:
+#+LINK_HOME:
+#+STARTUP: beamer
+#+LATEX_CLASS: beamer
+#+BEAMER_THEME: AdaML
+#+LATEX_HEADER: \usepackage{fancyvrb}
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \usepackage{pifont}
+#+LATEX_HEADER: \newcommand{\insertdoctype}{Overview}
+#+LATEX_HEADER: \hypersetup{colorlinks=true,linkcolor=orange}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+#+LATEX_HEADER: \definecolor{ForestGreen}{HTML}{22AB22}
+#+LATEX_HEADER: \definecolor{Grey}{HTML}{808080}
+#+LATEX_HEADER: \definecolor{RubinRed}{HTML}{CB111E}
+#+LATEX_HEADER: \newcommand{\cmark}{{\color{ForestGreen}\ \ \ding{51}}\ }%
+#+LATEX_HEADER: \newcommand{\qmark}{{\color{Grey}\ \ \ding{93}}\ }%
+#+LATEX_HEADER: \newcommand{\xmark}{{\color{RubinRed}\ \ \ding{55}}\ \ }%
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+#+PROPERTY: header-args :eval never-export :cache yes
+
+\setminted{fontsize=\scriptsize}
+
+#+INCLUDE: "introduction.org"
+#+INCLUDE: "packages.org"
+#+INCLUDE: "types.org"
+#+INCLUDE: "notes.org"
+# TODO +INCLUDE: "associations.org"
+#+INCLUDE: "appendix.org"
+
+* Pending                                                          :noexport:
+#+INCLUDE: "reference.org"
+
+* Config                                                           :noexport:
+Local Variables:
+org-confirm-babel-evaluate: nil
+compile-command: "make AdaML.pdf"
+End:
+
+# export to pdf evaluating this:
+(org-beamer-export-to-pdf)

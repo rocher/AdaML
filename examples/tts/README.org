@@ -1,0 +1,12 @@
+#+title: Example for TTS packages
+
+* Diagrams
+
+#+begin_src plantuml :file components.eps :results none
+!include components.aml
+#+end_src
+
+* Configuration                                                    :noexport:
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:

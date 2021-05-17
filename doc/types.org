@@ -1,0 +1,413 @@
+* Types
+** Type Classification
+Ada 2012 overall type classification\newline
+
+#+begin_example
+ELEMENTARY TYPES                 COMPOSITE TYPES
+  |-- Scalar                       |-- Record
+  |   |-- Discrete                 |-- Array
+  |   |   |-- Integer              |-- Protected
+  |   |   |   |-- Signed           '-- Task
+  |   |   |   '-- Modular
+  |   |   '-- Enumeration
+  |   '-- Real
+  |       |-- Float
+  |       '-- Fixed
+  |           |-- Decimal
+  |           '-- Ordinary
+  '-- Access
+#+end_example
+
+** Predefined Types
++ =AdaML= is aware of =Boolean=, =Integer=, =Natural=, =Positive=, =Float=,
+  =Character= and =String= types
++ so there is no need to declare such types
+\newline
++ When needed, refer to them also as, e.g. =Ada.Boolean=[fn:1], to make them appear in
+  a separate package
++  otherwise it might look like the type has been redefined in your package
+
+** Discrete Types
++ For discrete types like /range/, /modular/ or /enumeration/ types, use either
+  the stereotype or the particular specifier
++ The meaning is the same, the appearance changes substantially
++ Prefer stereotypes in component views, and specifiers in code views
++ Both the stereotype and the specifier can be also combined; might be little
+  redundant, but sometimes useful
+
+** Range Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+
+' with stereotype
+type("Dozen_Type", "range 1 .. 12")
+note("top of Dozen_Type", "ste...")
+
+' with specifier
+begin_type("Power_Type")
+  range("-2_048 .. 65_536")
+end()
+note("top of Power_Type", "her...")
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=UML=_
+#+begin_src plantuml :file types/range-types.eps
+!include AdaML.puml
+
+' with stereotype
+type("Dozen_Type", "range 1 .. 12")
+note("top of Dozen_Type", "stereotypes can be simple,\nlike <i>«range»</i>,or with details,\nas shown here")
+
+' with specifier
+begin_type("Power_Type")
+  range("-2_048 .. 65_536")
+end()
+note("top of Power_Type", "here using\nrange specifier")
+#+end_src
+
+#+RESULTS:
+[[file:types/range-types.eps]]
+
+*** Ada
+#+begin_src ada :exports code
+type Dozen_Type is range 1 .. 12;
+type Power_Type is range -2_048 .. 65_536;
+#+end_src
+
+** Modular Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+
+' with stereotype
+type("Mod10_Type", "mod 10")
+note("top of Mod10_Type", "ste...")
+
+' with mod specifier
+begin_type("Mod512_Type", "mod")
+  mod(512)
+end()
+note("top of Mod512_Type", "he...")
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=UML=_
+#+begin_src plantuml :file types/modular-types.eps
+!include AdaML.puml
+
+' with stereotype
+type("Mod10_Type", "mod 10")
+note("top of Mod10_Type", "stereotypes can be simple,\nlike «mod», or with details,\nas shown here")
+
+' with mod specifier
+begin_type("Mod512_Type", "mod")
+  mod(512)
+end()
+note("top of Mod512_Type", "here using both the\nstereotype and the\nmod specifier")
+#+end_src
+
+#+RESULTS[42d0b89e1728445ebf9a19a879813b200093e6ac]:
+[[file:types/modular-types.eps]]
+
+*** Ada
+#+begin_src ada :exports code
+type Mod10_Type is mod 10;
+type Mod512_Type is mod 512;
+#+end_src
+
+** Enumeration Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+
+' with stereotype
+type("Year_Months", "enum")
+
+' with specifier
+begin_type("Week_Days")
+  enum("Mon, Tue, Wed, Thu, Fri, Sat, Sun")
+end()
+
+top_down("Year_Months", "Week_Days")
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+_=UML=_
+#+begin_src plantuml :file types/enumeration-types.eps
+!include AdaML.puml
+
+' with stereotype
+type("Year_Months", "enum")
+
+' with specifier
+begin_type("Week_Days")
+  enum("Mon, Tue, Wed, Thu, Fri, Sat, Sun")
+end()
+
+top_down("Year_Months", "Week_Days")
+#+end_src
+
+#+RESULTS[1e6de9e659710a72e5e64d64cf803032149e6516]:
+[[file:types/enumeration-types.eps]]
+
+*** Ada
+#+begin_src ada :export code
+type Year_Months is (Jan, Feb, Mar, ..., Dec );
+type Week_Days is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+#+end_src
+
+** Record Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_type("Foo_Type")
+  function("Answer", "", "Natural")
+  attribute("Bar", "Natural")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+_=UML=_
+#+begin_src plantuml :file types/record-types.eps
+!include AdaML.puml
+begin_type("Foo_Type")
+  function("Answer", "", "Natural")
+  attribute("Bar", "Natural := 42")
+end()
+note("top", "Attributes and methods\nare shown as usual in UML")
+#+end_src
+
+#+RESULTS[5c1d589e39dac08c16326372d2ada6331a1129b0]:
+[[file:types/record-types.eps]]
+
+*** Ada
+#+begin_src ada
+type Foo_Type is private record
+  Baz : Natural;
+end record;
+function Answer (Arg : in out Foo_Type) return Natural;
+#+end_src
+
+** Record Types with Discriminant (i)
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_type("Activity_Plan<Day : Day_Type>")
+  attribute("Exercise", "Float := 0.75")
+  case("Day is Mon..Fri")
+    attribute("Work", "Float := 8.0")
+  case("Day is Sat")
+    attribute("Music", "Float := 4.0")
+    attribute("Tennis", "Float := 2.0")
+  case()
+  attribute("Location", "String")
+  function("Total_Hours", "", "Float")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+_=UML=_
+#+begin_src plantuml :file types/record-types-discriminant.eps
+!include AdaML.puml
+begin_type("Activity_Plan<Day : Day_Type>")
+  attribute("Exercise", "Float := 0.75")
+  case("Day is Mon..Fri")
+    attribute("Work", "Float := 8.0")
+  case("Day is Sat")
+    attribute("Music", "Float := 4.0")
+    attribute("Tennis", "Float := 2.0")
+  case()
+  attribute("Location", "String")
+  function("Total_Hours", "", "Float")
+end()
+#+end_src
+
+#+RESULTS[5c1d589e39dac08c16326372d2ada6331a1129b0]:
+[[file:types/record-types-discriminant.eps]]
+
+** Record Types with Discriminant (ii)
++ When a case value is not specified, assume =null=
+
+#+begin_src ada
+type Day_Type is (Mon, Tue, Wed, Thu, Fri, Sat, Sun);
+type Activity_Plan (Day : Day_Type) is record
+   Exercise : Float := 0.75;
+   case Day is
+      when Mon .. Fri =>
+         Work : Float := 8.0;
+      when Sat =>
+         Music : Float := 4.0;
+         Tennis : Float := 2.0;
+      when Sun =>
+         null;
+   end case;
+   Location : String;
+end record;
+
+function Total_Hours (Plan : in Activity_Plan) return Float;
+#+end_src
+
+** Derived Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+type_new("Integer", "Foo_Type")
+begin_type_new("Integer", "Bar_Type")
+  range("-1 .. 20")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+_=UML=_
+#+begin_src plantuml :file types/derived-types.eps
+!include AdaML.puml
+type_new("Integer", "Foo_Type")
+begin_type_new("Integer", "Bar_Type")
+  range("-1 .. 20")
+end()
+#+end_src
+
+#+RESULTS[147bd8dbffd80fd6a841223975d65db61fea4101]:
+[[file:types/derived-types.eps]]
+
+*** Ada
+#+begin_src ada :exports code
+type Foo_Type is new Integer;
+type Bar_Type is new Integer range -1 .. 20;
+-- or simply
+type Bar_Type is range -1 .. 20;
+#+end_src
+
+** Abstract Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_abstract("Animal", "tagged")
+  attribute("Class", "String")
+end()
+
+begin_type_new("Animal", "Mammal")
+  attribute("Arms", "Natural")
+  attribute("Legs", "Natural")
+end()
+
+begin_type_new("Animal", "Reptile")
+  attribute("Diurnal", "Boolean")
+end()
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+_=UML=_
+#+begin_src plantuml :file types/abstract-types.eps
+!include AdaML.puml
+begin_abstract("Animal", "tagged")
+  attribute("Class", "String")
+end()
+
+begin_type_new("Animal", "Mammal")
+  attribute("Arms", "Natural")
+  attribute("Legs", "Natural")
+end()
+
+begin_type_new("Animal", "Reptile")
+  attribute("Diurnal", "Boolean")
+end()
+#+end_src
+
+#+RESULTS[147bd8dbffd80fd6a841223975d65db61fea4101]:
+[[file:types/abstract-types.eps]]
+
+** Access Types
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_abstract("Animal", "tagged")
+  attribute("Class", "String")
+end()
+
+type_access("Animal")
+#+end_example
+
+*** figure                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.25
+:END:
+_=UML=_
+#+begin_src plantuml :file types/access-types.eps
+!include AdaML.puml
+begin_abstract("Animal", "tagged")
+  attribute("Class", "String")
+end()
+
+type_access("Animal")
+#+end_src
+
+#+RESULTS[147bd8dbffd80fd6a841223975d65db61fea4101]:
+[[file:types/access-types.eps]]
+
+*** Note
+Suffix =`_Access'= is automatically added to access types; suffix can be
+configured or suppressed
+
+** Config                                                         :noexport:
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:
+
+* Footnotes
+[fn:1] This is UML notation context, not Ada programming language\newline

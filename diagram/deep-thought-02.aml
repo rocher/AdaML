@@ -1,0 +1,18 @@
+@startuml
+
+!include https://raw.github.com/rocher/AdaML/master/AdaML.puml
+scale 300 width
+
+begin_type("Pan_Dimensional")
+  procedure("Ask_The_Question", "in out Natural")
+end()
+
+begin_package("Deep_Thought")
+  function("Answer_The_Question", "", "Natural")
+private()
+  variable("The_Answer", "Natural", 42)
+end()
+
+depends("Pan_Dimensional", "Deep_Thought", "ask")
+
+@enduml

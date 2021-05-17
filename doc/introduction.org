@@ -1,0 +1,152 @@
+* Introduction
+** What is =AdaML=?
+- A modeling language to draw UML diagrams
+- UML tailored for Ada 2012 programming language
+- Small, extensible tool implemented on top of PlantUML
+
+** What is /not/ =AdaML=?
+- A model-based tool to generate Ada code
+- A reverse engineering tool to draw UML diagrams from existing Ada code
+- An GUI-based UML modeling or drawing tool
+
+** Features
+- Coherent set of functions to describe components
+- Syntax resembling Ada
+- High quality drawings (=eps=) to embed in other docs
+- =svg= graphics for additional editing (e.g., [[https://inkscape.org/][inkscape]])
+- Online generated diagrams for online docs (e.g., GitHub)
+- Easy to learn by example, both =AdaML= and Ada language
+
+** Online Version - Quick Start
+- Open [[http://sujoyu.github.io/plantuml-previewer][PlantUML Previewer]] or [[https://www.planttext.com/][PlantText]] editor
+- Remove default lines and paste the following code:
+
+#+begin_example
+!include https://raw.github.com/rocher/AdaML/release/0.1.2/AdaML.puml
+begin_type("Pan_Dimensional")
+  procedure("Ask_The_Question", "in out Natural")
+end()
+
+begin_package("Deep_Thought")
+  function("Answer_The_Question", "", "Natural")
+private()
+  variable("The_Answer", "Natural", 42)
+end()
+
+depends("Pan_Dimensional", "Deep_Thought", "ask")
+#+end_example
+
+** Online Version - Test Examples
+In case you want to test the examples in this doc
+
+- Visit one of the several available PlantUML online servers
+- Copy and paste the =AdaML= code shown in the examples
+- Replace the line '=!include AdaML.puml=' with\newline \newline
+  \scriptsize{!include https://raw.github.com/rocher/AdaML/release/0.1.2/AdaML.puml}
+\newline
+*** Warning
+Depending on the PlantUML version used in the web site you can obtain different
+graphical results
+
+** Local Version - Requirements
+In case you want to integrate results in your local docs
+
+- [[https://plantuml.com][=PlantUML=]] installed and working in your system
+- =AdaML.puml= file, check [[https://github.com/rocher/AdaML][=AdaML=]] releases
+- Your favorite text editor with =PlantUML= support (e.g. Emacs)
+- Check the list of [[http://plantuml.com/running][supported editors]]
+- For better visualization and integration with \LaTeX\_ and other formats,
+  [[https://www.fontsquirrel.com/fonts/computer-modern][computer modern]] fonts
+
+** Pros & Cons
+- Online Version ::
+\cmark Quick and easy to test\newline
+\cmark Same code can be embedded in online docs\newline
+\qmark Bitmap graphics; =svg= in PlantText\newline
+\xmark No file saved, no backups\newline
+\xmark PlantUML version may change without notice, affecting graphical results, layout, style or other incompatibilities\newline
+- Local Version ::
+\cmark Best graphical results to embed in other docs (=eps=)\newline
+\cmark Consistent graphical results over time, if no version changed\newline
+\xmark Requires PlantUML up and running
+
+** Document Conventions
+In this document
+
+- Entities :: are /classifiers/, in UML terminology, that correspond to Ada
+              packages, types, records, arrays, subtypes, tasks and protected
+              objects
+
+- Elements :: are /features/, in UML terminology, that correspond to Ada record
+              members, functions and procedures
+
+- Specifiers :: are Ada constructions, like type discriminant or range
+                specifications (e.g, =range 1..1024=) that can appear in some
+                entity diagrams
+
+** OOP Support
+- =AdaML= supports both OOP and non-OOP approaches to software models
+- There is no explicit difference between them in =AdaML=
+- The final implementation in Ada is the last choice between the two options
+- This document and examples on it use OOP concepts as much as possible
+
+** Abstraction Levels
+=AdaML= provides two main view levels, according to the [[https://c4model.com][C4 model]]:
+
+- Code view :: to show in detail how entity elements (attributes, methods) are
+               implemented and the relationship they have with other
+               entities\newline
+
+- Component view :: to show internal entity building blocks and the overall
+                    relationship with other entities\newline
+
+In some /code views/, Ada code is included.
+
+** Deep Thought Example - Code View
+*** code                                                    :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.65
+:END:
+_=AdaML=_
+#+begin_example
+!include AdaML.puml
+begin_type("Pan_Dimensional")
+  procedure("Ask_The_Question", "in out Natural")
+end()
+
+begin_package("Deep_Thought")
+  function("Get_Answer", "", "Natural")
+private()
+  variable("The_Answer", "Natural", 42)
+end()
+
+depends("Pan_Dimensional", "Deep_Thought", "ask")
+#+end_example
+
+*** figure                                                  :BMCOL:B_block:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+_=UML=_
+#+begin_src plantuml :file introduction/deep-thought-example.eps
+!include AdaML.puml
+begin_type("Pan_Dimensional")
+  procedure("Ask_The_Question", "in out Natural")
+end()
+
+begin_package("Deep_Thought")
+  function("Get_Answer", "", "Natural")
+private()
+  variable("The_Answer", "Natural", 42)
+end()
+
+depends("Pan_Dimensional", "Deep_Thought", "ask")
+#+end_src
+
+#+RESULTS[7a22dc04a15ce1b7518d36e9ca62ab1251d2cf58]:
+[[file:introduction/deep-thought-example.eps]]
+
+** Config                                                         :noexport:
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:

@@ -1,0 +1,8 @@
+auto/
+_minted-AdaML/
+*.tex
+*.tex~
+*.pdf
+!AdaML.pdf
+*.eps
+.pdf-view-restore

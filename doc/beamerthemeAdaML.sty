@@ -1,0 +1,87 @@
+\DeclareOptionBeamer{compress}{\beamer@compresstrue}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\useoutertheme[subsection=false,footline=authortitle]{miniframes}
+\usecolortheme{whale}
+
+\setbeamercolor{titlelike}{parent=structure}
+
+%% remove small circles of the headline
+%%
+%\setbeamertemplate{headline}
+%{%
+%  \begin{beamercolorbox}[ht=3.5ex,dp=1ex,%
+%    leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}
+%    \insertsectionhead
+%  \end{beamercolorbox}%
+%}
+
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle\ \  \textendash\  \AdaMLVersion
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertdoctype
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.5ex,dp=1ex,right]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+      \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+%% redefined commands
+%% original definitions at file beamerbasetitle.sty
+\renewcommand{\title}{\@dblarg\beamer@title}
+\long\def\beamer@title[#1]#2{%
+  \def\inserttitle{\textbf{#2}}%
+  \def\beamer@shorttitle{#1}%
+}
+\title{}
+
+\renewcommand{\subtitle}{\@dblarg\beamer@subtitle}
+\long\def\beamer@subtitle[#1]#2{%
+  \def\insertsubtitle{\AdaMLSubtitle}
+}
+\subtitle{}
+
+
+\ifbeamer@autopdfinfo%
+  \g@addto@macro\beamer@firstminutepatches
+  {
+    \begingroup
+      \let\thanks=\@gobble%
+        \hypersetup{pdftitle={\inserttitle\ifx\PDFSubtitle\@empty\else\ - \PDFSubtitle\fi}}
+    \endgroup
+  }
+\fi%
+
+%% redefined commands end
+
+%% inserts a shaded/highlighted outline at the beginning of sections
+%%
+% \AtBeginSection[]{
+%  \setbeamercolor{section in toc shaded}{use=structure,fg=structure.fg}
+%  \setbeamercolor{section in toc}{fg=mycolor}
+%  \setbeamercolor{subsection in toc shaded}{fg=black}
+%  \setbeamercolor{subsection in toc}{fg=mycolor}
+%  \setbeamercolor{subsubsection in toc shaded}{fg=black}
+%  \setbeamercolor{subsubsection in toc}{fg=mycolor}
+%  \frame<beamer>{
+%      \frametitle{Outline}
+%      \setcounter{tocdepth}{3}
+%      \tableofcontents[
+%      sectionstyle=show/shaded,
+%      subsectionstyle=show/show/shaded,
+%      subsubsectionstyle=show/show/show/shaded
+%      ]
+%  }
+%}
+
+\mode
+<all>

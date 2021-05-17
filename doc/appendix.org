@@ -1,0 +1,24 @@
+* Appendix
+** Release
+*** Status
++ AdaML is available under the terms of the GPLv3 License
++ Current release is =0.1.2=
+
+*** ChangeLog
++ First public release including everything you see in this overview document
+
+** TODO
+*** Static behavior
++ There are still a number of features to document and under development, like
+  relationships, protected objects, task entries, arrays, etc..
+
+*** Dynamic behavior
++ Next releases will include interaction diagrams like sequence diagrams,
+  activity diagrams, state machine diagrams or timing diagrams
+
+** Feedback Welcome
++ Send comments, feedback or suggestions using the issues page of the AdaML
+  GitHub repository: [[http://github.com/rocher/AdaML/issues]]
++ Remember to specify the release number you are referring to in you
+  comments\newline
++ Don't hesitate to contact the author in case you need help
