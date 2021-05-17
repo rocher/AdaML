@@ -5,3 +5,4 @@ _minted-AdaML/
 *.pdf
 !AdaML.pdf
 *.eps
+.pdf-view-restore

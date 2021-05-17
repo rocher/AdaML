@@ -2,7 +2,7 @@
 ** Release
 *** Status
 + AdaML is available under the terms of the GPLv3 License
-+ Current release is =0.1.1=
++ Current release is =0.1.2=
 
 *** ChangeLog
 + First public release including everything you see in this overview document
