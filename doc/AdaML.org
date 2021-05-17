@@ -1,8 +1,8 @@
 #+TITLE: AdaML
 # -- version settings
-#+MACRO:                  gitbranch 0.1.1
-#+MACRO:                           version  0.1.1
-#+LATEX_HEADER: \newcommand{\AdaMLVersion}{ 0.1.1 }
+#+MACRO:                  gitbranch 0.1.2
+#+MACRO:                           version  0.1.2
+#+LATEX_HEADER: \newcommand{\AdaMLVersion}{ 0.1.2 }
 # -- subtitle settings
 #+LATEX_HEADER: \newcommand{\PDFSubtitle}{Ada tailored UML Modeling Language}
 #+LATEX_HEADER: \newcommand{\AdaMLSubtitle}{\vspace{.77cm}\ding{125}\ \textit{Ada-tailored UML\newline Modeling Language} \ding{126}\vspace{1cm}}

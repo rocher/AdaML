@@ -22,7 +22,7 @@
 - Remove default lines and paste the following code:
 
 #+begin_example
-!include https://raw.github.com/rocher/AdaML/release/0.1.1/AdaML.puml
+!include https://raw.github.com/rocher/AdaML/release/0.1.2/AdaML.puml
 begin_type("Pan_Dimensional")
   procedure("Ask_The_Question", "in out Natural")
 end()
@@ -33,7 +33,7 @@ private()
   variable("The_Answer", "Natural", 42)
 end()
 
-depends("Pan_Dimensional", "Deep_Thought", "ask >")
+depends("Pan_Dimensional", "Deep_Thought", "ask")
 #+end_example
 
 ** Online Version - Test Examples
@@ -42,7 +42,7 @@ In case you want to test the examples in this doc
 - Visit one of the several available PlantUML online servers
 - Copy and paste the =AdaML= code shown in the examples
 - Replace the line '=!include AdaML.puml=' with\newline \newline
-  \scriptsize{!include https://raw.github.com/rocher/AdaML/release/0.1.1/AdaML.puml}
+  \scriptsize{!include https://raw.github.com/rocher/AdaML/release/0.1.2/AdaML.puml}
 \newline
 *** Warning
 Depending on the PlantUML version used in the web site you can obtain different
@@ -120,7 +120,7 @@ private()
   variable("The_Answer", "Natural", 42)
 end()
 
-depends("Pan_Dimensional", "Deep_Thought", "ask >")
+depends("Pan_Dimensional", "Deep_Thought", "ask")
 #+end_example
 
 *** figure                                                  :BMCOL:B_block:
@@ -140,7 +140,7 @@ private()
   variable("The_Answer", "Natural", 42)
 end()
 
-depends("Pan_Dimensional", "Deep_Thought", "ask >")
+depends("Pan_Dimensional", "Deep_Thought", "ask")
 #+end_src
 
 #+RESULTS[7a22dc04a15ce1b7518d36e9ca62ab1251d2cf58]:

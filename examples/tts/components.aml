@@ -1,0 +1,53 @@
+!include AdaML.puml
+
+begin_package_spec("XAda.Dispatching.TTS<WID, SID, TTP>")
+
+  type_new("Ada.Positive", "TT_Work_Id", "range 1..WID")
+  type_new("Ada.Positive", "TT_Sync_Id", "range 1 .. SID")
+
+  abstract("Time_Slot", "tagged")
+  type_access("Time_Slot")
+
+  type_new("Time_Slot", "Empty_Slot")
+  type_access("Empty_Slot")
+
+  type_new("Time_Slot", "Mode_Change_Slot")
+  type_access("Mode_Change_Slot")
+
+  type_new("Time_Slot", "Sync_Slot")
+  type_access("Sync_Slot")
+
+  type_new("Time_Slot", "Work_Slot")
+  type_access("Work_Slot")
+
+  type_new("Time_Slot", "Regular_Slot")
+  type_access("Regular_Slot")
+
+  type_new("Work_Slot", "Optional_Slot")
+  type_access("Optional_Slot")
+
+  type("Time_Triggered_Plan", "array")
+  array("Time_Triggered_Plan", "Time_Slot_Access")
+  type_access("Time_Triggered_Plan")
+
+''  subprogram("Set_Plan")
+''  depends("Set_Plan", "Time_Triggered_Plan_Access")
+''
+''  subprogram("Wait_For_Activation")
+''  depends("Wait_For_Activation", "TT_Work_Id")
+''  'depends("Wait_For_Activation", "Ada.Real_Time.Time")
+''
+''  subprogram("Continue_Sliced")
+''  subprogram("Leave_TT_Level")
+''  subprogram("Get_First_Plan_Release")
+''  'depends("Get_First_Plan_Release", "Ada.Real_Time.Time")
+''  subprogram("Get_Last_Plan_Release")
+''  'depends("Get_Last_Plan_Release", "Ada.Real_Time.Time")
+''  subprogram("Wait_For_Sync")
+''  'depends("Wait_For_Sync", "TT_Sync_Id")
+
+  left_right("Empty_Slot", "Regular_Slot", "Work_Slot", "Mode_Change_Slot", "Sync_Slot")
+  'left_right("Time_Slot", "Time_Slot_Access")
+  'left_right("TT_Work_Id", "TT_Sync_Id")
+
+end()

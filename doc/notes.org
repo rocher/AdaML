@@ -183,7 +183,7 @@ _=AdaML=_
 type("Pan_Dimensional")
 package("Deep_Thought")
 
-depends("Pan_Dimensional", "Deep_Thought", "ask >")
+depends("Pan_Dimensional", "Deep_Thought", "ask")
 note("right on link", "hope..")
 
 
@@ -199,7 +199,7 @@ _=UML=_
 type("Pan_Dimensional")
 package("Deep_Thought")
 
-depends("Pan_Dimensional", "Deep_Thought", "ask >")
+depends("Pan_Dimensional", "Deep_Thought", "ask")
 note("right on link", "hope the answer\nchanges some day")
 #+end_src
 

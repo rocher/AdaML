@@ -1,0 +1,15 @@
+#+title: FLOYD_TUNER
+
+* Diagrams
+
+#+begin_src plantuml :file floyd_tuner.eps :results none!
+!include floyd_tuner.aml
+#+end_src
+
+#+RESULTS:
+[[file:floyd_tuner.eps]]
+
+* Configuration                                                    :noexport:
+Local Variables:
+org-confirm-babel-evaluate: nil
+End:
