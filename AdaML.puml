@@ -604,19 +604,18 @@ set namespaceSeparator .
 '  arg1+2   --> note on an entity arg1=Entity, arg2=Comment
 '           --> new note created if arg1 is numeric
 !procedure note(arg1, arg2="")
-  !val = %intval(arg1)
   !if (%strlen(arg2) == 0)
     !__note_counter__ = __note_counter__ + 1
     !cntr = "__note__" + __note_counter__
     note "arg1" as cntr
   !else
-    !if (val > 0)
-      !note_name = "Note_" + arg1
-      note "arg2" as note_name
-    !else
-      note arg1 : arg2
-    !endif
+    note arg1 : arg2
   !endif
+!endprocedure
+
+!procedure note_numbered(note, number)
+  !note_name = "Note_" + number
+  note "note" as note_name
 !endprocedure
 
 !procedure link(arg1, arg2)
