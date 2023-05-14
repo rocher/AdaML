@@ -124,7 +124,12 @@ set namespaceSeparator .
 !__in_package_spec__ = 0
 !__note_counter__ = 0
 
-'Private functions
+'------------------------------------------------------------------------------
+'
+'   PRIVATE FUNCTIONS
+'
+'------------------------------------------------------------------------------
+
 !function __get_default(value, default_value)
   !if (%strlen(value) == 0)
     !return default_value
@@ -286,7 +291,12 @@ set namespaceSeparator .
   !return stereotype
 !endfunction
 
-'Public functions
+'------------------------------------------------------------------------------
+'
+'   PUBLIC FUNCTIONS
+'
+'------------------------------------------------------------------------------
+
 !procedure begin_package_spec(name, stereotype="")
   !__in_package_spec__ = 1
   !stereotype = __get_default(stereotype, package_stereotype)
